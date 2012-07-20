@@ -1,0 +1,21 @@
+#schema_block {
+	clear:both;
+	margin:0 auto 10px auto;
+	background: #EEEEEE;
+    border: 1px solid #CCCCCC;
+    padding: 1em;
+}
+
+#schema_block .schema_name {
+	font-weight:700;
+	margin-bottom:10px;
+}
+
+#schema_block .schema_description {
+	margin-bottom:10px;
+}
+
+#schema_block span.desc_type {
+	font-size:95%;
+	font-weight:700;
+}
