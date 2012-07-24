@@ -326,6 +326,12 @@ class ravenSchema
 			'ebook'				=> '',
 			'paperback'			=> '',
 			'hardcover'			=> '',
+			'rev_name'			=> '',
+			'rev_body'			=> '',
+			'user_review'		=> '',
+			'min_review'		=> '',
+			'max_review'		=> '',
+
 			
 		), $atts ) );
 		
@@ -731,6 +737,59 @@ class ravenSchema
 
 		}
 
+		// review 
+		if(isset($type) && $type == 'review') {
+		
+		$sc_build .= '<div itemscope itemtype="http://schema.org/Review">';
+		
+			if(!empty($name) && !empty($url) ) {
+				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
+				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
+				$sc_build .= '</a>';
+			}
+
+			if(!empty($name) && empty($url) )
+				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
+
+			if(!empty($description))
+				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_textarea($description).'</div>';
+
+			if(!empty($rev_name)) 
+				$sc_build .= '<div class="schema_review_name" itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">'.$rev_name.'</span></div>';
+
+			if(!empty($author)) 
+				$sc_build .= '<div itemprop="author" itemscope itemtype="http://schema.org/Person">Written by: <span itemprop="name">'.$author.'</span></div>';
+
+			if(!empty($pubdate))
+				$sc_build .= '<div class="pubdate"><meta itemprop="datePublished" content="'.$pubdate.'">Date Published: '.date('m/d/Y', strtotime($pubdate)).'</div>';
+
+			if(!empty($rev_body))
+				$sc_build .= '<div class="schema_review_body" itemprop="reviewBody">'.esc_textarea($rev_body).'</div>';
+
+			if(!empty($user_review) ) {
+				$sc_build .= '<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
+
+				// minimum review scale
+				if(!empty($min_review))
+					$sc_build .= '<meta itemprop="worstRating" content="'.$min_review.'">';
+
+				$sc_build .= '<span itemprop="ratingValue">'.$user_review.'</span>';
+
+				// max review scale
+				if(!empty($max_review))
+					$sc_build .= ' / <span itemprop="bestRating">'.$max_review.'</span> stars';
+
+
+				$sc_build .= '</div>';
+			}
+
+			
+
+			// close it up
+			$sc_build .= '</div>';
+
+		}
+
 		
 		// close schema wrap
 		$sc_build .= '</div>';
@@ -813,7 +872,13 @@ class ravenSchema
 					var ebook			= jQuery('#schema_builder input#schema_ebook').is(':checked');
 					var paperback		= jQuery('#schema_builder input#schema_paperback').is(':checked');
 					var hardcover		= jQuery('#schema_builder input#schema_hardcover').is(':checked');
-					
+					var rev_name		= jQuery('#schema_builder input#schema_rev_name').val();
+					var rev_body		= jQuery('#schema_builder textarea#schema_rev_body').val();
+					var user_review		= jQuery('#schema_builder input#schema_user_review').val();
+					var min_review		= jQuery('#schema_builder input#schema_min_review').val();
+					var max_review		= jQuery('#schema_builder input#schema_max_review').val();
+
+
 			// output setups
 			output = '[schema ';
 				output += 'type="' + type + '" ';
@@ -983,6 +1048,32 @@ class ravenSchema
 
 				}
 
+				// review
+				if(type == 'review' ) {
+					if(url)
+						output += ' url="' + url + '" ';
+					if(name)
+						output += ' name="' + name + '" ';
+					if(description)
+						output += ' description="' + description + '" ';
+					if(rev_name)
+						output += ' rev_name="' + rev_name + '" ';
+					if(rev_body)
+						output += ' rev_body="' + rev_body + '" ';					
+					if(author)
+						output += ' author="' + author + '" ';
+					if(pubdate)
+						output += ' pubdate="' + pubdate + '" ';
+					if(user_review)
+						output += ' user_review="' + user_review + '" ';
+					if(min_review)
+						output += ' min_review="' + min_review + '" ';
+					if(max_review)
+						output += ' max_review="' + max_review + '" ';
+
+				}
+
+
 			output += ']';
 	
 			window.send_to_editor(output);
@@ -1066,6 +1157,16 @@ class ravenSchema
 				<div id="sc_description" class="sc_option" style="display:none">
 					<label for="schema_description">Description</label>
 					<textarea name="schema_description" id="schema_description"></textarea>
+				</div>
+
+				<div id="sc_rev_name" class="sc_option" style="display:none">
+					<label for="schema_rev_name">Item Name</label>
+					<input type="text" name="schema_rev_name" class="form_full" value="" id="schema_rev_name" />
+				</div>
+
+				<div id="sc_rev_body" class="sc_option" style="display:none">
+					<label for="schema_rev_body">Item Review</label>
+					<textarea name="schema_rev_body" id="schema_rev_body"></textarea>
 				</div>
 
 				<div id="sc_director" class="sc_option" style="display:none">
@@ -1177,13 +1278,26 @@ class ravenSchema
    				<div id="sc_ratings" class="sc_option" style="display:none">
 					<label for="sc_ratings">Aggregate Rating</label>
                     <div class="labels_inline">
-					<label for="sc_single_rating">Avg Rating</label>
+					<label for="schema_single_rating">Avg Rating</label>
                     <input type="text" name="schema_single_rating" class="form_eighth" value="" id="schema_single_rating" />
-                    <label for="sc_agg_rating">based on </label>
+                    <label for="schema_agg_rating">based on </label>
 					<input type="text" name="schema_agg_rating" class="form_eighth" value="" id="schema_agg_rating" />
                     <label>reviews</label>
                     </div>
 				</div>
+
+   				<div id="sc_reviews" class="sc_option" style="display:none">
+					<label for="sc_reviews">Rating</label>
+                    <div class="labels_inline">
+					<label for="schema_user_review">Rating</label>
+                    <input type="text" name="schema_user_review" class="form_eighth" value="" id="schema_user_review" />
+                    <label for="schema_min_review">Minimum</label>
+					<input type="text" name="schema_min_review" class="form_eighth" value="" id="schema_min_review" />
+                    <label for="schema_max_review">Maximum</label>
+					<input type="text" name="schema_max_review" class="form_eighth" value="" id="schema_max_review" />
+                    </div>
+				</div>
+
 
    				<div id="sc_price" class="sc_option" style="display:none">
 					<label for="schema_price">Price</label>
