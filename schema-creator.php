@@ -93,7 +93,7 @@ class ravenSchema
         
 	        <div class="schema_options">
             	<div class="schema_form_text">
-            	<p>My guess is that we'll have some sort of intro here about what schema is, where to learn more, etc.</p>
+            	<p>By default, the <a href="http://schema-creator.org/" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs. The plugin can also automatically include <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> and <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schemas to your pages and posts.</p>
                 </div>
                 
                 <div class="schema_form_options">
@@ -108,17 +108,19 @@ class ravenSchema
 				?>
         
 				<p>
-                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_show; ?>/> Exclude default CSS for schema output</label>
+                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_show; ?>/> Check to remove Schema Creator CSS from the microdata HTML output.</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['default_css']; ?>">(?)</span>
                 </p>
 
 				<p>
-                <label for="schema_options[body]"><input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> Apply itemprop & itemtype to main body tag</label>
+                <label for="schema_options[body]"><input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> Check to add the <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts.</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['pending_tip']; ?>">(?)</span>
                 </p>
 
 				<p>
-                <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> Apply itemscope & itemtype to content wrapper</label>
+                <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> Check to add the <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schema itemtype to the content wrapper on your pages and posts.
+
+</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['pending_tip']; ?>">(?)</span>
                 </p>                
     
