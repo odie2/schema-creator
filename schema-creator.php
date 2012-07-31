@@ -72,7 +72,9 @@ class ravenSchema
 	 */
 
 	private $tooltip = array (
-		"default_css"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Default CSS</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Selecting this option will load a CSS file on any post / page that has a schema builder shortcode in it.</p>",
+		"default_css"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Default CSS</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to remove Schema Creator CSS from the microdata HTML output.</p>",
+		"body_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Body Tag</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/Blog' target='_blank'>http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts.</p>",
+		"post_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Post Wrapper</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/BlogPosting' target='_blank'>http://schema.org/BlogPosting</a> schema itemtype to the content wrapper on your pages and posts.</p>",
 		"pending_tip"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Pending</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>This fancy little box will have helpful information in it soon.</p>",
 
 
@@ -109,20 +111,18 @@ class ravenSchema
 				?>
         
 				<p>
-                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_show; ?>/> Check to remove Schema Creator CSS from the microdata HTML output.</label>
+                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_show; ?>/> Exclude default CSS for schema output</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['default_css']; ?>">(?)</span>
                 </p>
 
 				<p>
-                <label for="schema_options[body]"><input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> Check to add the <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts.</label>
-                <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['pending_tip']; ?>">(?)</span>
+                <label for="schema_options[body]"><input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> Apply itemprop & itemtype to main body tag</label>
+                <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['body_class']; ?>">(?)</span>
                 </p>
 
 				<p>
-                <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> Check to add the <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schema itemtype to the content wrapper on your pages and posts.
-
-</label>
-                <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['pending_tip']; ?>">(?)</span>
+                <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> Apply itemscope & itemtype to content wrapper</label>
+                <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['post_class']; ?>">(?)</span>
                 </p>                
     
 	    		<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" /></p>
