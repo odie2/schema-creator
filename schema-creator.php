@@ -93,7 +93,8 @@ class ravenSchema
         
 	        <div class="schema_options">
             	<div class="schema_form_text">
-            	<p>By default, the <a href="http://schema-creator.org/" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs. The plugin can also automatically include <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> and <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schemas to your pages and posts.</p>
+            	<p>By default, the <a href="http://schema-creator.org/" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.</p>
+            	<p>The plugin can also automatically include <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> and <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schemas to your pages and posts.</p>
                 </div>
                 
                 <div class="schema_form_options">
@@ -1186,7 +1187,7 @@ class ravenSchema
                         <input type="text" name="schema_actor_1" class="form_full actor_input" value="" id="schema_actor_1" />
 				</div>
 
-				<input type="button" id="clone_actor" value="Add" style="display:none;" />
+				<input type="button" id="clone_actor" value="Add Another Actor" style="display:none;" />
 
 
 				<div id="sc_sdate" class="sc_option" style="display:none">

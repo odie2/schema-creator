@@ -13,6 +13,12 @@ div.schema_form_text {
 	margin:0 0 20px 0;
 }
 
+div.schema_form_text p {
+	font-size: 14px;
+	line-height: 22px;
+	margin: 0 0 1em;
+}
+
 div.schema_form_options input.schema_checkbox {
 	margin:1px 3px 0 0;
 }
@@ -124,7 +130,7 @@ div#TB_ajaxContent {
 
 #schema_builder div.insert_button {
 	clear:both;
-	margin-top:30px;
+	margin-top:20px;
 	}
 
 #schema_builder div.insert_button input.schema_button {
@@ -143,8 +149,8 @@ div#TB_ajaxContent {
 	color:#333;
 	}
 
-#schema_builder div.insert_button input.schema_insert {margin:0 160px 0 0;}
-#schema_builder div.insert_button input.schema_cancel {margin:0 30px 0 0;}
+#schema_builder div.insert_button input.schema_insert {margin:0 20px 0 0;}
+#schema_builder div.insert_button input.schema_cancel {margin:0 20px 0 0;}
 
 #schema_builder input#clone_actor {
 	background: none repeat scroll 0 0 #9BC4E2;
@@ -152,8 +158,8 @@ div#TB_ajaxContent {
     color: #42647F;
     cursor: pointer;
     text-transform: uppercase;
-    width: 70px;
-	margin:0 auto;
+    width: 150px;
+	margin:10px 0 0 135px;
 	float:none;
 }
 
