@@ -72,7 +72,7 @@ class ravenSchema
 	 */
 
 	private $tooltip = array (
-		"default_css"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Default CSS</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to remove Schema Creator CSS from the microdata HTML output.</p>",
+		"default_css"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Including CSS</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to remove Schema Creator CSS from the microdata HTML output.</p>",
 		"body_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Body Tag</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/Blog' target='_blank'>http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts.</p>",
 		"post_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Post Wrapper</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/BlogPosting' target='_blank'>http://schema.org/BlogPosting</a> schema itemtype to the content wrapper on your pages and posts.</p>",
 		"pending_tip"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Pending</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>This fancy little box will have helpful information in it soon.</p>",
