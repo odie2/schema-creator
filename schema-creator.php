@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator
 Plugin URI: http://andrewnorcross.com/plugins/schema-creator/
 Description: Insert schema data into posts
-Version: 0.1
+Version: 1.0
 Author: norcross
 Author URI: http://andrewnorcross.com/
 License: GPL v2
