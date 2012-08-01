@@ -885,7 +885,7 @@ class ravenSchema
 
 
 			// output setups
-			output = '[ schema ';
+			output = '[schema ';
 				output += 'type="' + type + '" ';
 
 				// person
