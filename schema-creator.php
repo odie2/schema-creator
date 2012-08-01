@@ -1221,7 +1221,7 @@ class ravenSchema
 	
 				<div id="sc_pobox" class="sc_option" style="display:none">
 					<label for="schema_pobox">PO Box</label>
-					<input type="text" name="schema_pobox" class="form_third" value="" id="schema_pobox" />
+					<input type="text" name="schema_pobox" class="form_third schema_numeric" value="" id="schema_pobox" />
 				</div>
 	
 				<div id="sc_city" class="sc_option" style="display:none">
@@ -1236,7 +1236,7 @@ class ravenSchema
 	
 				<div id="sc_postalcode" class="sc_option" style="display:none">
 					<label for="schema_postalcode">Postal Code</label>
-					<input type="text" name="schema_postalcode" class="form_third" value="" id="schema_postalcode" />
+					<input type="text" name="schema_postalcode" class="form_third schema_numeric" value="" id="schema_postalcode" />
 				</div>
 	
 				<div id="sc_country" class="sc_option" style="display:none">
@@ -1278,9 +1278,9 @@ class ravenSchema
 					<label for="sc_ratings">Aggregate Rating</label>
                     <div class="labels_inline">
 					<label for="schema_single_rating">Avg Rating</label>
-                    <input type="text" name="schema_single_rating" class="form_eighth" value="" id="schema_single_rating" />
+                    <input type="text" name="schema_single_rating" class="form_eighth schema_numeric" value="" id="schema_single_rating" />
                     <label for="schema_agg_rating">based on </label>
-					<input type="text" name="schema_agg_rating" class="form_eighth" value="" id="schema_agg_rating" />
+					<input type="text" name="schema_agg_rating" class="form_eighth schema_numeric" value="" id="schema_agg_rating" />
                     <label>reviews</label>
                     </div>
 				</div>
@@ -1289,11 +1289,11 @@ class ravenSchema
 					<label for="sc_reviews">Rating</label>
                     <div class="labels_inline">
 					<label for="schema_user_review">Rating</label>
-                    <input type="text" name="schema_user_review" class="form_eighth" value="" id="schema_user_review" />
+                    <input type="text" name="schema_user_review" class="form_eighth schema_numeric" value="" id="schema_user_review" />
                     <label for="schema_min_review">Minimum</label>
-					<input type="text" name="schema_min_review" class="form_eighth" value="" id="schema_min_review" />
+					<input type="text" name="schema_min_review" class="form_eighth schema_numeric" value="" id="schema_min_review" />
                     <label for="schema_max_review">Maximum</label>
-					<input type="text" name="schema_max_review" class="form_eighth" value="" id="schema_max_review" />
+					<input type="text" name="schema_max_review" class="form_eighth schema_numeric" value="" id="schema_max_review" />
                     </div>
 				</div>
 

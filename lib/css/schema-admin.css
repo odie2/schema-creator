@@ -196,6 +196,13 @@ div#TB_ajaxContent {
 	color:#666666;
 }
 
+#schema_builder span.warning {
+	font-size: 11px;
+	font-style: italic;
+	padding: 0 0 0 0.7em;
+	color:#CC0000;
+	vertical-align: middle;
+}
 
 #sc_messages p {
 	font-style:italic;
