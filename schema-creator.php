@@ -883,197 +883,193 @@ class ravenSchema
 
 
 			// output setups
-			output = '[schema ';
+			output = '[ schema ';
 				output += 'type="' + type + '" ';
 
 				// person
 				if(type == 'person' ) {
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(orgname)
-						output += ' orgname="' + orgname + '" ';
+						output += 'orgname="' + orgname + '" ';
 					if(jobtitle)
-						output += ' jobtitle="' + jobtitle + '" ';
+						output += 'jobtitle="' + jobtitle + '" ';
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(bday)
-						output += ' bday="' + bday + '" ';
+						output += 'bday="' + bday + '" ';
 					if(street)
-						output += ' street="' + street + '" ';
+						output += 'street="' + street + '" ';
 					if(pobox)
-						output += ' pobox="' + pobox + '" ';
+						output += 'pobox="' + pobox + '" ';
 					if(city)
-						output += ' city="' + city + '" ';
+						output += 'city="' + city + '" ';
 					if(state)
-						output += ' state="' + state + '" ';
+						output += 'state="' + state + '" ';
 					if(postalcode)
-						output += ' postalcode="' + postalcode + '" ';
+						output += 'postalcode="' + postalcode + '" ';
 					if(country)
-						output += ' country="' + country + '" ';
+						output += 'country="' + country + '" ';
 					if(email)
-						output += ' email="' + email + '" ';
+						output += 'email="' + email + '" ';
 					if(phone)
-						output += ' phone="' + phone + '" ';
+						output += 'phone="' + phone + '" ';
 				}
 
 				// product
 				if(type == 'product' ) {
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(brand)
-						output += ' brand="' + brand + '" ';
+						output += 'brand="' + brand + '" ';
 					if(manfu)
-						output += ' manfu="' + manfu + '" ';
+						output += 'manfu="' + manfu + '" ';
 					if(model)
-						output += ' model="' + model + '" ';
+						output += 'model="' + model + '" ';
 					if(prod_id)
-						output += ' prod_id="' + prod_id + '" ';
+						output += 'prod_id="' + prod_id + '" ';
 					if(single_rating)
-						output += ' single_rating="' + single_rating + '" ';
+						output += 'single_rating="' + single_rating + '" ';
 					if(agg_rating)
-						output += ' agg_rating="' + agg_rating + '" ';
+						output += 'agg_rating="' + agg_rating + '" ';
 					if(price)
-						output += ' price="' + price + '" ';
+						output += 'price="' + price + '" ';
 					if(condition)
-						output += ' condition="' + condition + '" ';
-
+						output += 'condition="' + condition + '" ';
 				}
 
 				// event
 				if(type == 'event' ) {
 					if(evtype)
-						output += ' evtype="' + evtype + '" ';
+						output += 'evtype="' + evtype + '" ';
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(sdate)
-						output += ' sdate="' + sdate + '" ';
+						output += 'sdate="' + sdate + '" ';
 					if(stime)
-						output += ' stime="' + stime + '" ';
+						output += 'stime="' + stime + '" ';
 					if(edate)
-						output += ' edate="' + edate + '" ';
+						output += 'edate="' + edate + '" ';
 					if(duration)
-						output += ' duration="' + duration + '" ';
+						output += 'duration="' + duration + '" ';
 					if(street)
-						output += ' street="' + street + '" ';
+						output += 'street="' + street + '" ';
 					if(pobox)
-						output += ' pobox="' + pobox + '" ';
+						output += 'pobox="' + pobox + '" ';
 					if(city)
-						output += ' city="' + city + '" ';
+						output += 'city="' + city + '" ';
 					if(state)
-						output += ' state="' + state + '" ';
+						output += 'state="' + state + '" ';
 					if(postalcode)
-						output += ' postalcode="' + postalcode + '" ';
+						output += 'postalcode="' + postalcode + '" ';
 					if(country)
-						output += ' country="' + country + '" ';
+						output += 'country="' + country + '" ';
 				}
 
 				// organization
 				if(type == 'organization' ) {
 					if(orgtype)
-						output += ' orgtype="' + orgtype + '" ';
+						output += 'orgtype="' + orgtype + '" ';
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(street)
-						output += ' street="' + street + '" ';
+						output += 'street="' + street + '" ';
 					if(pobox)
-						output += ' pobox="' + pobox + '" ';
+						output += 'pobox="' + pobox + '" ';
 					if(city)
-						output += ' city="' + city + '" ';
+						output += 'city="' + city + '" ';
 					if(state)
-						output += ' state="' + state + '" ';
+						output += 'state="' + state + '" ';
 					if(postalcode)
-						output += ' postalcode="' + postalcode + '" ';
+						output += 'postalcode="' + postalcode + '" ';
 					if(country)
-						output += ' country="' + country + '" ';				
+						output += 'country="' + country + '" ';				
 				}
 
 				// movie
 				if(type == 'movie' ) {
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(director)
-						output += ' director="' + director + '" ';						
+						output += 'director="' + director + '" ';						
 					if(producer)
-						output += ' producer="' + producer + '" ';
+						output += 'producer="' + producer + '" ';
 					if(actor_group) {
 						var count = 0;
 						jQuery('div.sc_actor').each(function(){
 							count++;
 							var actor = jQuery(this).find('input').val();
-							output += ' actor_' + count + '="' + actor + '" ';
+							output += 'actor_' + count + '="' + actor + '" ';
 						});
 					}
-
 				}
 
 				// book
 				if(type == 'book' ) {
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(author)
-						output += ' author="' + author + '" ';						
+						output += 'author="' + author + '" ';						
 					if(publisher)
-						output += ' publisher="' + publisher + '" ';
+						output += 'publisher="' + publisher + '" ';
 					if(pubdate)
-						output += ' pubdate="' + pubdate + '" ';
+						output += 'pubdate="' + pubdate + '" ';
 					if(edition)
-						output += ' edition="' + edition + '" ';
+						output += 'edition="' + edition + '" ';
 					if(isbn)
-						output += ' isbn="' + isbn + '" ';
-					if(ebook == true )
-						output += ' ebook="yes" ';
-					if(paperback == true )
-						output += ' paperback="yes" ';
-					if(hardcover == true )
-						output += ' hardcover="yes" ';
-
+						output += 'isbn="' + isbn + '" ';
+					if(ebook === true )
+						output += 'ebook="yes" ';
+					if(paperback === true )
+						output += 'paperback="yes" ';
+					if(hardcover === true )
+						output += 'hardcover="yes" ';
 				}
 
 				// review
 				if(type == 'review' ) {
 					if(url)
-						output += ' url="' + url + '" ';
+						output += 'url="' + url + '" ';
 					if(name)
-						output += ' name="' + name + '" ';
+						output += 'name="' + name + '" ';
 					if(description)
-						output += ' description="' + description + '" ';
+						output += 'description="' + description + '" ';
 					if(rev_name)
-						output += ' rev_name="' + rev_name + '" ';
+						output += 'rev_name="' + rev_name + '" ';
 					if(rev_body)
-						output += ' rev_body="' + rev_body + '" ';					
+						output += 'rev_body="' + rev_body + '" ';					
 					if(author)
-						output += ' author="' + author + '" ';
+						output += 'author="' + author + '" ';
 					if(pubdate)
-						output += ' pubdate="' + pubdate + '" ';
+						output += 'pubdate="' + pubdate + '" ';
 					if(user_review)
-						output += ' user_review="' + user_review + '" ';
+						output += 'user_review="' + user_review + '" ';
 					if(min_review)
-						output += ' min_review="' + min_review + '" ';
+						output += 'min_review="' + min_review + '" ';
 					if(max_review)
-						output += ' max_review="' + max_review + '" ';
-
+						output += 'max_review="' + max_review + '" ';
 				}
 
 
