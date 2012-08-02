@@ -199,9 +199,16 @@ div#TB_ajaxContent {
 #schema_builder span.warning {
 	font-size: 11px;
 	font-style: italic;
-	padding: 0 0 0 0.7em;
+	padding: 0 0.7em;
 	color:#CC0000;
 	vertical-align: middle;
+}
+
+#schema_builder #sc_ratings span.warning,
+#schema_builder #sc_reviews span.warning {
+	clear:both;
+	text-align: right;
+	display: block;
 }
 
 #sc_messages p {

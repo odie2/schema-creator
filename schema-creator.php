@@ -14,6 +14,7 @@ License: GPL v2
 
 	http://schema_creator.org/
 	http://foolip.org/microdatajs/live/
+	http://www.google.com/webmasters/tools/richsnippets
 	
 */
 
