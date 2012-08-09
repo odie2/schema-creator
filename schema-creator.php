@@ -43,7 +43,6 @@ class ravenSchema
 	public function __construct() {
 		add_action					( 'admin_menu',				array( $this, 'schema_settings'	) );
 		add_action					( 'admin_init', 			array( $this, 'reg_settings'	) );
-		add_shortcode				( 'schema',					array( $this, 'shortcode'		) );
 		add_action					( 'wp_enqueue_scripts',		array( $this, 'front_scripts'	) );
 		add_action					( 'admin_enqueue_scripts',	array( $this, 'post_scripts'	) );
 		add_action					( 'admin_enqueue_scripts',	array( $this, 'admin_scripts'	) );		
@@ -52,6 +51,8 @@ class ravenSchema
 		add_action					( 'the_posts', 				array( $this, 'schema_loader'	) );
 		add_filter					( 'the_content',			array( $this, 'schema_wrapper'	) );
 		add_filter					( 'admin_footer_text',		array( $this, 'schema_footer'	) );
+		add_shortcode				( 'schema',					array( $this, 'shortcode'		) );
+		register_activation_hook	( __FILE__, 				array( $this, 'store_settings'	) );
 	}
 
 
@@ -75,6 +76,33 @@ class ravenSchema
 
 	public function reg_settings() {
 		register_setting( 'schema_options', 'schema_options');		
+
+	}
+
+	/**
+	 * Store settings
+	 * 
+	 * run at
+	 *
+	 * @return ravenSchema
+	 */
+
+
+	public function store_settings() {
+		
+		// check to see if they have options first
+		$options_check	= get_option('schema_options');
+
+		// already have options? LEAVE THEM ALONE SIR		
+		if(!empty($options_check))
+			return;
+
+		// got nothin? well then, shall we?
+		$schema_options['css']	= 'false';
+		$schema_options['body']	= 'true';
+		$schema_options['post']	= 'true';
+
+		update_option('schema_options', $schema_options);
 
 	}
 
@@ -118,13 +146,13 @@ class ravenSchema
                 settings_fields( 'schema_options' );
 				$schema_options	= get_option('schema_options');
 
-				$css_show	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
+				$css_hide	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
 				$body_tag	= (isset($schema_options['body']) && $schema_options['body'] == 'true' ? 'checked="checked"' : '');
 				$post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');								
 				?>
         
 				<p>
-                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_show; ?>/> Exclude default CSS for schema output</label>
+                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_hide; ?>/> Exclude default CSS for schema output</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['default_css']; ?>">(?)</span>
                 </p>
 
