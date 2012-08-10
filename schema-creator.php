@@ -44,11 +44,10 @@ class ravenSchema
 		add_action					( 'admin_menu',				array( $this, 'schema_settings'	) );
 		add_action					( 'admin_init', 			array( $this, 'reg_settings'	) );
 		add_action					( 'wp_enqueue_scripts',		array( $this, 'front_scripts'	) );
-		add_action					( 'admin_enqueue_scripts',	array( $this, 'post_scripts'	) );
 		add_action					( 'admin_enqueue_scripts',	array( $this, 'admin_scripts'	) );		
-		add_filter					( 'media_buttons_context',	array( $this, 'media_button'	) );
 		add_action					( 'admin_footer',			array( $this, 'schema_form'		) );
 		add_action					( 'the_posts', 				array( $this, 'schema_loader'	) );
+		add_filter					( 'media_buttons_context',	array( $this, 'media_button'	) );
 		add_filter					( 'the_content',			array( $this, 'schema_wrapper'	) );
 		add_filter					( 'admin_footer_text',		array( $this, 'schema_footer'	) );
 		add_shortcode				( 'schema',					array( $this, 'shortcode'		) );
@@ -64,7 +63,7 @@ class ravenSchema
 
 
 	public function schema_settings() {
-	    add_submenu_page('options-general.php', 'Schema Creator', 'Schema Creator', 'edit_posts', 'schema-creator', array( $this, 'schema_creator_display' ));
+	    add_submenu_page('options-general.php', 'Schema Creator', 'Schema Creator', 'manage_options', 'schema-creator', array( $this, 'schema_creator_display' ));
 	}
 
 	/**
@@ -128,7 +127,11 @@ class ravenSchema
 	 * @return ravenSchema
 	 */
 	 
-	public function schema_creator_display() { ?>
+	public function schema_creator_display() { 
+		
+		if (!current_user_can('manage_options') )
+			return;
+		?>
 	
 		<div class="wrap">
     	<div class="icon32" id="icon-schema"><br></div>
@@ -178,13 +181,14 @@ class ravenSchema
 		
 
 	/**
-	 * load scripts adn style for post or page editor
+	 * load scripts and style for admin settings page
 	 *
 	 * @return ravenSchema
 	 */
 
 
-	public function post_scripts($hook) {
+	public function admin_scripts($hook) {
+		// for post editor
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
 			
@@ -195,16 +199,7 @@ class ravenSchema
 			wp_enqueue_script( 'format-currency', plugins_url('/lib/js/jquery.currency.min.js', __FILE__) , array('jquery'), null, true );
 			wp_enqueue_script( 'schema-form', plugins_url('/lib/js/schema.form.init.js', __FILE__) , array('jquery'), null, true );
 		}
-	}
-
-	/**
-	 * load scripts and style for admin settings page
-	 *
-	 * @return ravenSchema
-	 */
-
-
-	public function admin_scripts() {
+		// for admin settings screen
 		$current_screen = get_current_screen();
 		if ( 'settings_page_schema-creator' == $current_screen->base ) {
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
@@ -247,21 +242,24 @@ class ravenSchema
 	}
 
 	/**
-	 * load front-end CSS
+	 * load front-end CSS if shortcode is present
 	 *
 	 * @return ravenSchema
 	 */
 
 
 	public function schema_loader($posts) {
-		
+
+		// no posts present. nothing more to do here
+		if ( empty($posts) )
+			return $posts;		
+
+		// they said they didn't want the CSS. their loss.
 		$schema_options = get_option('schema_options');
 
 		if(isset($schema_options['css']) && $schema_options['css'] == 'true' )
 			return $posts;		
-		
-		if ( empty($posts) )
-			return $posts;
+
 		
 		// false because we have to search through the posts first
 		$found = false;
@@ -310,18 +308,6 @@ class ravenSchema
 		
 	}
 
-	/**
-	 * set CSS value at activation
-	 *
-	 * @return ravenSchema
-	 */
-
-
-	public function schema_setup() {
-
-		update_option('schema_css', 'true');
-
-	}
 
 	/**
 	 * Build out shortcode with variable array of options
@@ -852,6 +838,11 @@ class ravenSchema
 
 	public function media_button($context) {
 		
+		// don't show on dashboard (QuickPress)
+		$current_screen = get_current_screen();
+		if ( 'dashboard' == $current_screen->base )
+			return $context;
+
 		// don't display button for users who don't have access
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
 			return;
