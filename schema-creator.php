@@ -176,6 +176,7 @@ class ravenSchema
             </div>
 
         </div>    
+
 	
 	<?php }
 		
@@ -189,7 +190,7 @@ class ravenSchema
 
 	public function admin_scripts($hook) {
 		// for post editor
-		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+		if ( $hook == 'post-new.php' || $hook == 'post.php' ) :
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
 			
 			wp_enqueue_script( 'jquery-ui-core');
@@ -198,15 +199,16 @@ class ravenSchema
 			wp_enqueue_script( 'jquery-timepicker', plugins_url('/lib/js/jquery.timepicker.js', __FILE__) , array('jquery'), null, true );
 			wp_enqueue_script( 'format-currency', plugins_url('/lib/js/jquery.currency.min.js', __FILE__) , array('jquery'), null, true );
 			wp_enqueue_script( 'schema-form', plugins_url('/lib/js/schema.form.init.js', __FILE__) , array('jquery'), null, true );
-		}
+		endif;
+
 		// for admin settings screen
 		$current_screen = get_current_screen();
-		if ( 'settings_page_schema-creator' == $current_screen->base ) {
+		if ( 'settings_page_schema-creator' == $current_screen->base ) :
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
 			
 			wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), null, true );			
 			wp_enqueue_script( 'schema-admin', plugins_url('/lib/js/schema.admin.init.js', __FILE__) , array('jquery'), null, true );
-		}
+		endif;
 	}
 
 
@@ -334,6 +336,7 @@ class ravenSchema
 			'country'			=> '',
 			'email'				=> '',		
 			'phone'				=> '',
+			'fax'				=> '',
 			'brand'				=> '',
 			'manfu'				=> '',
 			'model'				=> '',
@@ -670,6 +673,15 @@ class ravenSchema
 				)
 				$sc_build .= '</div>';
 
+			if(!empty($email))
+				$sc_build .= '<div class="email" itemprop="email">'.antispambot($email).'</div>';
+
+			if(!empty($phone))
+				$sc_build .= '<div class="phone" itemprop="telephone">'.$phone.'</div>';
+
+			if(!empty($fax))
+				$sc_build .= '<div class="fax" itemprop="faxNumber">'.$fax.'</div>';
+
 			// close it up
 			$sc_build .= '</div>';
 			
@@ -882,10 +894,10 @@ class ravenSchema
 					var city			= jQuery('#schema_builder input#schema_city').val();
 					var state			= jQuery('#schema_builder input#schema_state').val();
 					var postalcode		= jQuery('#schema_builder input#schema_postalcode').val();
-//					var country			= jQuery('#schema_builder input#schema_country').val();
 					var country			= jQuery('#schema_builder select#schema_country').val();
 					var email			= jQuery('#schema_builder input#schema_email').val();
 					var phone			= jQuery('#schema_builder input#schema_phone').val();
+					var fax				= jQuery('#schema_builder input#schema_fax').val();
 					var brand			= jQuery('#schema_builder input#schema_brand').val();
 					var manfu			= jQuery('#schema_builder input#schema_manfu').val();
 					var model			= jQuery('#schema_builder input#schema_model').val();
@@ -1031,7 +1043,13 @@ class ravenSchema
 					if(postalcode)
 						output += 'postalcode="' + postalcode + '" ';
 					if(country)
-						output += 'country="' + country + '" ';					
+						output += 'country="' + country + '" ';
+					if(email)
+						output += 'email="' + email + '" ';
+					if(phone)
+						output += 'phone="' + phone + '" ';
+					if(fax)
+						output += 'fax="' + fax + '" ';
 				}
 
 				// movie
@@ -1537,6 +1555,11 @@ class ravenSchema
 				<div id="sc_phone" class="sc_option" style="display:none">
 					<label for="schema_phone">Telephone</label>
 					<input type="text" name="schema_phone" class="form_half" value="" id="schema_phone" />
+				</div>
+
+				<div id="sc_fax" class="sc_option" style="display:none">
+					<label for="schema_fax">Fax</label>
+					<input type="text" name="schema_fax" class="form_half" value="" id="schema_fax" />
 				</div>
 	
    				<div id="sc_brand" class="sc_option" style="display:none">
