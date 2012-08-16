@@ -2,7 +2,7 @@
 /*
 Plugin Name: Schema Creator
 Plugin URI: http://andrewnorcross.com/plugins/schema-creator/
-Description: Insert schema data into posts
+Description: Insert schema.org microdata into posts and pages
 Version: 1.0
 Author: norcross
 Author URI: http://andrewnorcross.com/
@@ -139,7 +139,7 @@ class ravenSchema
         
 	        <div class="schema_options">
             	<div class="schema_form_text">
-            	<p>By default, the <a href="http://schema-creator.org/" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.</p>
+            	<p>By default, the <a href="http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.</p>
             	<p>The plugin can also automatically include <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> and <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schemas to your pages and posts.</p>
                 </div>
                 
@@ -221,7 +221,7 @@ class ravenSchema
 	public function schema_footer($text) {
 		$current_screen = get_current_screen();
 		if ( 'settings_page_schema-creator' == $current_screen->base )
-			$text = '<span id="footer-thankyou">This plugin brought to you by the fine folks at <a title="Internet Marketing Tools for SEO and Social Media" target="_blank" href="http://raventools.com/">Raven Internet Marketing Tools</a>.</span>';
+			$text = '<span id="footer-thankyou">This plugin brought to you by the fine folks at <a title="Internet Marketing Tools for SEO and Social Media" target="_blank" href="http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema">Raven Internet Marketing Tools</a>.</span>';
 
 		if ( 'settings_page_schema-creator' !== $current_screen->base )
 			$text = '<span id="footer-thankyou">Thank you for creating with <a href="http://wordpress.org/">WordPress</a>.</span>';
