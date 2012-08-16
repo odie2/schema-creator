@@ -35,8 +35,7 @@ class ravenSchema
 {
 
 	/**
-	 * This is our constructor, which is private to force the use of
-	 * getInstance() to make this a Singleton
+	 * This is our constructor
 	 *
 	 * @return ravenSchema
 	 */

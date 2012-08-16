@@ -1,5 +1,5 @@
 === Schema Creator ===
-Contributors: norcross
+Contributors: norcross, raventools
 Tags: schema.org, microformats
 Tested up to: 3.4.1
 Stable tag: 1.0
