@@ -22,8 +22,7 @@ This section describes how to install the plugin and get it working.
 
 = How does this all work? =
 
-It does
-
+The Schema Creator plugin places an icon above the Post/Page rich text editor (next to the Add Media icon). Click on the icon to select a supported schema, fill in the form, and then insert it into your page/post. The plugin uses shortcode, so you can easily edit the schema after you create it. There are additional options on the Schema Creator Settings page.
 
 == Screenshots ==
 
