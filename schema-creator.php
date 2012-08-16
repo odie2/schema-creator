@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Schema Creator
-Plugin URI: http://andrewnorcross.com/plugins/schema-creator/
+Plugin URI: http://schema-creator.org/
 Description: Insert schema.org microdata into posts and pages
 Version: 1.0
-Author: norcross
-Author URI: http://andrewnorcross.com/
+Author: Raven Internet Marketing Tools
+Author URI: http://raventools.com
 License: GPL v2
 
     This program is free software; you can redistribute it and/or modify
