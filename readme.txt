@@ -5,11 +5,11 @@ Tested up to: 3.4.1
 Stable tag: 1.0
 Requires at least: 3.4
 
-Insert schema data into WordPress
+Insert schema.org microdata into WordPress pages and posts.
 
 == Description ==
 
-Provides an easy to use form to embed properly constructed schema data into a WordPress post or page.
+Provides an easy to use form to embed properly constructed schema.org microdata into a WordPress post or page.
 
 == Installation ==
 
