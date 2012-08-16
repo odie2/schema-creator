@@ -26,7 +26,12 @@ The Schema Creator plugin places an icon above the Post/Page rich text editor (n
 
 == Screenshots ==
 
-1. Example
+1. The plugin creates a Schema Creator icon above the rich text editor. Click the icon to create a new schema.
+2. Choose the schema you want to create from the select menu and then enter the data. Once you're finished, insert it into your post or page.
+3. Schema Creator creates shortcode, which enables you to edit the schema after it's created.
+4. This is an example of schema being rendered on a post.
+5. Schema Creator also has a Settings page.
+6. The Settings page allows you to turn on and off CSS, and to also include or exclude certain microdata attributes.
 
 == Upgrade Notice ==
 
