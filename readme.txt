@@ -1,6 +1,6 @@
 === Schema Creator ===
 Contributors: norcross, raventools
-Tags: schema.org, microformats
+Tags: schema.org, microdata, structured data, seo, html5
 Tested up to: 3.4.1
 Stable tag: 1.0
 Requires at least: 3.4
