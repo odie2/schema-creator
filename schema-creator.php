@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Schema Creator
+Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.0
+Version: 1.01
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -879,21 +879,23 @@ class ravenSchema
 	
 		<script type="text/javascript">
 			function InsertSchema() {
+				//select field options
 					var type			= jQuery('#schema_builder select#schema_type').val();
 					var evtype			= jQuery('#schema_builder select#schema_evtype').val();
 					var orgtype			= jQuery('#schema_builder select#schema_orgtype').val();
+					var country			= jQuery('#schema_builder select#schema_country').val();				
+					var condition		= jQuery('#schema_builder select#schema_condition').val();
+				//text field options
 					var name			= jQuery('#schema_builder input#schema_name').val();
 					var orgname			= jQuery('#schema_builder input#schema_orgname').val();
 					var jobtitle		= jQuery('#schema_builder input#schema_jobtitle').val();
 					var url				= jQuery('#schema_builder input#schema_url').val();
-					var description		= jQuery('#schema_builder textarea#schema_description').val();
 					var bday			= jQuery('#schema_builder input#schema_bday-format').val();
 					var street			= jQuery('#schema_builder input#schema_street').val();
 					var pobox			= jQuery('#schema_builder input#schema_pobox').val();
 					var city			= jQuery('#schema_builder input#schema_city').val();
 					var state			= jQuery('#schema_builder input#schema_state').val();
 					var postalcode		= jQuery('#schema_builder input#schema_postalcode').val();
-					var country			= jQuery('#schema_builder select#schema_country').val();
 					var email			= jQuery('#schema_builder input#schema_email').val();
 					var phone			= jQuery('#schema_builder input#schema_phone').val();
 					var fax				= jQuery('#schema_builder input#schema_fax').val();
@@ -904,7 +906,6 @@ class ravenSchema
 					var single_rating	= jQuery('#schema_builder input#schema_single_rating').val();
 					var agg_rating		= jQuery('#schema_builder input#schema_agg_rating').val();
 					var price			= jQuery('#schema_builder input#schema_price').val();
-					var condition		= jQuery('#schema_builder select#schema_condition').val();
 					var sdate			= jQuery('#schema_builder input#schema_sdate-format').val();
 					var stime			= jQuery('#schema_builder input#schema_stime').val();
 					var edate			= jQuery('#schema_builder input#schema_edate-format').val();
@@ -921,11 +922,12 @@ class ravenSchema
 					var paperback		= jQuery('#schema_builder input#schema_paperback').is(':checked');
 					var hardcover		= jQuery('#schema_builder input#schema_hardcover').is(':checked');
 					var rev_name		= jQuery('#schema_builder input#schema_rev_name').val();
-					var rev_body		= jQuery('#schema_builder textarea#schema_rev_body').val();
 					var user_review		= jQuery('#schema_builder input#schema_user_review').val();
 					var min_review		= jQuery('#schema_builder input#schema_min_review').val();
 					var max_review		= jQuery('#schema_builder input#schema_max_review').val();
-
+				// textfield options
+					var description		= jQuery('#schema_builder textarea#schema_description').val();
+					var rev_body		= jQuery('#schema_builder textarea#schema_rev_body').val();
 
 			// output setups
 			output = '[schema ';
@@ -955,7 +957,7 @@ class ravenSchema
 						output += 'state="' + state + '" ';
 					if(postalcode)
 						output += 'postalcode="' + postalcode + '" ';
-					if(country)
+					if(country && country !== 'none')
 						output += 'country="' + country + '" ';
 					if(email)
 						output += 'email="' + email + '" ';
@@ -985,13 +987,13 @@ class ravenSchema
 						output += 'agg_rating="' + agg_rating + '" ';
 					if(price)
 						output += 'price="' + price + '" ';
-					if(condition)
+					if(condition && condition !=='none')
 						output += 'condition="' + condition + '" ';
 				}
 
 				// event
 				if(type == 'event' ) {
-					if(evtype)
+					if(evtype && evtype !== 'none')
 						output += 'evtype="' + evtype + '" ';
 					if(url)
 						output += 'url="' + url + '" ';
@@ -1017,7 +1019,7 @@ class ravenSchema
 						output += 'state="' + state + '" ';
 					if(postalcode)
 						output += 'postalcode="' + postalcode + '" ';
-					if(country)
+					if(country && country !== 'none')
 						output += 'country="' + country + '" ';	
 				}
 
@@ -1041,7 +1043,7 @@ class ravenSchema
 						output += 'state="' + state + '" ';
 					if(postalcode)
 						output += 'postalcode="' + postalcode + '" ';
-					if(country)
+					if(country && country !== 'none')
 						output += 'country="' + country + '" ';
 					if(email)
 						output += 'email="' + email + '" ';
@@ -1287,7 +1289,7 @@ class ravenSchema
 	
 				<div id="sc_postalcode" class="sc_option" style="display:none">
 					<label for="schema_postalcode">Postal Code</label>
-					<input type="text" name="schema_postalcode" class="form_third schema_numeric" value="" id="schema_postalcode" />
+					<input type="text" name="schema_postalcode" class="form_third" value="" id="schema_postalcode" />
 				</div>
 
 				<div id="sc_country" class="sc_option" style="display:none">
