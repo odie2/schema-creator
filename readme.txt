@@ -41,4 +41,7 @@ The Schema Creator plugin places an icon above the Post/Page rich text editor (n
 == Changelog ==
 
 = 1.0 =
+* minor bugfix
+
+= 1.0 =
 * Initial Release
