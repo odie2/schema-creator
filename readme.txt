@@ -4,6 +4,8 @@ Tags: schema.org, microdata, structured data, seo, html5
 Tested up to: 3.4.1
 Stable tag: 1.01
 Requires at least: 3.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Insert schema.org microdata into WordPress pages and posts.
 
@@ -24,6 +26,11 @@ This section describes how to install the plugin and get it working.
 
 The Schema Creator plugin places an icon above the Post/Page rich text editor (next to the Add Media icon). Click on the icon to select a supported schema, fill in the form, and then insert it into your page/post. The plugin uses shortcode, so you can easily edit the schema after you create it. There are additional options on the Schema Creator Settings page.
 
+= I have a problem. Where do I go? =
+
+This plugin is also maintained on [GitHub](https://github.com/norcross/schema-creator/ "Schema Creator on GitHub"). The best place to post questions / issues / bugs / enhancement requests is on the [issues page](https://github.com/norcross/schema-creator/issues "Issues page for Schema Creator on GitHub") there.
+
+
 == Screenshots ==
 
 1. The plugin creates a Schema Creator icon above the rich text editor. Click the icon to create a new schema.
@@ -40,7 +47,7 @@ The Schema Creator plugin places an icon above the Post/Page rich text editor (n
 
 == Changelog ==
 
-= 1.0 =
+= 1.01 =
 * minor bugfix
 
 = 1.0 =
