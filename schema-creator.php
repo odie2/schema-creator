@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.01
+Version: 1.02
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -237,8 +237,15 @@ class ravenSchema
 
 	public function front_scripts() {
 		$schema_options = get_option('schema_options');
-		if(isset($schema_options['body']) && $schema_options['body'] == 'true' )
-			wp_enqueue_script( 'schema-init', plugins_url('/lib/js/schema.init.js', __FILE__) , array('jquery'), null, true );
+
+		$bodytag = isset($schema_options['body']) && $schema_options['body'] == 'true' ? true : false;
+
+		// user disabled the tag. so bail.
+		if($bodytag === false )
+			return;
+
+		// now load the front scripts
+		wp_enqueue_script( 'schema-init', plugins_url('/lib/js/schema.init.js', __FILE__) , array('jquery'), null, true );
 
 	}
 
@@ -299,9 +306,13 @@ class ravenSchema
 
 		$schema_options = get_option('schema_options');
 
-		if(isset($schema_options['post']) && $schema_options['post'] == 'true' )
+		$wrapper = isset($schema_options['post']) && $schema_options['post'] == 'true' ? true : false;
+		
+		// user disabled content wrapper. just return the content as usual
+		if ($wrapper === false)
 			return $content;
-
+		
+		// updated content filter to wrap the itemscope
         $content = '<div itemscope itemtype="http://schema.org/BlogPosting">'.$content.'</div>';
 		
     // Returns the content.
