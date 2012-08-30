@@ -47,6 +47,9 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 
 == Changelog ==
 
+= 1.021 =
+* loading JS for body tag in head
+
 = 1.02 =
 * update to logic for loading itemprop body tags and content wrapping
 
