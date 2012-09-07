@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.021
+Version: 1.022
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -42,7 +42,6 @@ class ravenSchema
 	public function __construct() {
 		add_action					( 'admin_menu',				array( $this, 'schema_settings'	) );
 		add_action					( 'admin_init', 			array( $this, 'reg_settings'	) );
-		add_action					( 'wp_enqueue_scripts',		array( $this, 'front_scripts'	) );
 		add_action					( 'admin_enqueue_scripts',	array( $this, 'admin_scripts'	) );		
 		add_action					( 'admin_footer',			array( $this, 'schema_form'		) );
 		add_action					( 'the_posts', 				array( $this, 'schema_loader'	) );
@@ -80,7 +79,6 @@ class ravenSchema
 	/**
 	 * Store settings
 	 * 
-	 * run at
 	 *
 	 * @return ravenSchema
 	 */
@@ -107,12 +105,12 @@ class ravenSchema
 	/**
 	 * Content for pop-up tooltips
 	 *
-	 * @since 1.0
+	 * @return ravenSchema
 	 */
 
 	private $tooltip = array (
 		"default_css"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Including CSS</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to remove Schema Creator CSS from the microdata HTML output.</p>",
-		"body_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Body Tag</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/Blog' target='_blank'>http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts.</p>",
+		"body_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Body Tag</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/Blog' target='_blank'>http://schema.org/Blog</a> schema itemtype to the BODY element on your pages and posts. Your theme must have the body_class template tag for this to work.</p>",
 		"post_class"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Schema Post Wrapper</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>Check to add the <a href='http://schema.org/BlogPosting' target='_blank'>http://schema.org/BlogPosting</a> schema itemtype to the content wrapper on your pages and posts.</p>",
 		"pending_tip"	=> "<h5 style='font-size:16px;margin:0 0 5px;text-align:right;'>Pending</h5><p style='font-size:13px;line-height:16px;margin:0 0 5px;'>This fancy little box will have helpful information in it soon.</p>",
 
@@ -229,13 +227,14 @@ class ravenSchema
 	}
 
 	/**
-	 * load scripts for front end
+	 * load body classes
 	 *
 	 * @return ravenSchema
 	 */
 
 
-	public function front_scripts() {
+	public function body_class( $classes ) {
+
 		$schema_options = get_option('schema_options');
 
 		$bodytag = isset($schema_options['body']) && $schema_options['body'] == 'true' ? true : false;
@@ -244,9 +243,12 @@ class ravenSchema
 		if($bodytag === false )
 			return;
 
-		// now load the front scripts
-		wp_enqueue_script( 'schema-init', plugins_url('/lib/js/schema.init.js', __FILE__) , array('jquery'), null, false );
-
+		$backtrace = debug_backtrace();
+		if ( $backtrace[4]['function'] === 'body_class' )
+			echo 'itemtype="http://schema.org/Blog" ';
+			echo 'itemscope="" ';
+		
+		return $classes;
 	}
 
 	/**

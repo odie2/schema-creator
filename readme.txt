@@ -2,7 +2,7 @@
 Contributors: norcross, raventools
 Tags: schema.org, microdata, structured data, seo, html5
 Tested up to: 3.4.1
-Stable tag: 1.02
+Stable tag: 1.022
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -46,6 +46,9 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 * Initial Release
 
 == Changelog ==
+
+= 1.022 =
+* replacing body tag method from JS to using core WP functionality.
 
 = 1.021 =
 * loading JS for body tag in head
