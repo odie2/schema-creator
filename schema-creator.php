@@ -88,15 +88,22 @@ class ravenSchema
 	public function schema_post_box() {
 	
 		global $post;
-		$disable_props	= get_post_meta($post->ID, '_schema_disable_props', true);
+		$disable_body	= get_post_meta($post->ID, '_schema_disable_body', true);
+		$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
 		
 		// use nonce for security
 		wp_nonce_field( plugin_basename( __FILE__ ), 'schema_nonce' );
 
-		echo '<p>';
-		echo '<input type="checkbox" name="schema_disable_props" id="schema_disable_props" value="true" '.checked($disable_props, true, false).'>';
-		echo '<label style="font-style:italic;margin-left:3px;" for="schema_disable_props">Disable schema itemscopes on this post.</label>';
+		echo '<p class="schema-post-option">';
+		echo '<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" '.checked($disable_body, 'true', false).'>';
+		echo '<label for="schema_disable_body">Disable body itemscopes on this post.</label>';
 		echo '</p>';
+
+		echo '<p class="schema-post-option">';
+		echo '<input type="checkbox" name="schema_disable_post" id="schema_disable_post" value="true" '.checked($disable_post, 'true', false).'>';
+		echo '<label for="schema_disable_post">Disable content itemscopes on this post.</label>';
+		echo '</p>';
+
 	}
 
 	/**
@@ -119,11 +126,14 @@ class ravenSchema
 
 		// OK, we're authenticated: we need to find and save the data
 
-		$disable_props = $_POST['schema_disable_props'];
+		$disable_body = $_POST['schema_disable_body'];
+		$disable_post = $_POST['schema_disable_post'];
 
-		$disable_check	= isset($disable_props) ? true : false;
+		$db_check	= isset($disable_body) ? 'true' : 'false';
+		$dp_check	= isset($disable_post) ? 'true' : 'false';
 		
-		update_post_meta($post_id, '_schema_disable_props', $disable_check);
+		update_post_meta($post_id, '_schema_disable_body', $db_check);
+		update_post_meta($post_id, '_schema_disable_post', $dp_check);
 
 	}
 
@@ -310,19 +320,19 @@ class ravenSchema
 
 	public function body_class( $classes ) {
 
-		// check for single post disable
-		global $post;
-		$disable_props	= get_post_meta($post->ID, '_schema_disable_props', true);
-
-		if($disable_props == true )
-			return $classes;
-
 		$schema_options = get_option('schema_options');
 
 		$bodytag = isset($schema_options['body']) && $schema_options['body'] == 'true' ? true : false;
 
 		// user disabled the tag. so bail.
 		if($bodytag === false )
+			return $classes;
+
+		// check for single post disable
+		global $post;
+		$disable_body	= get_post_meta($post->ID, '_schema_disable_body', true);
+
+		if($disable_body == 'true' )
 			return $classes;
 
 		$backtrace = debug_backtrace();
@@ -388,19 +398,19 @@ class ravenSchema
 
 	public function schema_wrapper($content) {
 
-		// check for single post disable
-		global $post;
-		$disable_props	= get_post_meta($post->ID, '_schema_disable_props', true);
-
-		if($disable_props == true )
-			return $content;
-
 		$schema_options = get_option('schema_options');
 
 		$wrapper = isset($schema_options['post']) && $schema_options['post'] == 'true' ? true : false;
 		
 		// user disabled content wrapper. just return the content as usual
 		if ($wrapper === false)
+			return $content;
+
+		// check for single post disable
+		global $post;
+		$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
+
+		if($disable_post == 'true' )
 			return $content;
 		
 		// updated content filter to wrap the itemscope

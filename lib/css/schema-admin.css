@@ -38,6 +38,14 @@ div.schema_options span.ap_tooltip:hover {
 	background-position:0 -16px;
 }
 
+/* post metabox */
+
+p.schema-post-option label {
+	font-style:italic;
+	margin-left:3px;
+	color: #666;
+}
+
 /* media row button */
 
 a#add_schema {
