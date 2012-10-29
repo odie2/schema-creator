@@ -51,6 +51,10 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 
 == Changelog ==
 
+= 1.032 =
+* Language support
+* Spanish translation
+
 = 1.031 =
 * bumped version number to fix update quirk
 
