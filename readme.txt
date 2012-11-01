@@ -2,7 +2,7 @@
 Contributors: norcross, raventools
 Tags: schema.org, microdata, structured data, seo, html5
 Tested up to: 3.4.2
-Stable tag: 1.031
+Stable tag: 1.032
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,9 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 * Initial Release
 
 == Changelog ==
+
+= 1.032 =
+* added recipes as an available schema type
 
 = 1.031 =
 * bumped version number to fix update quirk

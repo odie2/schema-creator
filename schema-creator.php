@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.031
+Version: 1.032
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -29,6 +29,12 @@ License: GPL v2
 	http://www.google.com/webmasters/tools/richsnippets
 	
 */
+
+if(!defined('SC_BASE'))
+	define('SC_BASE', plugin_basename(__FILE__) );
+
+if(!defined('SC_VER'))
+	define('SC_VER', '1.032');
 
 
 class ravenSchema
@@ -92,7 +98,7 @@ class ravenSchema
 		$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
 		
 		// use nonce for security
-		wp_nonce_field( plugin_basename( __FILE__ ), 'schema_nonce' );
+		wp_nonce_field( SC_BASE, 'schema_nonce' );
 
 		echo '<p class="schema-post-option">';
 		echo '<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" '.checked($disable_body, 'true', false).'>';
@@ -118,7 +124,7 @@ class ravenSchema
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 			return;
 
-		if ( !wp_verify_nonce( $_POST['schema_nonce'], plugin_basename( __FILE__ ) ) )
+		if ( isset($_POST['schema_nonce']) && !wp_verify_nonce( $_POST['schema_nonce'], SC_BASE ) )
 			return;
 
 		if ( !current_user_can( 'edit_post', $post_id ) )
@@ -126,11 +132,8 @@ class ravenSchema
 
 		// OK, we're authenticated: we need to find and save the data
 
-		$disable_body = $_POST['schema_disable_body'];
-		$disable_post = $_POST['schema_disable_post'];
-
-		$db_check	= isset($disable_body) ? 'true' : 'false';
-		$dp_check	= isset($disable_post) ? 'true' : 'false';
+		$db_check	= isset($_POST['schema_disable_body']) ? 'true' : 'false';
+		$dp_check	= isset($_POST['schema_disable_post']) ? 'true' : 'false';
 		
 		update_post_meta($post_id, '_schema_disable_body', $db_check);
 		update_post_meta($post_id, '_schema_disable_post', $dp_check);
@@ -273,23 +276,23 @@ class ravenSchema
 	public function admin_scripts($hook) {
 		// for post editor
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) :
-			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
+			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
 			
 			wp_enqueue_script( 'jquery-ui-core');
 			wp_enqueue_script( 'jquery-ui-datepicker');
 			wp_enqueue_script( 'jquery-ui-slider');
-			wp_enqueue_script( 'jquery-timepicker', plugins_url('/lib/js/jquery.timepicker.js', __FILE__) , array('jquery'), null, true );
-			wp_enqueue_script( 'format-currency', plugins_url('/lib/js/jquery.currency.min.js', __FILE__) , array('jquery'), null, true );
-			wp_enqueue_script( 'schema-form', plugins_url('/lib/js/schema.form.init.js', __FILE__) , array('jquery'), null, true );
+			wp_enqueue_script( 'jquery-timepicker', plugins_url('/lib/js/jquery.timepicker.js', __FILE__) , array('jquery'), SC_VER, true );
+			wp_enqueue_script( 'format-currency', plugins_url('/lib/js/jquery.currency.min.js', __FILE__) , array('jquery'), SC_VER, true );
+			wp_enqueue_script( 'schema-form', plugins_url('/lib/js/schema.form.init.js', __FILE__) , array('jquery'), SC_VER, true );
 		endif;
 
 		// for admin settings screen
 		$current_screen = get_current_screen();
 		if ( 'settings_page_schema-creator' == $current_screen->base ) :
-			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__) );
+			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
 			
-			wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), null, true );			
-			wp_enqueue_script( 'schema-admin', plugins_url('/lib/js/schema.admin.init.js', __FILE__) , array('jquery'), null, true );
+			wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), SC_VER, true );			
+			wp_enqueue_script( 'schema-admin', plugins_url('/lib/js/schema.admin.init.js', __FILE__) , array('jquery'), SC_VER, true );
 		endif;
 	}
 
@@ -379,7 +382,7 @@ class ravenSchema
 			}
 		 
 			if ($found == true )
-				wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__) );
+				wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__), array(), SC_VER, 'all' );
 		
 			if (empty($meta_check) && $found == true )
 				update_post_meta($post->ID, '_raven_schema_load', 'true');
@@ -476,7 +479,18 @@ class ravenSchema
 			'user_review'		=> '',
 			'min_review'		=> '',
 			'max_review'		=> '',
-
+			'ingrt_1'			=> '',
+			'image'				=> '',
+			'instructions'		=> '',
+			'prephours'			=> '',
+			'prepmins'			=> '',
+			'cookhours'			=> '',
+			'cookmins'			=> '',
+			'yield'				=> '',
+			'calories'			=> '',
+			'fatcount'			=> '',
+			'sugarcount'		=> '',
+			'saltcount'			=> '',
 			
 		), $atts ) );
 		
@@ -485,6 +499,13 @@ class ravenSchema
 		foreach ( $atts as $key => $value ) {
 			if ( strpos( $key , 'actor' ) === 0 )
 				$actors[] = $value;
+		}
+
+		// create array of actor fields	
+		$ingrts = array();
+		foreach ( $atts as $key => $value ) {
+			if ( strpos( $key , 'ingrt' ) === 0 )
+				$ingrts[] = $value;
 		}
 
 		// wrap schema build out
@@ -937,8 +958,145 @@ class ravenSchema
 				$sc_build .= '</div>';
 			}
 
-			
+			// close it up
+			$sc_build .= '</div>';
 
+		}
+
+		// recipe 
+		if(isset($type) && $type == 'recipe') {
+		
+		$sc_build .= '<div itemscope itemtype="http://schema.org/Recipe">';
+			
+			$imgalt = isset($name) ? $name : 'Recipe Image';
+
+			if(!empty($image)) // put image first so it can lay out better
+				$sc_build .= '<img class="schema_image" itemprop="image" src="'.esc_url($image).'" alt="'.$imgalt.'" />';
+
+			if(!empty($name) )
+				$sc_build .= '<div class="schema_name header_type" itemprop="name">'.$name.'</div>';
+
+			if(!empty($author) && !empty($pubdate) ) {
+				$sc_build .= '<div class="schema_byline">';
+				$sc_build .= 'By <span class="schema_strong" itemprop="author">'.$author.'</span>';
+				$sc_build .= ' on <span class="schema_pubdate"><meta itemprop="datePublished" content="'.$pubdate.'">'.date('m/d/Y', strtotime($pubdate)).'</span>';
+				$sc_build .= '</div>';
+			}
+
+			if(!empty($author) && empty($pubdate) )
+				$sc_build .= '<div class="schema_author"> by <span class="schema_strong" itemprop="author">'.$author.'<span></div>';
+
+			if(!empty($description))
+				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
+
+			if( !empty($prephours) || !empty($prepmins) || !empty($cookhours) || !empty($cookmins) ) {
+				$sc_build .= '<div>';
+
+				// PREP: both variables present
+				if( !empty($prephours) && !empty($prepmins) ) {
+
+					$hrsuffix = $prephours	> 1 ? 'hours'	: 'hour';
+					$mnsuffix = $prepmins	> 1 ? 'minutes' : 'minute';
+
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H'.$prepmins.'M">';
+					$sc_build .= $prephours.' '.$hrsuffix.', '.$prepmins.' '.$mnsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// PREP: no minutes
+				if( !empty($prephours) && empty($prepmins) ) {
+
+					$hrsuffix = $prephours	> 1 ? 'hours'	: 'hour';
+
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H">';
+					$sc_build .= $prephours.' '.$hrsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// PREP: no hours
+				if( !empty($prepmins) && empty($prephours) ) {
+
+					$mnsuffix = $prepmins	> 1 ? 'minutes' : 'minute';
+
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prepmins.'M">';
+					$sc_build .= $prepmins.' '.$mnsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// COOK: both variables present
+				if( !empty($cookhours) && !empty($cookmins) ) {
+
+					$hrsuffix = $cookhours	> 1 ? 'hours'	: 'hour';
+					$mnsuffix = $cookmins	> 1 ? 'minutes' : 'minute';
+
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H'.$cookmins.'M">';
+					$sc_build .= $cookhours.' '.$hrsuffix.', '.$cookmins.' '.$mnsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// COOK: no minutes
+				if( !empty($cookhours) && empty($cookmins) ) {
+
+					$hrsuffix = $cookhours	> 1 ? 'hours'	: 'hour';
+
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H">';
+					$sc_build .= $cookhours.' '.$hrsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// COOK: no hours
+				if( !empty($cookmins) && empty($cookhours) ) {
+					
+					$mnsuffix = $cookmins	> 1 ? 'minutes' : 'minute';
+					
+					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookmins.'M">';
+					$sc_build .= $cookmins.' '.$mnsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				$sc_build .= '</div>';
+			}
+
+			if( !empty($calories) || !empty($fatcount) || !empty($sugarcount) || !empty($saltcount) ) { 
+				$sc_build .= '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">';
+				$sc_build .= '<span class="schema_strong">Nutrition Information:</span><ul>';
+
+					if(!empty($calories)) 
+						$sc_build .= '<li><span itemprop="calories">'.$calories.' calories</span></li>';
+	
+					if(!empty($fatcount)) 
+						$sc_build .= '<li><span itemprop="fatContent">'.$fatcount.' grams of fat</span></li>';
+
+					if(!empty($saltcount)) 
+						$sc_build .= '<li><span itemprop="sugarContent">'.$saltcount.' grams of sugar</span></li>';
+	
+					if(!empty($sugarcount)) 
+						$sc_build .= '<li><span itemprop="sodiumContent">'.$sugarcount.' milligrams of sodium</span></li>';
+
+				$sc_build .= '</ul></div>';
+			}
+
+			if(!empty($ingrt_1)) {
+				$sc_build .= '<div><span class="schema_strong">Ingredients:</span>';
+				$sc_build .= '<ul>';
+					foreach ($ingrts as $ingrt) {
+						$sc_build .= '<li><span itemprop="ingredients">'.$ingrt.'</span></li>';
+					}
+				$sc_build .= '</ul>';
+				$sc_build .= '</div>';
+			}
+
+			if(!empty($instructions))
+				$sc_build .= '<div class="schema_instructions" itemprop="recipeInstructions"><span class="schema_strong">Instructions:</span><br />'.esc_attr($instructions).'</div>';
+				
+
+	
 			// close it up
 			$sc_build .= '</div>';
 
@@ -973,7 +1131,8 @@ class ravenSchema
 		$button = '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear" id="add_schema" title="' . __('Schema Creator Form') . '">' . __('Schema Creator Form') . '</a>';
 
 	return $context . $button;
-}
+	
+	}
 
 	/**
 	 * Build form and add into footer
@@ -1037,9 +1196,22 @@ class ravenSchema
 					var user_review		= jQuery('#schema_builder input#schema_user_review').val();
 					var min_review		= jQuery('#schema_builder input#schema_min_review').val();
 					var max_review		= jQuery('#schema_builder input#schema_max_review').val();
+					var ingrt_group		= jQuery('#schema_builder input#schema_ingrt_1').val();
+					var image			= jQuery('#schema_builder input#schema_image').val();
+					var prephours		= jQuery('#schema_builder input#schema_prep_hours').val();
+					var prepmins		= jQuery('#schema_builder input#schema_prep_mins').val();
+					var cookhours		= jQuery('#schema_builder input#schema_cook_hours').val();
+					var cookmins		= jQuery('#schema_builder input#schema_cook_mins').val();
+					var yield			= jQuery('#schema_builder input#schema_yield').val();
+					var calories		= jQuery('#schema_builder input#schema_calories').val();
+					var fatcount		= jQuery('#schema_builder input#schema_fatcount').val();
+					var sugarcount		= jQuery('#schema_builder input#schema_sugarcount').val();
+					var saltcount		= jQuery('#schema_builder input#schema_saltcount').val();
 				// textfield options
 					var description		= jQuery('#schema_builder textarea#schema_description').val();
 					var rev_body		= jQuery('#schema_builder textarea#schema_rev_body').val();
+					var instructions	= jQuery('#schema_builder textarea#schema_instructions').val();
+
 
 			// output setups
 			output = '[schema ';
@@ -1237,6 +1409,47 @@ class ravenSchema
 						output += 'max_review="' + max_review + '" ';
 				}
 
+				// recipe
+				if(type == 'recipe' ) {
+					if(name)
+						output += 'name="' + name + '" ';
+					if(author)
+						output += 'author="' + author + '" ';
+					if(pubdate)
+						output += 'pubdate="' + pubdate + '" ';					
+					if(image)
+						output += 'image="' + image + '" ';
+					if(description)
+						output += 'description="' + description + '" ';
+					if(prephours)
+						output += 'prephours="' + prephours + '" ';
+					if(prepmins)
+						output += 'prepmins="' + prepmins + '" ';
+					if(cookhours)
+						output += 'cookhours="' + cookhours + '" ';
+					if(cookmins)
+						output += 'cookmins="' + cookmins + '" ';					
+					if(yield)
+						output += 'yield="' + yield + '" ';
+					if(calories)
+						output += 'calories="' + calories + '" ';
+					if(fatcount)
+						output += 'fatcount="' + fatcount + '" ';
+					if(sugarcount)
+						output += 'sugarcount="' + sugarcount + '" ';
+					if(saltcount)
+						output += 'saltcount="' + saltcount + '" ';
+					if(ingrt_group) {
+						var count = 0;
+						jQuery('div.sc_ingrt').each(function(){
+							count++;
+							var ingrt = jQuery(this).find('input').val();
+							output += 'ingrt_' + count + '="' + ingrt + '" ';
+						});
+					}
+					if(instructions)
+						output += 'instructions="' + instructions + '" ';
+				}
 
 			output += ']';
 	
@@ -1258,6 +1471,7 @@ class ravenSchema
 						<option value="movie">Movie</option>
 						<option value="book">Book</option>
 						<option value="review">Review</option>
+						<option value="recipe">Recipe</option>
 					</select>
 				</div>
 			<!-- end schema type dropdown -->	
@@ -1303,6 +1517,11 @@ class ravenSchema
 					<input type="text" name="schema_name" class="form_full" value="" id="schema_name" />
 				</div>
 
+				<div id="sc_image" class="sc_option" style="display:none">
+					<label for="schema_image">Image URL</label>
+					<input type="text" name="schema_image" class="form_full" value="" id="schema_image" />
+				</div>
+
 				<div id="sc_orgname" class="sc_option" style="display:none">
 					<label for="schema_orgname">Organization</label>
 					<input type="text" name="schema_orgname" class="form_full" value="" id="schema_orgname" />
@@ -1343,12 +1562,12 @@ class ravenSchema
 					<input type="text" name="schema_producer" class="form_full" value="" id="schema_producer" />
 				</div>
 
-				<div id="sc_actor_1" class="sc_option sc_actor sc_repeater" style="display:none">
+				<div id="sc_actor_1" class="sc_option sc_actor sc_repeater ac_repeat" style="display:none">
                         <label for="schema_actor_1">Actor</label>
                         <input type="text" name="schema_actor_1" class="form_full actor_input" value="" id="schema_actor_1" />
 				</div>
 
-				<input type="button" id="clone_actor" value="Add Another Actor" style="display:none;" />
+				<input type="button" class="clone_button" id="clone_actor" value="Add Another Actor" style="display:none;" />
 
 
 				<div id="sc_sdate" class="sc_option" style="display:none">
@@ -1774,6 +1993,68 @@ class ravenSchema
 					<label for="schema_revdate">Review Date</label>
 					<input type="text" id="schema_revdate" name="schema_revdate" class="schema_datepicker form_third" value="" />
 					<input type="hidden" id="schema_revdate-format" class="schema_datepicker-format" value="" />
+				</div>
+
+   				<div id="sc_preptime" class="sc_option" style="display:none">
+					<label for="sc_preptime">Prep Time</label>
+                    <div class="labels_inline">
+					<label for="schema_prep_hours">Hours</label>
+                    <input type="text" name="schema_prep_hours" class="form_eighth schema_numeric" value="" id="schema_prep_hours" />
+                    <label for="schema_prep_mins">Minutes</label>
+					<input type="text" name="schema_prep_mins" class="form_eighth schema_numeric" value="" id="schema_prep_mins" />
+                    </div>
+				</div>
+
+   				<div id="sc_cooktime" class="sc_option" style="display:none">
+					<label for="sc_cooktime">Cook Time</label>
+                    <div class="labels_inline">
+					<label for="schema_cook_hours">Hours</label>
+                    <input type="text" name="schema_cook_hours" class="form_eighth schema_numeric" value="" id="schema_cook_hours" />
+                    <label for="schema_cook_mins">Minutes</label>
+					<input type="text" name="schema_cook_mins" class="form_eighth schema_numeric" value="" id="schema_cook_mins" />
+                    </div>
+				</div>
+
+   				<div id="sc_yield" class="sc_option" style="display:none">
+					<label for="schema_yield">Yield</label>
+					<input type="text" name="schema_yield" class="form_third" value="" id="schema_yield" />
+					<label class="additional">(serving size)</label>
+				</div>
+
+				<div id="sc_calories" class="sc_option" style="display:none">
+					<label for="schema_calories">Calories</label>
+					<input type="text" name="schema_calories" class="form_third schema_numeric" value="" id="schema_calories" />
+				</div>
+
+				<div id="sc_fatcount" class="sc_option" style="display:none">
+					<label for="schema_fatcount">Fat</label>
+					<input type="text" name="schema_fatcount" class="form_third schema_numeric" value="" id="schema_fatcount" />
+					<label class="additional">(in grams)</label>
+				</div>
+
+				<div id="sc_sugarcount" class="sc_option" style="display:none">
+					<label for="schema_sugarcount">Sugar</label>
+					<input type="text" name="schema_sugarcount" class="form_third schema_numeric" value="" id="schema_sugarcount" />
+					<label class="additional">(in grams)</label>
+				</div>
+
+				<div id="sc_saltcount" class="sc_option" style="display:none">
+					<label for="schema_saltcount">Sodium</label>
+					<input type="text" name="schema_saltcount" class="form_third schema_numeric" value="" id="schema_saltcount" />
+					<label class="additional">(in milligrams)</label>
+				</div>
+
+				<div id="sc_ingrt_1" class="sc_option sc_ingrt sc_repeater ig_repeat" style="display:none">
+                        <label for="schema_ingrt_1">Ingredient</label>
+                        <input type="text" name="schema_ingrt_1" class="form_half ingrt_input" value="" id="schema_ingrt_1" />
+                        <label class="additional">(include both type and amount)</label>
+				</div>
+
+				<input type="button" class="clone_button" id="clone_ingrt" value="Add Another Ingredient" style="display:none;" />
+
+				<div id="sc_instructions" class="sc_option" style="display:none">
+					<label for="schema_instructions">Instructions</label>
+					<textarea name="schema_instructions" id="schema_instructions"></textarea>
 				</div>
                 
 			<!-- button for inserting -->	
