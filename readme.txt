@@ -51,9 +51,12 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 
 == Changelog ==
 
-= 1.032 =
+= 1.033 =
 * Language support
 * Spanish translation
+
+= 1.032 =
+* added recipes as an available schema type
 
 = 1.031 =
 * bumped version number to fix update quirk

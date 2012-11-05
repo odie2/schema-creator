@@ -134,6 +134,12 @@ msgstr ""
 msgid "reviews"
 msgstr ""
 
+msgid "recipe"
+msgstr ""
+
+msgid "Recipe"
+msgstr ""
+
 msgid "total reviews"
 msgstr ""
 
@@ -1178,5 +1184,77 @@ msgid "Zambia"
 msgstr ""
 
 msgid "Zimbabwe"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "on"
+msgstr ""
+
+msgid "Prep Time"
+msgstr ""
+
+msgid "Cook Time"
+msgstr ""
+
+msgid "Nutrition Information:"
+msgstr ""
+
+msgid "calories"
+msgstr ""
+
+msgid "Calories"
+msgstr ""
+
+msgid "grams of fat"
+msgstr ""
+
+msgid "Fat"
+msgstr ""
+
+msgid "in grams"
+msgstr ""
+
+msgid "grams of sugar"
+msgstr ""
+
+msgid "Sugar"
+msgstr ""
+
+msgid "milligrams of sodium"
+msgstr ""
+
+msgid "Sodium"
+msgstr ""
+
+msgid "Ingredients:"
+msgstr ""
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Add Another Ingredient"
+msgstr ""
+
+msgid "Ingredient"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "Yield"
+msgstr ""
+
+msgid "serving size"
+msgstr ""
+
+msgid "in milligrams"
+msgstr ""
+
+msgid "include both type and amount"
 msgstr ""
 

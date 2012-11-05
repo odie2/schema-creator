@@ -134,6 +134,12 @@ msgstr "basado en"
 msgid "reviews"
 msgstr "opiniones"
 
+msgid "recipe"
+msgstr "receta"
+
+msgid "Recipe"
+msgstr "Receta"
+
 msgid "total reviews"
 msgstr "opiniones totales"
 
@@ -1179,4 +1185,76 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabu"
+
+msgid "By"
+msgstr "Por"
+
+msgid "on"
+msgstr "en"
+
+msgid "Prep Time"
+msgstr "Tiempo de Preparación"
+
+msgid "Cook Time"
+msgstr "Tiempo de Cocción"
+
+msgid "Nutrition Information:"
+msgstr "Información Nutricional"
+
+msgid "calories"
+msgstr "calorías"
+
+msgid "Calories"
+msgstr "Calorías"
+
+msgid "grams of fat"
+msgstr "gramos de grasa"
+
+msgid "Fat"
+msgstr "Grasa"
+
+msgid "in grams"
+msgstr "En gramos"
+
+msgid "grams of sugar"
+msgstr "gramos de azúcar"
+
+msgid "Sugar"
+msgstr "Azúcar"
+
+msgid "milligrams of sodium"
+msgstr "miligramos de sodio"
+
+msgid "Sodium"
+msgstr "Sodio"
+
+msgid "Ingredients:"
+msgstr "Ingredientes:"
+
+msgid "Instructions"
+msgstr "Instrucciones"
+
+msgid "Add Another Ingredient"
+msgstr "Agregar otro ingrediente"
+
+msgid "Ingredient"
+msgstr "Ingrediente"
+
+msgid "Hours"
+msgstr "Horas"
+
+msgid "Minutes"
+msgstr "Minutos"
+
+msgid "Yield"
+msgstr "Preparar"
+
+msgid "serving size"
+msgstr "tamaño de la porción"
+
+msgid "in milligrams"
+msgstr "En miligramos"
+
+msgid "include both type and amount"
+msgstr "Incluir el tipo, calidad y cantidad"
 
