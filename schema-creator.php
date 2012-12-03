@@ -3,13 +3,13 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.032
+Version: 1.034
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
+    it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
     This program is distributed in the hope that it will be useful,
@@ -27,14 +27,14 @@ License: GPL v2
 	http://schema-creator.org/
 	http://foolip.org/microdatajs/live/
 	http://www.google.com/webmasters/tools/richsnippets
-	
+
 */
 
 if(!defined('SC_BASE'))
 	define('SC_BASE', plugin_basename(__FILE__) );
 
 if(!defined('SC_VER'))
-	define('SC_VER', '1.032');
+	define('SC_VER', '1.034');
 
 
 class ravenSchema
@@ -51,11 +51,11 @@ class ravenSchema
 		add_action					( 'admin_enqueue_scripts',	array( $this, 'admin_scripts'		)			);
 		add_action					( 'admin_footer',			array( $this, 'schema_form'			)			);
 		add_action					( 'the_posts', 				array( $this, 'schema_loader'		)			);
-		add_action					( 'do_meta_boxes',			array( $this, 'metabox_schema'		), 10,	2	);
+		add_action					( 'do_meta_boxes',			array( $this, 'metabox_schema'		),	10,	2	);
 		add_action					( 'save_post',				array( $this, 'save_metabox'		)			);
-		
+
 		add_filter					( 'body_class',             array( $this, 'body_class'			)			);
-		add_filter					( 'media_buttons_context',	array( $this, 'media_button'		)			);
+		add_filter					( 'media_buttons',			array( $this, 'media_button'		),	31		);
 		add_filter					( 'the_content',			array( $this, 'schema_wrapper'		)			);
 		add_filter					( 'admin_footer_text',		array( $this, 'schema_footer'		)			);
 		add_shortcode				( 'schema',					array( $this, 'shortcode'			)			);
@@ -77,11 +77,11 @@ class ravenSchema
 		if(empty($schema_options['body']) && empty($schema_options['post']) )
 			return;
 
-		$types	= array('post' => 'post');	
-    	
+		$types	= array('post' => 'post');
+
 		if ( in_array( $page,  $types ) && 'side' == $context )
 		add_meta_box('schema-post-box', __('Schema Display Options'), array(&$this, 'schema_post_box'), $page, $context, 'high');
-		
+
 
 	}
 
@@ -92,11 +92,11 @@ class ravenSchema
 	 */
 
 	public function schema_post_box() {
-	
+
 		global $post;
 		$disable_body	= get_post_meta($post->ID, '_schema_disable_body', true);
 		$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
-		
+
 		// use nonce for security
 		wp_nonce_field( SC_BASE, 'schema_nonce' );
 
@@ -121,7 +121,7 @@ class ravenSchema
 
 	public function save_metabox($post_id) {
 
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			return;
 
 		if ( isset($_POST['schema_nonce']) && !wp_verify_nonce( $_POST['schema_nonce'], SC_BASE ) )
@@ -134,7 +134,7 @@ class ravenSchema
 
 		$db_check	= isset($_POST['schema_disable_body']) ? 'true' : 'false';
 		$dp_check	= isset($_POST['schema_disable_post']) ? 'true' : 'false';
-		
+
 		update_post_meta($post_id, '_schema_disable_body', $db_check);
 		update_post_meta($post_id, '_schema_disable_post', $dp_check);
 
@@ -159,24 +159,24 @@ class ravenSchema
 
 
 	public function reg_settings() {
-		register_setting( 'schema_options', 'schema_options');		
+		register_setting( 'schema_options', 'schema_options');
 
 	}
 
 	/**
 	 * Store settings
-	 * 
+	 *
 	 *
 	 * @return ravenSchema
 	 */
 
 
 	public function store_settings() {
-		
+
 		// check to see if they have options first
 		$options_check	= get_option('schema_options');
 
-		// already have options? LEAVE THEM ALONE SIR		
+		// already have options? LEAVE THEM ALONE SIR
 		if(!empty($options_check))
 			return;
 
@@ -210,24 +210,24 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-	 
-	public function schema_creator_display() { 
-		
+
+	public function schema_creator_display() {
+
 		if (!current_user_can('manage_options') )
 			return;
 		?>
-	
+
 		<div class="wrap">
     	<div class="icon32" id="icon-schema"><br></div>
 		<h2>Schema Creator Settings</h2>
-        
+
 	        <div class="schema_options">
             	<div class="schema_form_text">
             	<p>By default, the <a href="http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema" target="_blank">Schema Creator</a> plugin by <a href="http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema" target="_blank">Raven Internet Marketing Tools</a> includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.</p>
             	<p>The plugin can also automatically include <a href="http://schema.org/Blog" target="_blank">http://schema.org/Blog</a> and <a href="http://schema.org/BlogPosting" target="_blank">http://schema.org/BlogPosting</a> schemas to your pages and posts.</p>
 				<p>Google also offers a <a href="http://www.google.com/webmasters/tools/richsnippets/" target="_blank">Rich Snippet Testing tool</a> to review and test the schemas in your pages and posts.</p>
                 </div>
-                
+
                 <div class="schema_form_options">
 	            <form method="post" action="options.php">
 			    <?php
@@ -236,9 +236,9 @@ class ravenSchema
 
 				$css_hide	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
 				$body_tag	= (isset($schema_options['body']) && $schema_options['body'] == 'true' ? 'checked="checked"' : '');
-				$post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');								
+				$post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');
 				?>
-        
+
 				<p>
                 <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_hide; ?>/> Exclude default CSS for schema output</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['default_css']; ?>">(?)</span>
@@ -252,19 +252,19 @@ class ravenSchema
 				<p>
                 <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> Apply itemscope &amp; itemtype to content wrapper</label>
                 <span class="ap_tooltip" tooltip="<?php echo $this->tooltip['post_class']; ?>">(?)</span>
-                </p>                
-    
+                </p>
+
 	    		<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" /></p>
 				</form>
                 </div>
-    
+
             </div>
 
-        </div>    
+        </div>
 
-	
+
 	<?php }
-		
+
 
 	/**
 	 * load scripts and style for admin settings page
@@ -277,7 +277,7 @@ class ravenSchema
 		// for post editor
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) :
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
-			
+
 			wp_enqueue_script( 'jquery-ui-core');
 			wp_enqueue_script( 'jquery-ui-datepicker');
 			wp_enqueue_script( 'jquery-ui-slider');
@@ -290,8 +290,8 @@ class ravenSchema
 		$current_screen = get_current_screen();
 		if ( 'settings_page_schema-creator' == $current_screen->base ) :
 			wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
-			
-			wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), SC_VER, true );			
+
+			wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), SC_VER, true );
 			wp_enqueue_script( 'schema-admin', plugins_url('/lib/js/schema.admin.init.js', __FILE__) , array('jquery'), SC_VER, true );
 		endif;
 	}
@@ -342,7 +342,7 @@ class ravenSchema
 		if ( $backtrace[4]['function'] === 'body_class' )
 			echo 'itemtype="http://schema.org/Blog" ';
 			echo 'itemscope="" ';
-		
+
 		return $classes;
 	}
 
@@ -357,18 +357,18 @@ class ravenSchema
 
 		// no posts present. nothing more to do here
 		if ( empty($posts) )
-			return $posts;		
+			return $posts;
 
 		// they said they didn't want the CSS. their loss.
 		$schema_options = get_option('schema_options');
 
 		if(isset($schema_options['css']) && $schema_options['css'] == 'true' )
-			return $posts;		
+			return $posts;
 
-		
+
 		// false because we have to search through the posts first
 		$found = false;
-		 
+
 		// search through each post
 		foreach ($posts as $post) {
 			$meta_check	= get_post_meta($post->ID, '_raven_schema_load', true);
@@ -380,10 +380,10 @@ class ravenSchema
 				// stop the search
 				break;
 			}
-		 
+
 			if ($found == true )
 				wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__), array(), SC_VER, 'all' );
-		
+
 			if (empty($meta_check) && $found == true )
 				update_post_meta($post->ID, '_raven_schema_load', 'true');
 
@@ -404,7 +404,7 @@ class ravenSchema
 		$schema_options = get_option('schema_options');
 
 		$wrapper = isset($schema_options['post']) && $schema_options['post'] == 'true' ? true : false;
-		
+
 		// user disabled content wrapper. just return the content as usual
 		if ($wrapper === false)
 			return $content;
@@ -415,13 +415,13 @@ class ravenSchema
 
 		if($disable_post == 'true' )
 			return $content;
-		
+
 		// updated content filter to wrap the itemscope
         $content = '<div itemscope itemtype="http://schema.org/BlogPosting">'.$content.'</div>';
-		
+
     // Returns the content.
-    return $content;		
-		
+    return $content;
+
 	}
 
 
@@ -448,7 +448,7 @@ class ravenSchema
 			'state'				=> '',
 			'postalcode'		=> '',
 			'country'			=> '',
-			'email'				=> '',		
+			'email'				=> '',
 			'phone'				=> '',
 			'fax'				=> '',
 			'brand'				=> '',
@@ -464,7 +464,7 @@ class ravenSchema
 			'edate'				=> '',
 			'duration'			=> '',
 			'director'			=> '',
-			'producer'			=> '',		
+			'producer'			=> '',
 			'actor_1'			=> '',
 			'author'			=> '',
 			'publisher'			=> '',
@@ -491,17 +491,17 @@ class ravenSchema
 			'fatcount'			=> '',
 			'sugarcount'		=> '',
 			'saltcount'			=> '',
-			
+
 		), $atts ) );
-		
-		// create array of actor fields	
+
+		// create array of actor fields
 		$actors = array();
 		foreach ( $atts as $key => $value ) {
 			if ( strpos( $key , 'actor' ) === 0 )
 				$actors[] = $value;
 		}
 
-		// create array of actor fields	
+		// create array of actor fields
 		$ingrts = array();
 		foreach ( $atts as $key => $value ) {
 			if ( strpos( $key , 'ingrt' ) === 0 )
@@ -510,12 +510,12 @@ class ravenSchema
 
 		// wrap schema build out
 		$sc_build = '<div id="schema_block" class="schema_'.$type.'">';
-		
-		// person 
+
+		// person
 		if(isset($type) && $type == 'person') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Person">';
-		
+
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
 				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
@@ -530,7 +530,7 @@ class ravenSchema
 				$sc_build .= '<span class="schema_orgname" itemprop="name">'.$orgname.'</span>';
 				$sc_build .= '</div>';
 			}
-			
+
 			if(!empty($jobtitle))
 				$sc_build .= '<div class="schema_jobtitle" itemprop="jobtitle">'.$jobtitle.'</div>';
 
@@ -548,9 +548,9 @@ class ravenSchema
 
 			if(!empty($street))
 				$sc_build .= '<div class="street" itemprop="streetAddress">'.$street.'</div>';
-			
+
 			if(!empty($pobox))
-				$sc_build .= '<div class="pobox">P.O. Box: <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
+				$sc_build .= '<div class="pobox">'.__('P.O. Box:').' <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
 
 			if(!empty($city) && !empty($state)) {
 				$sc_build .= '<div class="city_state">';
@@ -562,7 +562,7 @@ class ravenSchema
 				// secondary check if one part of city / state is missing to keep markup consistent
 				if(empty($state) && !empty($city) )
 					$sc_build .= '<div class="city_state"><span class="locale" itemprop="addressLocality">'.$city.'</span></div>';
-					
+
 				if(empty($city) && !empty($state) )
 					$sc_build .= '<div class="city_state"><span class="region" itemprop="addressRegion">'.$state.'</span></div>';
 
@@ -585,21 +585,21 @@ class ravenSchema
 				$sc_build .= '<div class="email" itemprop="email">'.antispambot($email).'</div>';
 
 			if(!empty($phone))
-				$sc_build .= '<div class="phone" itemprop="telephone">'.$phone.'</div>';
+				$sc_build .= '<div class="phone" itemprop="telephone">'.__('Phone:').' '.$phone.'</div>';
 
 			if(!empty($bday))
 				$sc_build .= '<div class="bday"><meta itemprop="birthDate" content="'.$bday.'">DOB: '.date('m/d/Y', strtotime($bday)).'</div>';
-	
+
 			// close it up
 			$sc_build .= '</div>';
 
 		}
 
-		// product 
+		// product
 		if(isset($type) && $type == 'product') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Product">';
-		
+
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
 				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
@@ -634,7 +634,7 @@ class ravenSchema
 				// secondary check if one part of review is missing to keep markup consistent
 				if(empty($agg_rating) && !empty($single_rating) )
 					$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><span itemprop="ratingValue"><span class="desc_type">Review:</span> '.$single_rating.'</span></div>';
-					
+
 				if(empty($single_rating) && !empty($agg_rating) )
 					$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><span itemprop="reviewCount">'.$agg_rating.'</span> total reviews</div>';
 
@@ -648,15 +648,15 @@ class ravenSchema
 			if(empty($condition) && !empty ($price))
 				$sc_build .= '<div class="offers" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price" itemprop="price">'.$price.'</span></div>';
 
-	
+
 			// close it up
 			$sc_build .= '</div>';
 
 		}
-		
+
 		// event
 		if(isset($type) && $type == 'event') {
-		
+
 		$default   = (!empty($evtype) ? $evtype : 'Event');
 		$sc_build .= '<div itemscope itemtype="http://schema.org/'.$default.'">';
 
@@ -684,19 +684,19 @@ class ravenSchema
 				$sc_build .= '<div><meta itemprop="endDate" content="'.$edate.':00.000">Ends: '.date('m/d/Y', strtotime($edate)).'</div>';
 
 			if(!empty($duration)) {
-					
+
 				$hour_cnv	= date('G', strtotime($duration));
 				$mins_cnv	= date('i', strtotime($duration));
-				
+
 				$hours		= (!empty($hour_cnv) && $hour_cnv > 0 ? $hour_cnv.' hours' : '');
 				$minutes	= (!empty($mins_cnv) && $mins_cnv > 0 ? ' and '.$mins_cnv.' minutes' : '');
-				
+
 				$sc_build .= '<div><meta itemprop="duration" content="0000-00-00T'.$duration.'">Duration: '.$hours.$minutes.'</div>';
 			}
 
 			// close actual event portion
 			$sc_build .= '</div>';
-				
+
 			if(	!empty($street) ||
 				!empty($pobox) ||
 				!empty($city) ||
@@ -708,7 +708,7 @@ class ravenSchema
 
 			if(!empty($street))
 				$sc_build .= '<div class="street" itemprop="streetAddress">'.$street.'</div>';
-			
+
 			if(!empty($pobox))
 				$sc_build .= '<div class="pobox">P.O. Box: <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
 
@@ -722,7 +722,7 @@ class ravenSchema
 				// secondary check if one part of city / state is missing to keep markup consistent
 				if(empty($state) && !empty($city) )
 					$sc_build .= '<div class="city_state"><span class="locale" itemprop="addressLocality">'.$city.'</span></div>';
-					
+
 				if(empty($city) && !empty($state) )
 					$sc_build .= '<div class="city_state"><span class="region" itemprop="addressRegion">'.$state.'</span></div>';
 
@@ -740,7 +740,7 @@ class ravenSchema
 				!empty($country)
 				)
 				$sc_build .= '</div>';
-				
+
 		}
 
 		// organization
@@ -772,9 +772,9 @@ class ravenSchema
 
 			if(!empty($street))
 				$sc_build .= '<div class="street" itemprop="streetAddress">'.$street.'</div>';
-			
+
 			if(!empty($pobox))
-				$sc_build .= '<div class="pobox">P.O. Box: <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
+				$sc_build .= '<div class="pobox">'.__('P.O. Box:').' <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
 
 			if(!empty($city) && !empty($state)) {
 				$sc_build .= '<div class="city_state">';
@@ -786,7 +786,7 @@ class ravenSchema
 				// secondary check if one part of city / state is missing to keep markup consistent
 				if(empty($state) && !empty($city) )
 					$sc_build .= '<div class="city_state"><span class="locale" itemprop="addressLocality">'.$city.'</span></div>';
-					
+
 				if(empty($city) && !empty($state) )
 					$sc_build .= '<div class="city_state"><span class="region" itemprop="addressRegion">'.$state.'</span></div>';
 
@@ -809,21 +809,21 @@ class ravenSchema
 				$sc_build .= '<div class="email" itemprop="email">'.antispambot($email).'</div>';
 
 			if(!empty($phone))
-				$sc_build .= '<div class="phone" itemprop="telephone">'.$phone.'</div>';
+				$sc_build .= '<div class="phone" itemprop="telephone">'.__('Phone:').' '.$phone.'</div>';
 
 			if(!empty($fax))
-				$sc_build .= '<div class="fax" itemprop="faxNumber">'.$fax.'</div>';
+				$sc_build .= '<div class="fax" itemprop="faxNumber">'.__('Fax:').' '.$fax.'</div>';
 
 			// close it up
 			$sc_build .= '</div>';
-			
+
 		}
 
-		// movie 
+		// movie
 		if(isset($type) && $type == 'movie') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Movie">';
-		
+
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
 				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
@@ -837,10 +837,10 @@ class ravenSchema
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
 
-			if(!empty($director)) 
+			if(!empty($director))
 				$sc_build .= '<div itemprop="director" itemscope itemtype="http://schema.org/Person">Directed by: <span itemprop="name">'.$director.'</span></div>';
 
-			if(!empty($producer)) 
+			if(!empty($producer))
 				$sc_build .= '<div itemprop="producer" itemscope itemtype="http://schema.org/Person">Produced by: <span itemprop="name">'.$producer.'</span></div>';
 
 			if(!empty($actor_1)) {
@@ -850,20 +850,20 @@ class ravenSchema
 						$sc_build .= '<span itemprop="name">'.$actor.'</span>';
 						$sc_build .= '</div>';
 					}
-				$sc_build .= '</div>';			
+				$sc_build .= '</div>';
 			}
 
-	
+
 			// close it up
 			$sc_build .= '</div>';
 
 		}
 
-		// book 
+		// book
 		if(isset($type) && $type == 'book') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Book">';
-		
+
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
 				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
@@ -876,47 +876,47 @@ class ravenSchema
 			if(!empty($description))
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
-			if(!empty($author)) 
+			if(!empty($author))
 				$sc_build .= '<div itemprop="author" itemscope itemtype="http://schema.org/Person">Written by: <span itemprop="name">'.$author.'</span></div>';
 
-			if(!empty($publisher)) 
+			if(!empty($publisher))
 				$sc_build .= '<div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">Published by: <span itemprop="name">'.$publisher.'</span></div>';
 
 			if(!empty($pubdate))
 				$sc_build .= '<div class="bday"><meta itemprop="datePublished" content="'.$pubdate.'">Date Published: '.date('m/d/Y', strtotime($pubdate)).'</div>';
 
-			if(!empty($edition)) 
+			if(!empty($edition))
 				$sc_build .= '<div>Edition: <span itemprop="bookEdition">'.$edition.'</span></div>';
 
-			if(!empty($isbn)) 
+			if(!empty($isbn))
 				$sc_build .= '<div>ISBN: <span itemprop="isbn">'.$isbn.'</span></div>';
 
-			if( !empty($ebook) || !empty($paperback) || !empty($hardcover) ) { 
+			if( !empty($ebook) || !empty($paperback) || !empty($hardcover) ) {
 				$sc_build .= '<div>Available in: ';
 
-					if(!empty($ebook)) 
+					if(!empty($ebook))
 						$sc_build .= '<link itemprop="bookFormat" href="http://schema.org/Ebook">Ebook ';
-	
-					if(!empty($paperback)) 
+
+					if(!empty($paperback))
 						$sc_build .= '<link itemprop="bookFormat" href="http://schema.org/Paperback">Paperback ';
-	
-					if(!empty($hardcover)) 
+
+					if(!empty($hardcover))
 						$sc_build .= '<link itemprop="bookFormat" href="http://schema.org/Hardcover">Hardcover ';
 
 				$sc_build .= '</div>';
 			}
-			
+
 
 			// close it up
 			$sc_build .= '</div>';
 
 		}
 
-		// review 
+		// review
 		if(isset($type) && $type == 'review') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Review">';
-		
+
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
 				$sc_build .= '<div class="schema_name" itemprop="name">'.$name.'</div>';
@@ -929,10 +929,10 @@ class ravenSchema
 			if(!empty($description))
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
-			if(!empty($rev_name)) 
+			if(!empty($rev_name))
 				$sc_build .= '<div class="schema_review_name" itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">'.$rev_name.'</span></div>';
 
-			if(!empty($author)) 
+			if(!empty($author))
 				$sc_build .= '<div itemprop="author" itemscope itemtype="http://schema.org/Person">Written by: <span itemprop="name">'.$author.'</span></div>';
 
 			if(!empty($pubdate))
@@ -963,11 +963,11 @@ class ravenSchema
 
 		}
 
-		// recipe 
+		// recipe
 		if(isset($type) && $type == 'recipe') {
-		
+
 		$sc_build .= '<div itemscope itemtype="http://schema.org/Recipe">';
-			
+
 			$imgalt = isset($name) ? $name : 'Recipe Image';
 
 			if(!empty($image)) // put image first so it can lay out better
@@ -989,7 +989,7 @@ class ravenSchema
 			if(!empty($description))
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
-			if( !empty($prephours) || !empty($prepmins) || !empty($cookhours) || !empty($cookmins) ) {
+			if(!empty($yield) || !empty($prephours) || !empty($prepmins) || !empty($cookhours) || !empty($cookmins) ) {
 				$sc_build .= '<div>';
 
 				// PREP: both variables present
@@ -998,7 +998,8 @@ class ravenSchema
 					$hrsuffix = $prephours	> 1 ? 'hours'	: 'hour';
 					$mnsuffix = $prepmins	> 1 ? 'minutes' : 'minute';
 
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Prep Time:</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H'.$prepmins.'M">';
 					$sc_build .= $prephours.' '.$hrsuffix.', '.$prepmins.' '.$mnsuffix.'';
 					$sc_build .= '</p>';
@@ -1009,7 +1010,8 @@ class ravenSchema
 
 					$hrsuffix = $prephours	> 1 ? 'hours'	: 'hour';
 
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Prep Time:</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H">';
 					$sc_build .= $prephours.' '.$hrsuffix.'';
 					$sc_build .= '</p>';
@@ -1020,7 +1022,8 @@ class ravenSchema
 
 					$mnsuffix = $prepmins	> 1 ? 'minutes' : 'minute';
 
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Prep Time:</span> ';
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Prep Time:</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prepmins.'M">';
 					$sc_build .= $prepmins.' '.$mnsuffix.'';
 					$sc_build .= '</p>';
@@ -1032,7 +1035,8 @@ class ravenSchema
 					$hrsuffix = $cookhours	> 1 ? 'hours'	: 'hour';
 					$mnsuffix = $cookmins	> 1 ? 'minutes' : 'minute';
 
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Cook Time:</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H'.$cookmins.'M">';
 					$sc_build .= $cookhours.' '.$hrsuffix.', '.$cookmins.' '.$mnsuffix.'';
 					$sc_build .= '</p>';
@@ -1043,7 +1047,8 @@ class ravenSchema
 
 					$hrsuffix = $cookhours	> 1 ? 'hours'	: 'hour';
 
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Cook Time:</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H">';
 					$sc_build .= $cookhours.' '.$hrsuffix.'';
 					$sc_build .= '</p>';
@@ -1051,32 +1056,43 @@ class ravenSchema
 
 				// COOK: no hours
 				if( !empty($cookmins) && empty($cookhours) ) {
-					
+
 					$mnsuffix = $cookmins	> 1 ? 'minutes' : 'minute';
-					
-					$sc_build .= '<p class="stacked"><span class="schema_strong">Cook Time:</span> ';
+
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Cook Time:</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookmins.'M">';
 					$sc_build .= $cookmins.' '.$mnsuffix.'';
+					$sc_build .= '</p>';
+				}
+
+				// YIELD
+				if( !empty($yield) ) {
+
+					$sc_build .= '<p class="stacked">';
+					$sc_build .= '<span class="schema_strong">Yield:</span> ';
+					$sc_build .= '<meta itemprop="recipeYield">';
+					$sc_build .= $yield;
 					$sc_build .= '</p>';
 				}
 
 				$sc_build .= '</div>';
 			}
 
-			if( !empty($calories) || !empty($fatcount) || !empty($sugarcount) || !empty($saltcount) ) { 
+			if( !empty($calories) || !empty($fatcount) || !empty($sugarcount) || !empty($saltcount) ) {
 				$sc_build .= '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">';
 				$sc_build .= '<span class="schema_strong">Nutrition Information:</span><ul>';
 
-					if(!empty($calories)) 
+					if(!empty($calories))
 						$sc_build .= '<li><span itemprop="calories">'.$calories.' calories</span></li>';
-	
-					if(!empty($fatcount)) 
+
+					if(!empty($fatcount))
 						$sc_build .= '<li><span itemprop="fatContent">'.$fatcount.' grams of fat</span></li>';
 
-					if(!empty($saltcount)) 
+					if(!empty($saltcount))
 						$sc_build .= '<li><span itemprop="sugarContent">'.$saltcount.' grams of sugar</span></li>';
-	
-					if(!empty($sugarcount)) 
+
+					if(!empty($sugarcount))
 						$sc_build .= '<li><span itemprop="sodiumContent">'.$sugarcount.' milligrams of sodium</span></li>';
 
 				$sc_build .= '</ul></div>';
@@ -1094,21 +1110,21 @@ class ravenSchema
 
 			if(!empty($instructions))
 				$sc_build .= '<div class="schema_instructions" itemprop="recipeInstructions"><span class="schema_strong">Instructions:</span><br />'.esc_attr($instructions).'</div>';
-				
 
-	
+
+
 			// close it up
 			$sc_build .= '</div>';
 
 		}
 
-		
+
 		// close schema wrap
 		$sc_build .= '</div>';
 
 	// return entire build array
 	return $sc_build;
-	
+
 	}
 
 	/**
@@ -1117,21 +1133,19 @@ class ravenSchema
 	 * @return ravenSchema
 	 */
 
-	public function media_button($context) {
-		
+	public function media_button() {
+
 		// don't show on dashboard (QuickPress)
 		$current_screen = get_current_screen();
 		if ( 'dashboard' == $current_screen->base )
-			return $context;
+			return;
 
 		// don't display button for users who don't have access
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
 			return;
-		
-		$button = '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear" id="add_schema" title="' . __('Schema Creator Form') . '">' . __('Schema Creator Form') . '</a>';
 
-	return $context . $button;
-	
+		echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear" id="add_schema" title="' . __('Schema Creator Form') . '">' . __('Schema Creator Form') . '</a>';
+
 	}
 
 	/**
@@ -1140,21 +1154,21 @@ class ravenSchema
 	 * @return ravenSchema
 	 */
 
-	public function schema_form() { 
-		
+	public function schema_form() {
+
 		// don't display form for users who don't have access
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
 		return;
 
 	?>
-	
+
 		<script type="text/javascript">
 			function InsertSchema() {
 				//select field options
 					var type			= jQuery('#schema_builder select#schema_type').val();
 					var evtype			= jQuery('#schema_builder select#schema_evtype').val();
 					var orgtype			= jQuery('#schema_builder select#schema_orgtype').val();
-					var country			= jQuery('#schema_builder select#schema_country').val();				
+					var country			= jQuery('#schema_builder select#schema_country').val();
 					var condition		= jQuery('#schema_builder select#schema_condition').val();
 				//text field options
 					var name			= jQuery('#schema_builder input#schema_name').val();
@@ -1304,7 +1318,7 @@ class ravenSchema
 					if(postalcode)
 						output += 'postalcode="' + postalcode + '" ';
 					if(country && country !== 'none')
-						output += 'country="' + country + '" ';	
+						output += 'country="' + country + '" ';
 				}
 
 				// organization
@@ -1346,7 +1360,7 @@ class ravenSchema
 					if(description)
 						output += 'description="' + description + '" ';
 					if(director)
-						output += 'director="' + director + '" ';						
+						output += 'director="' + director + '" ';
 					if(producer)
 						output += 'producer="' + producer + '" ';
 					if(actor_group) {
@@ -1368,7 +1382,7 @@ class ravenSchema
 					if(description)
 						output += 'description="' + description + '" ';
 					if(author)
-						output += 'author="' + author + '" ';						
+						output += 'author="' + author + '" ';
 					if(publisher)
 						output += 'publisher="' + publisher + '" ';
 					if(pubdate)
@@ -1396,7 +1410,7 @@ class ravenSchema
 					if(rev_name)
 						output += 'rev_name="' + rev_name + '" ';
 					if(rev_body)
-						output += 'rev_body="' + rev_body + '" ';					
+						output += 'rev_body="' + rev_body + '" ';
 					if(author)
 						output += 'author="' + author + '" ';
 					if(pubdate)
@@ -1416,7 +1430,7 @@ class ravenSchema
 					if(author)
 						output += 'author="' + author + '" ';
 					if(pubdate)
-						output += 'pubdate="' + pubdate + '" ';					
+						output += 'pubdate="' + pubdate + '" ';
 					if(image)
 						output += 'image="' + image + '" ';
 					if(description)
@@ -1428,7 +1442,7 @@ class ravenSchema
 					if(cookhours)
 						output += 'cookhours="' + cookhours + '" ';
 					if(cookmins)
-						output += 'cookmins="' + cookmins + '" ';					
+						output += 'cookmins="' + cookmins + '" ';
 					if(yield)
 						output += 'yield="' + yield + '" ';
 					if(calories)
@@ -1452,14 +1466,14 @@ class ravenSchema
 				}
 
 			output += ']';
-	
+
 			window.send_to_editor(output);
 			}
 		</script>
-	
+
 			<div id="schema_build_form" style="display:none;">
 			<div id="schema_builder" class="schema_wrap">
-			<!-- schema type dropdown -->	
+			<!-- schema type dropdown -->
 				<div id="sc_type">
 					<label for="schema_type">Schema Type</label>
 					<select name="schema_type" id="schema_type" class="schema_drop schema_thindrop">
@@ -1474,7 +1488,7 @@ class ravenSchema
 						<option value="recipe">Recipe</option>
 					</select>
 				</div>
-			<!-- end schema type dropdown -->	
+			<!-- end schema type dropdown -->
 
 				<div id="sc_evtype" class="sc_option" style="display:none">
 					<label for="schema_evtype">Event Type</label>
@@ -1526,17 +1540,17 @@ class ravenSchema
 					<label for="schema_orgname">Organization</label>
 					<input type="text" name="schema_orgname" class="form_full" value="" id="schema_orgname" />
 				</div>
-	
+
 				<div id="sc_jobtitle" class="sc_option" style="display:none">
 					<label for="schema_jobtitle">Job Title</label>
 					<input type="text" name="schema_jobtitle" class="form_full" value="" id="schema_jobtitle" />
 				</div>
-	
+
 				<div id="sc_url" class="sc_option" style="display:none">
 					<label for="schema_url">Website</label>
 					<input type="text" name="schema_url" class="form_full" value="" id="schema_url" />
 				</div>
-	
+
 				<div id="sc_description" class="sc_option" style="display:none">
 					<label for="schema_description">Description</label>
 					<textarea name="schema_description" id="schema_description"></textarea>
@@ -1591,33 +1605,33 @@ class ravenSchema
 					<label for="schema_duration">Duration</label>
 					<input type="text" id="schema_duration" name="schema_duration" class="schema_timepicker form_third" value="" />
 				</div>
-	
+
 				<div id="sc_bday" class="sc_option" style="display:none">
 					<label for="schema_bday">Birthday</label>
 					<input type="text" id="schema_bday" name="schema_bday" class="schema_datepicker form_third" value="" />
 					<input type="hidden" id="schema_bday-format" class="schema_datepicker-format" value="" />
 				</div>
-	
+
 				<div id="sc_street" class="sc_option" style="display:none">
 					<label for="schema_street">Address</label>
 					<input type="text" name="schema_street" class="form_full" value="" id="schema_street" />
 				</div>
-	
+
 				<div id="sc_pobox" class="sc_option" style="display:none">
 					<label for="schema_pobox">PO Box</label>
 					<input type="text" name="schema_pobox" class="form_third schema_numeric" value="" id="schema_pobox" />
 				</div>
-	
+
 				<div id="sc_city" class="sc_option" style="display:none">
 					<label for="schema_city">City</label>
 					<input type="text" name="schema_city" class="form_full" value="" id="schema_city" />
 				</div>
-	
+
 				<div id="sc_state" class="sc_option" style="display:none">
 					<label for="schema_state">State / Region</label>
 					<input type="text" name="schema_state" class="form_third" value="" id="schema_state" />
 				</div>
-	
+
 				<div id="sc_postalcode" class="sc_option" style="display:none">
 					<label for="schema_postalcode">Postal Code</label>
 					<input type="text" name="schema_postalcode" class="form_third" value="" id="schema_postalcode" />
@@ -1883,7 +1897,7 @@ class ravenSchema
 					<label for="schema_email">Email Address</label>
 					<input type="text" name="schema_email" class="form_full" value="" id="schema_email" />
 				</div>
-	
+
 				<div id="sc_phone" class="sc_option" style="display:none">
 					<label for="schema_phone">Telephone</label>
 					<input type="text" name="schema_phone" class="form_half" value="" id="schema_phone" />
@@ -1893,7 +1907,7 @@ class ravenSchema
 					<label for="schema_fax">Fax</label>
 					<input type="text" name="schema_fax" class="form_half" value="" id="schema_fax" />
 				</div>
-	
+
    				<div id="sc_brand" class="sc_option" style="display:none">
 					<label for="schema_brand">Brand</label>
 					<input type="text" name="schema_brand" class="form_full" value="" id="schema_brand" />
@@ -2056,11 +2070,11 @@ class ravenSchema
 					<label for="schema_instructions">Instructions</label>
 					<textarea name="schema_instructions" id="schema_instructions"></textarea>
 				</div>
-                
-			<!-- button for inserting -->	
+
+			<!-- button for inserting -->
 				<div class="insert_button" style="display:none">
 					<input class="schema_insert schema_button" type="button" value="<?php _e('Insert'); ?>" onclick="InsertSchema();"/>
-					<input class="schema_cancel schema_clear schema_button" type="button" value="<?php _e('Cancel'); ?>" onclick="tb_remove(); return false;"/>                
+					<input class="schema_cancel schema_clear schema_button" type="button" value="<?php _e('Cancel'); ?>" onclick="tb_remove(); return false;"/>
 				</div>
 
 			<!-- various messages -->
@@ -2068,10 +2082,10 @@ class ravenSchema
                 <p class="start">Select a schema type above to get started</p>
                 <p class="pending" style="display:none;">This schema type is currently being constructed.</p>
                 </div>
-	
+
 			</div>
 			</div>
-	
+
 	<?php }
 
 
