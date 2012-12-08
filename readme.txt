@@ -1,8 +1,8 @@
 === Schema Creator by Raven ===
 Contributors: norcross, raventools
-Tags: schema.org, microdata, structured data, seo, html5
-Tested up to: 3.4.2
-Stable tag: 1.034
+Tags: schema, schema.org, microdata, structured data, seo, html5
+Tested up to: 3.5
+Stable tag: 1.035
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,9 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 * Initial Release
 
 == Changelog ==
+
+= 1.035 =
+* UI change for WordPress 3.5 release
 
 = 1.034 =
 * fixed missing yield display on recipes

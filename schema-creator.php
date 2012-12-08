@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.034
+Version: 1.035
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -34,7 +34,7 @@ if(!defined('SC_BASE'))
 	define('SC_BASE', plugin_basename(__FILE__) );
 
 if(!defined('SC_VER'))
-	define('SC_VER', '1.034');
+	define('SC_VER', '1.035');
 
 
 class ravenSchema
@@ -1144,7 +1144,17 @@ class ravenSchema
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
 			return;
 
-		echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear" id="add_schema" title="' . __('Schema Creator Form') . '">' . __('Schema Creator Form') . '</a>';
+		// do a version check for the new 3.5 UI
+		$version	= get_bloginfo('version');
+
+		if ($version < 3.5) {
+			// show button for v 3.4 and below
+			echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_one" id="add_schema" title="' . __('Schema Creator Form') . '">' . __('Schema Creator Form') . '</a>';
+		} else {
+			// display button matching new UI
+			$img = '<span class="schema-media-icon"></span> ';
+			echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_two button" id="add_schema" title="' . esc_attr__( 'Schema' ) . '">' . $img . __( 'Schema' ) . '</a>';
+		}
 
 	}
 
