@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.035
+Version: 1.037
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -34,7 +34,7 @@ if(!defined('SC_BASE'))
 	define('SC_BASE', plugin_basename(__FILE__) );
 
 if(!defined('SC_VER'))
-	define('SC_VER', '1.035');
+	define('SC_VER', '1.037');
 
 
 class ravenSchema
@@ -374,24 +374,25 @@ class ravenSchema
 			$meta_check	= get_post_meta($post->ID, '_raven_schema_load', true);
 			// check the post content for the short code
 			$content	= $post->post_content;
-			if ( preg_match('/schema(.*)/', $content) )
+			if ( preg_match('/schema(.*)/', $content) ) {
 				// we have found a post with the short code
 				$found = true;
 				// stop the search
 				break;
 			}
-
-			if ($found == true )
-				wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__), array(), SC_VER, 'all' );
-
-			if (empty($meta_check) && $found == true )
-				update_post_meta($post->ID, '_raven_schema_load', 'true');
-
-			if ($found == false )
-				delete_post_meta($post->ID, '_raven_schema_load');
-
-			return $posts;
 		}
+
+		if ($found == true )
+			wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__), array(), SC_VER, 'all' );
+
+		if (empty($meta_check) && $found == true )
+			update_post_meta($post->ID, '_raven_schema_load', 'true');
+
+		if ($found == false )
+			delete_post_meta($post->ID, '_raven_schema_load');
+
+		return $posts;
+	}
 
 	/**
 	 * wrap content in markup
@@ -1089,11 +1090,11 @@ class ravenSchema
 					if(!empty($fatcount))
 						$sc_build .= '<li><span itemprop="fatContent">'.$fatcount.' grams of fat</span></li>';
 
-					if(!empty($saltcount))
-						$sc_build .= '<li><span itemprop="sugarContent">'.$saltcount.' grams of sugar</span></li>';
-
 					if(!empty($sugarcount))
-						$sc_build .= '<li><span itemprop="sodiumContent">'.$sugarcount.' milligrams of sodium</span></li>';
+						$sc_build .= '<li><span itemprop="sugarContent">'.$sugarcount.' grams of sugar</span></li>';
+
+					if(!empty($saltcount))
+						$sc_build .= '<li><span itemprop="sodiumContent">'.$saltcount.' milligrams of sodium</span></li>';
 
 				$sc_build .= '</ul></div>';
 			}
@@ -1153,7 +1154,7 @@ class ravenSchema
 		} else {
 			// display button matching new UI
 			$img = '<span class="schema-media-icon"></span> ';
-			echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_two button" id="add_schema" title="' . esc_attr__( 'Schema' ) . '">' . $img . __( 'Schema' ) . '</a>';
+			echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_two button" id="add_schema" title="' . esc_attr__( 'Add Schema' ) . '">' . $img . __( 'Add Schema' ) . '</a>';
 		}
 
 	}
@@ -1165,6 +1166,11 @@ class ravenSchema
 	 */
 
 	public function schema_form() {
+
+		// don't load form on non-editing pages
+		$current_screen = get_current_screen();
+		if ( 'post' !== $current_screen->base )
+			return;
 
 		// don't display form for users who don't have access
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
