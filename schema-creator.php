@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.038
+Version: 1.039
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -34,7 +34,7 @@ if(!defined('SC_BASE'))
 	define('SC_BASE', plugin_basename(__FILE__) );
 
 if(!defined('SC_VER'))
-	define('SC_VER', '1.038');
+	define('SC_VER', '1.039');
 
 
 class ravenSchema
@@ -385,6 +385,9 @@ class ravenSchema
 
 
 	public function body_class( $classes ) {
+
+		if (is_search() || is_404() )
+			return;
 
 		$schema_options = get_option('schema_options');
 
