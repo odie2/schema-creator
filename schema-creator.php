@@ -3,7 +3,7 @@
 Plugin Name: Schema Creator by Raven
 Plugin URI: http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 Description: Insert schema.org microdata into posts and pages
-Version: 1.040
+Version: 1.041
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
 License: GPL v2
@@ -34,7 +34,7 @@ if(!defined('SC_BASE'))
 	define('SC_BASE', plugin_basename(__FILE__) );
 
 if(!defined('SC_VER'))
-	define('SC_VER', '1.040');
+	define('SC_VER', '1.041');
 
 
 class ravenSchema
@@ -54,8 +54,9 @@ class ravenSchema
 		add_action					( 'the_posts', 				array( $this, 'schema_loader'		)			);
 		add_action					( 'do_meta_boxes',			array( $this, 'metabox_schema'		),	10,	2	);
 		add_action					( 'save_post',				array( $this, 'save_metabox'		)			);
+		add_action					( 'admin_bar_menu',			array( $this, 'schema_test'			),	9999	);
 
-		add_filter					( 'plugin_action_links',	array( $this, 'quick_link'			), 10,	2	);
+		add_filter					( 'plugin_action_links',	array( $this, 'quick_link'			),	10,	2	);
 		add_filter					( 'body_class',             array( $this, 'body_class'			)			);
 		add_filter					( 'media_buttons',			array( $this, 'media_button'		),	31		);
 		add_filter					( 'the_content',			array( $this, 'schema_wrapper'		)			);
@@ -100,6 +101,43 @@ class ravenSchema
 
 		return $links;
 
+	}
+
+	/**
+	 * add link to admin toolbar for testing
+	 *
+	 * @return ravenSchema
+	 */
+
+	public function schema_test( $wp_admin_bar ) {
+
+		// no link on admin panel
+		if ( is_admin() )
+			return;
+
+		// only load on singles
+		if ( !is_singular() )
+			return;
+
+		//get some variables
+		global $post;
+		$link = get_permalink($post->ID);
+
+		// set args for tab
+		global $wp_admin_bar;
+
+			$args = array(
+				'parent'	=> 'top-secondary',
+				'id'		=> 'schema-test',
+				'title' 	=> 'Test Schema',
+				'href'		=> 'http://www.google.com/webmasters/tools/richsnippets?url='.urlencode($link).'&html=',
+				'meta'		=> array(
+					'class'		=> 'schema-test',
+					'target'	=> '_blank'
+					)
+			);
+
+		$wp_admin_bar->add_node($args);
 	}
 
 	/**
