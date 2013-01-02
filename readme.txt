@@ -2,7 +2,7 @@
 Contributors: norcross, raventools
 Tags: schema, schema.org, microdata, structured data, seo, html5
 Tested up to: 3.5
-Stable tag: 1.041
+Stable tag: 1.042
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -51,8 +51,11 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 
 == Changelog ==
 
+= 1.042 =
+* add Spanish language support. props @fitorec
+
 = 1.041 =
-* add Italian language support
+* add Italian language support. props @rotello
 * added a 'testing' button to the WP-Admin bar to load a single post or page in Google's Microdata testing tool
 
 = 1.040 =
