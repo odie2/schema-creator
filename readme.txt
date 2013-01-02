@@ -1,8 +1,8 @@
 === Schema Creator by Raven ===
 Contributors: norcross, raventools
-Tags: schema.org, microdata, structured data, seo, html5
-Tested up to: 3.4.2
-Stable tag: 1.032
+Tags: schema, schema.org, microdata, structured data, seo, html5
+Tested up to: 3.5
+Stable tag: 1.039
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -51,9 +51,29 @@ This plugin is also maintained on [GitHub](https://github.com/norcross/schema-cr
 
 == Changelog ==
 
-= 1.033 =
+= 1.039 =
+* removed error from 404 and search results pages
+
+= 1.038 =
 * Language support
-* Spanish translation
+* minor bug fixes
+
+= 1.037 =
+* bugfix: sodium / sugar was reversed
+
+= 1.036 =
+* Exclude form loading on non-content editing pages
+* Button text change
+
+= 1.035 =
+* UI change for WordPress 3.5 release
+
+= 1.034 =
+* fixed missing yield display on recipes
+* added labels for phone and fax
+
+= 1.033 =
+* changed method of adding button to editor to in anticipation of 3.5 release
 
 = 1.032 =
 * added recipes as an available schema type
