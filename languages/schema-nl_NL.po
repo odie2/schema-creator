@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: schema\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-01-08 14:59+0100\n"
+"PO-Revision-Date: 2013-01-08 15:09+0100\n"
 "Last-Translator: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
 "Language-Team: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
 "Language: nl\n"
@@ -596,7 +596,7 @@ msgstr "Address"
 
 #: schema-creator.php:1801
 msgid "P.O. Box"
-msgstr "Postbus:"
+msgstr "Postbus"
 
 #: schema-creator.php:1806
 msgid "City"
