@@ -662,7 +662,7 @@ class ravenSchema
 		// person
 		if(isset($type) && $type == 'person') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Person">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Person">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -744,7 +744,7 @@ class ravenSchema
 		// product
 		if(isset($type) && $type == 'product') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Product">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Product">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -813,8 +813,8 @@ class ravenSchema
 		// event
 		if(isset($type) && $type == 'event') {
 
-		$default   = (!empty($evtype) ? $evtype : 'Event');
-		$sc_build .= '<div itemscope itemtype="http://schema.org/'.$default.'">';
+			$default   = (!empty($evtype) ? $evtype : 'Event');
+			$sc_build .= '<div itemscope itemtype="http://schema.org/'.$default.'">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -903,8 +903,8 @@ class ravenSchema
 		// organization
 		if(isset($type) && $type == 'organization') {
 
-		$default   = (!empty($orgtype) ? $orgtype : 'Organization');
-		$sc_build .= '<div itemscope itemtype="http://schema.org/'.$default.'">';
+			$default   = (!empty($orgtype) ? $orgtype : 'Organization');
+			$sc_build .= '<div itemscope itemtype="http://schema.org/'.$default.'">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -979,7 +979,7 @@ class ravenSchema
 		// movie
 		if(isset($type) && $type == 'movie') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Movie">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Movie">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -1019,7 +1019,7 @@ class ravenSchema
 		// book
 		if(isset($type) && $type == 'book') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Book">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Book">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -1072,7 +1072,7 @@ class ravenSchema
 		// review
 		if(isset($type) && $type == 'review') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Review">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Review">';
 
 			if(!empty($name) && !empty($url) ) {
 				$sc_build .= '<a class="schema_url" target="_blank" itemprop="url" href="'.esc_url($url).'">';
@@ -1123,7 +1123,7 @@ class ravenSchema
 		// recipe
 		if(isset($type) && $type == 'recipe') {
 
-		$sc_build .= '<div itemscope itemtype="http://schema.org/Recipe">';
+			$sc_build .= '<div itemscope itemtype="http://schema.org/Recipe">';
 
 			$imgalt = isset($name) ? $name : __('Recipe Image', 'schema' );
 
@@ -1152,8 +1152,8 @@ class ravenSchema
 				// PREP: both variables present
 				if( !empty($prephours) && !empty($prepmins) ) {
 
-					$prephours_f = sprintf( _n('%s hour', '%s hours', $prephours, 'schema'), $prephours);	
-					$prepmins_f  = sprintf( _n('%s minute', '%s minutes', $prepmins, 'schema'), $prepmins);
+					$prephours_f = sprintf( _n('%d hour', '%d hours', $prephours, 'schema'), $prephours);	
+					$prepmins_f  = sprintf( _n('%d minute', '%d minutes', $prepmins, 'schema'), $prepmins);
 					
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'._x('Prep Time:', 'recipe', 'schema' ).'</span> ';
@@ -1164,7 +1164,7 @@ class ravenSchema
 				// PREP: no minutes
 				elseif( !empty($prephours) && empty($prepmins) ) {
 
-					$prephours_f = sprintf( _n('%s hour', '%s hours', $prephours, 'schema'), $prephours);	
+					$prephours_f = sprintf( _n('%d hour', '%d hours', $prephours, 'schema'), $prephours );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
@@ -1175,7 +1175,7 @@ class ravenSchema
 				// PREP: no hours
 				elseif( !empty($prepmins) && empty($prephours) ) {
 
-					$prepmins_f = sprintf( _n('%s minute', '%s minutes', $prepmins, 'schema'), $prepmins);	
+					$prepmins_f = sprintf( _n('%d minute', '%d minutes', $prepmins, 'schema'), $prepmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
@@ -1187,37 +1187,35 @@ class ravenSchema
 				// COOK: both variables present
 				if( !empty($cookhours) && !empty($cookmins) ) {
 
-					$hrsuffix = $prephours	> 1 ? __('hours', 'schema' )	: __('hour', 'schema' );
-					$mnsuffix = $prepmins	> 1 ? __('minutes', 'schema' )	: __('minute', 'schema' );
+					$cookhours_f = sprintf( _n('%d hour', '%d hours', $cookhours, 'schema'), $cookhours );	
+					$cookmins_f =  sprintf( _n('%d minute', '%d minutes', $cookmins, 'schema'), $cookmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H'.$cookmins.'M">';
-					$sc_build .= $cookhours.' '.$hrsuffix.', '.$cookmins.' '.$mnsuffix.'';
+					$sc_build .= sprintf( _x( '%s, %s', 'x hours, y minutes', 'schema'), $cookhours_f, $cookmins_f );
 					$sc_build .= '</p>';
 				}
-
 				// COOK: no minutes
-				if( !empty($cookhours) && empty($cookmins) ) {
+				elseif( !empty($cookhours) && empty($cookmins) ) {
 
-					$hrsuffix = $prephours	> 1 ? __('hours', 'schema' )	: __('hour', 'schema' );
-
+					$cookhours_f = sprintf( _n('%d hour', '%d hours', $cookhours, 'schema'), $cookhours );	
+					
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookhours.'H">';
-					$sc_build .= $cookhours.' '.$hrsuffix.'';
+					$sc_build .= $cookhours_f;
 					$sc_build .= '</p>';
 				}
-
 				// COOK: no hours
-				if( !empty($cookmins) && empty($cookhours) ) {
+				elseif( !empty($cookmins) && empty($cookhours) ) {
 
-					$mnsuffix = $prepmins	> 1 ? __('minutes', 'schema' )	: __('minute', 'schema' );
+					$cookmins_f =  sprintf( _n('%d minute', '%d minutes', $cookmins, 'schema'), $cookmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="cookTime" content="PT'.$cookmins.'M">';
-					$sc_build .= $cookmins.' '.$mnsuffix.'';
+					$sc_build .= $cookmins_f;
 					$sc_build .= '</p>';
 				}
 
@@ -1225,7 +1223,7 @@ class ravenSchema
 				if( !empty($yield) ) {
 
 					$sc_build .= '<p class="stacked">';
-					$sc_build .= '<span class="schema_strong">'.__('Yield:', 'schema' ).'</span> ';
+					$sc_build .= '<span class="schema_strong">'._x('Yield:', 'recipe', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="recipeYield">';
 					$sc_build .= $yield;
 					$sc_build .= '</p>';
@@ -1238,36 +1236,44 @@ class ravenSchema
 				$sc_build .= '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">';
 				$sc_build .= '<span class="schema_strong">'.__('Nutrition Information:', 'schema' ).'</span><ul>';
 
-					if(!empty($calories))
-						$sc_build .= '<li><span itemprop="calories">'.$calories.' '.__('calories', 'schema' ).'</span></li>';
+				if(!empty($calories))
+					$sc_build .= '<li><span itemprop="calories">'.
+						sprintf( _n('%d calorie', '%d calories', $calories, 'schema'), $calories ) .
+					'</span></li>';
 
-					if(!empty($fatcount))
-						$sc_build .= '<li><span itemprop="fatContent">'.$fatcount.' '.__('grams of fat', 'schema' ).'</span></li>';
-
-					if(!empty($sugarcount))
-						$sc_build .= '<li><span itemprop="sugarContent">'.$sugarcount.' '.__('grams of sugar', 'schema' ).'</span></li>';
-
-					if(!empty($saltcount))
-						$sc_build .= '<li><span itemprop="sodiumContent">'.$saltcount.' '.__('milligrams of sodium', 'schema' ).'</span></li>';
-
+				if(!empty($fatcount))
+					$sc_build .= '<li><span itemprop="fatContent">'.
+						sprintf( _n('%d gram of fat', '%d grams of fat', $fatcount, 'schema'), $fatcount ) .
+					'</span></li>';
+					
+				if(!empty($sugarcount))
+					$sc_build .= '<li><span itemprop="sugarContent">'.
+						sprintf( _n('%d gram of sugar', '%d grams of sugar', $sugarcount, 'schema'), $sugarcount ) .
+					'</span></li>';
+					
+				if(!empty($saltcount))
+					$sc_build .= '<li><span itemprop="sodiumContent">'.
+						sprintf( _n('%d milligram of sodium', '%d milligrams of sodium', $saltcount, 'schema'), $saltcount ) .
+					'</span></li>';
+						
 				$sc_build .= '</ul></div>';
 			}
 
 			if(!empty($ingrt_1)) {
 				$sc_build .= '<div><span class="schema_strong">'.__('Ingredients:', 'schema' ).'</span>';
 				$sc_build .= '<ul>';
-					foreach ($ingrts as $ingrt) {
-						$sc_build .= '<li><span itemprop="ingredients">'.$ingrt.'</span></li>';
-					}
+				foreach ($ingrts as $ingrt) {
+					$sc_build .= '<li><span itemprop="ingredients">'.$ingrt.'</span></li>';
+				}
 				$sc_build .= '</ul>';
 				$sc_build .= '</div>';
 			}
 
 			if(!empty($instructions))
-				$sc_build .= '<div class="schema_instructions" itemprop="recipeInstructions"><span class="schema_strong">'.__('Instructions:', 'schema' ).'</span><br />'.esc_attr($instructions).'</div>';
-
-
-
+				$sc_build .= '<div class="schema_instructions" itemprop="recipeInstructions">
+					<span class="schema_strong">'.__('Instructions:', 'schema' ).'</span><br />'.esc_attr($instructions).'
+				</div>';
+				
 			// close it up
 			$sc_build .= '</div>';
 
@@ -1277,8 +1283,8 @@ class ravenSchema
 		// close schema wrap
 		$sc_build .= '</div>';
 
-	// return entire build array
-	return $sc_build;
+		// return entire build array
+		return $sc_build;
 
 	}
 
