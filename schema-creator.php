@@ -305,8 +305,7 @@ if ( !class_exists( "RavenSchema" ) ) :
                 <p>
 				<?php 
 					printf(
-						__( 'By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control 
-							the style of the HTML that the Schema Creator plugin outputs.' , 'schema' ).'<br>',
+						__( 'By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.' , 'schema' ).'<br>',
 						
 						// the plugin 
 						'<a target="_blank" 
