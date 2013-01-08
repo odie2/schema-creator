@@ -442,7 +442,15 @@ class ravenSchema
 		if ( 'settings_page_schema-creator' !== $current_screen->base )
 			return $text;
 
-		$text = '<span id="footer-thankyou">'.__('This plugin brought to you by the fine folks at', 'schema').' <a target="_blank" href="'.esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ).'" title="'.esc_attr( 'Internet Marketing Tools for SEO and Social Media', 'schema' ).'"> '. __('Raven Internet Marketing Tools', 'schema').'</a>.</span>';
+		$text = '<span id="footer-thankyou">' . 
+			sprintf( __('This plugin brought to you by the fine folks at %s', 'schema'), 
+				'<a target="_blank" 
+					href="' . esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ).'" 
+					title="' . esc_attr( 'Internet Marketing Tools for SEO and Social Media', 'schema' ) . '"> '. 
+					__('Raven Internet Marketing Tools', 'schema') . '
+				</a>'
+			) . 
+		'</span>';
 
 		return $text;
 	}
