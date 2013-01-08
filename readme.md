@@ -45,6 +45,18 @@ Screenshots
 5. Schema Creator also has a Settings page. [link](https://github.com/norcross/schema-creator/blob/master/screenshot-5.png)
 6. The Settings page allows you to turn on and off CSS, and to also include or exclude certain microdata attributes. [link](https://github.com/norcross/schema-creator/blob/master/screenshot-6.png)
 
+Action Hooks
+--------------
+- `raven_sc_register_settings` runs when the settings are registered. Use this hook to register more settings in the same options namespace.
+- `raven_sc_options_validate` runs when the settings are saved ( &array ). Use this hook to save the settings. Accepts one referenced array as parameter.
+- `raven_sc_metabox` runs when the metabox is outputted. Use this hook to add to the metabox.
+- `raven_sc_save_metabox` runs when the metabox is saved. Use this hook to save added options from the metabox.
+
+Filters
+--------------
+- `raven_sc_default_settings` gets default settings values. Add filters to add more default settings. In conjunction with `raven_sc_register_settings`.
+- `raven_sc_admin_tooltip` gets the tooltips for admin pages. Add filters to add more tooltips. In conjunction with `raven_sc_register_settings`.
+
 Upgrade Notice
 --------------
 - **1.0**
