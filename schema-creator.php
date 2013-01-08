@@ -208,10 +208,12 @@ class ravenSchema
 	 */
 
 
-	public function save_metabox($post_id) {
+	public function save_metabox( $post_id = 0 ) {
+		$post_id = (int)$post_id;
+   		$post_status = get_post_status( $event_id );
 
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-			return;
+		if ( "auto-draft" == $post_status ) 
+			return $post_id;
 
 		if ( isset($_POST['schema_nonce']) && !wp_verify_nonce( $_POST['schema_nonce'], SC_BASE ) )
 			return;
