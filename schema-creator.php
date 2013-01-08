@@ -325,14 +325,14 @@ class ravenSchema
                         
                         // the plugin 
                         '<a target="_blank" 
-                            href="'. esc_url( __( 'http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ) .'" 
-                            title="' . esc_attr( 'Schema Creator', 'schema' ) . '"> '. __( 'Schema Creator' , 'schema') . '
+                            href="'. esc_url( _x( 'http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'plugin uri', 'schema' ) ) .'" 
+                            title="' . esc_attr( _x( 'Schema Creator', 'plugin name', 'schema' ) ) . '"> '. _x( 'Schema Creator' , 'plugin name', 'schema') . '
                         </a>', 
                         
                         // the author
                         '<a target="_blank" 
-                            href="' . esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ) . '" 
-                            title="' . esc_attr( 'Raven Internet Marketing Tools', 'schema' ) . '"> ' . __( 'Raven Internet Marketing Tools' , 'schema') . '
+                            href="' . esc_url( _x( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'author uri', 'schema' ) ) . '" 
+                            title="' . esc_attr( _x('Raven Internet Marketing Tools', 'author', 'schema' ) ) . '"> ' . _x( 'Raven Internet Marketing Tools' , 'author', 'schema') . '
                         </a>'
                     ); ?></p>
     
@@ -344,7 +344,7 @@ class ravenSchema
 						// Rich Snippet Testing Tool link
                         '<a target="_blank" 
                             href="' . esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) ) . '" 
-                            title="' . esc_attr( 'Rich Snippet Testing tool', 'schema' ) . '> '. _e( 'Rich Snippet Testing tool' , 'schema'). '
+                            title="' . esc_attr__( 'Rich Snippet Testing tool', 'schema' ) . '> '. __( 'Rich Snippet Testing tool' , 'schema'). '
                         </a>'
                     )?>
                     </p>
@@ -389,7 +389,7 @@ class ravenSchema
                             <span class="ap_tooltip" tooltip="<?php echo $tooltips['post_class']; ?>"><?php _ex('(?)', 'tooltip button', 'schema'); ?></span>
                         </p>
 
-	    				<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" /></p>
+	    				<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'schema') ?>" /></p>
 					</form>
                 </div> <!-- end .schema_form_options -->
 
@@ -445,9 +445,9 @@ class ravenSchema
 		$text = '<span id="footer-thankyou">' . 
 			sprintf( __('This plugin brought to you by the fine folks at %s', 'schema'), 
 				'<a target="_blank" 
-					href="' . esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ).'" 
-					title="' . esc_attr( 'Internet Marketing Tools for SEO and Social Media', 'schema' ) . '"> '. 
-					__('Raven Internet Marketing Tools', 'schema') . '
+					href="' . esc_url( _x( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'plugin url', 'schema' ) ).'" 
+					title="' . esc_attr__( 'Internet Marketing Tools for SEO and Social Media', 'schema' )  . '"> '. 
+					_x('Raven Internet Marketing Tools', 'author', 'schema') . '
 				</a>'
 			) . 
 		'</span>';
@@ -1152,8 +1152,8 @@ class ravenSchema
 				// PREP: both variables present
 				if( !empty($prephours) && !empty($prepmins) ) {
 
-					$prephours_f = sprintf( _n('%d hour', '%d hours', $prephours, 'schema'), $prephours);	
-					$prepmins_f  = sprintf( _n('%d minute', '%d minutes', $prepmins, 'schema'), $prepmins);
+					$prephours_f = sprintf( _nx('%d hour', '%d hours', $prephours, 'recipe time', 'schema'), $prephours);	
+					$prepmins_f  = sprintf( _nx('%d minute', '%d minutes', $prepmins, 'recipe time', 'schema'), $prepmins);
 					
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'._x('Prep Time:', 'recipe', 'schema' ).'</span> ';
@@ -1164,7 +1164,7 @@ class ravenSchema
 				// PREP: no minutes
 				elseif( !empty($prephours) && empty($prepmins) ) {
 
-					$prephours_f = sprintf( _n('%d hour', '%d hours', $prephours, 'schema'), $prephours );	
+					$prephours_f = sprintf( _nx('%d hour', '%d hours', $prephours, 'recipe time', 'schema'), $prephours );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
@@ -1175,7 +1175,7 @@ class ravenSchema
 				// PREP: no hours
 				elseif( !empty($prepmins) && empty($prephours) ) {
 
-					$prepmins_f = sprintf( _n('%d minute', '%d minutes', $prepmins, 'schema'), $prepmins );	
+					$prepmins_f = sprintf( _nx('%d minute', '%d minutes', $prepmins, 'recipe time', 'schema'), $prepmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
@@ -1187,8 +1187,8 @@ class ravenSchema
 				// COOK: both variables present
 				if( !empty($cookhours) && !empty($cookmins) ) {
 
-					$cookhours_f = sprintf( _n('%d hour', '%d hours', $cookhours, 'schema'), $cookhours );	
-					$cookmins_f =  sprintf( _n('%d minute', '%d minutes', $cookmins, 'schema'), $cookmins );	
+					$cookhours_f = sprintf( _nx('%d hour', '%d hours', $cookhours, 'recipe time', 'schema'), $cookhours );	
+					$cookmins_f =  sprintf( _nx('%d minute', '%d minutes', $cookmins, 'recipe time', 'schema'), $cookmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
@@ -1199,7 +1199,7 @@ class ravenSchema
 				// COOK: no minutes
 				elseif( !empty($cookhours) && empty($cookmins) ) {
 
-					$cookhours_f = sprintf( _n('%d hour', '%d hours', $cookhours, 'schema'), $cookhours );	
+					$cookhours_f = sprintf( _nx('%d hour', '%d hours', $cookhours, 'recipe time', 'schema'), $cookhours );	
 					
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
@@ -1210,7 +1210,7 @@ class ravenSchema
 				// COOK: no hours
 				elseif( !empty($cookmins) && empty($cookhours) ) {
 
-					$cookmins_f =  sprintf( _n('%d minute', '%d minutes', $cookmins, 'schema'), $cookmins );	
+					$cookmins_f =  sprintf( _nx('%d minute', '%d minutes', $cookmins, 'recipe time', 'schema'), $cookmins );	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Cook Time:', 'schema' ).'</span> ';
