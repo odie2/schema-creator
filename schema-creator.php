@@ -27,6 +27,12 @@ License: GPL v2
 	http://schema-creator.org/
 	http://foolip.org/microdatajs/live/
 	http://www.google.com/webmasters/tools/richsnippets
+	
+Actions Hooks:
+	raven_sc_metabox	: runs when the metabox is outputted
+	
+Filters:
+	
 
 */
 
@@ -45,24 +51,27 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-	public function __construct() {
-		add_action					( 'plugins_loaded', 		array( $this, 'textdomain'			) 			);
-		add_action					( 'admin_menu',				array( $this, 'schema_settings'		)			);
-		add_action					( 'admin_init', 			array( $this, 'reg_settings'		)			);
-		add_action					( 'admin_enqueue_scripts',	array( $this, 'admin_scripts'		)			);
-		add_action					( 'admin_footer',			array( $this, 'schema_form'			)			);
-		add_action					( 'the_posts', 				array( $this, 'schema_loader'		)			);
-		add_action					( 'do_meta_boxes',			array( $this, 'metabox_schema'		),	10,	2	);
-		add_action					( 'save_post',				array( $this, 'save_metabox'		)			);
-		add_action					( 'admin_bar_menu',			array( $this, 'schema_test'			),	9999	);
+	public function __construct() {		
+		add_action( 'plugins_loaded', array( $this, 'plugin_textdomain' ) );
+		add_action( 'admin_menu', array( $this, 'schema_settings' )	);
+		add_action( 'admin_init', array( $this, 'reg_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_footer',	array( $this, 'schema_form'	) );
+		add_action( 'the_posts', array( $this, 'schema_loader' ) );
+		add_action( 'do_meta_boxes', array( $this, 'metabox_schema' ), 10, 2 );
+		add_action( 'save_post', array( $this, 'save_metabox' ) );
+		add_action( 'admin_bar_menu', array( $this, 'schema_test' ), 9999 );
 
-		add_filter					( 'plugin_action_links',	array( $this, 'quick_link'			),	10,	2	);
-		add_filter					( 'body_class',             array( $this, 'body_class'			)			);
-		add_filter					( 'media_buttons',			array( $this, 'media_button'		),	31		);
-		add_filter					( 'the_content',			array( $this, 'schema_wrapper'		)			);
-		add_filter					( 'admin_footer_text',		array( $this, 'schema_footer'		)			);
-		add_shortcode				( 'schema',					array( $this, 'shortcode'			)			);
-		register_activation_hook	( __FILE__, 				array( $this, 'store_settings'		)			);
+		add_filter( 'raven_sc_admin_tooltip', array( $this, 'tooltip' ) );
+		add_filter( 'plugin_action_links', array( $this, 'quick_link' ), 10, 2 );
+		add_filter( 'body_class', array( $this, 'body_class' ) );
+		add_filter( 'media_buttons', array( $this, 'media_button' ), 31 );
+		add_filter( 'the_content', array( $this, 'schema_wrapper' ) );
+		add_filter( 'admin_footer_text', array( $this, 'schema_footer' ) );
+		
+		add_shortcode( 'schema', array( $this, 'shortcode' ) );
+		
+		register_activation_hook( __FILE__, array( $this, 'store_settings' ) );
 	}
 
 	/**
@@ -70,10 +79,7 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
-
-	public function textdomain() {
-
+	public function plugin_textdomain() {
 		load_plugin_textdomain( 'schema', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
@@ -82,9 +88,7 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
-    public function quick_link( $links, $file ) {
-
+	public function quick_link( $links, $file ) {
 		static $this_plugin;
 
 		if (!$this_plugin) {
@@ -93,14 +97,11 @@ class ravenSchema
 
     	// check to make sure we are on the correct plugin
     	if ($file == $this_plugin) {
-
 			$settings_link	= '<a href="'.menu_page_url( 'schema-creator', 0 ).'">'.__('Settings', 'schema').'</a>';
-
         	array_unshift($links, $settings_link);
     	}
 
 		return $links;
-
 	}
 
 	/**
@@ -108,7 +109,6 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
 	public function schema_test( $wp_admin_bar ) {
 
 		// no link on admin panel
@@ -126,27 +126,26 @@ class ravenSchema
 		// set args for tab
 		global $wp_admin_bar;
 
-			$args = array(
-				'parent'	=> 'top-secondary',
-				'id'		=> 'schema-test',
-				'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
-				'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) . 
-										'?url='.urlencode($link).'&html=' ),
-				'meta'		=> array(
-					'class'		=> 'schema-test',
-					'target'	=> '_blank'
-					)
-			);
+		$args = array(
+			'parent'	=> 'top-secondary',
+			'id'		=> 'schema-test',
+			'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
+			'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) . 
+									'?url='.urlencode($link).'&html=' ),
+			'meta'		=> array(
+				'class'		=> 'schema-test',
+				'target'	=> '_blank'
+				)
+		);
 
 		$wp_admin_bar->add_node($args);
 	}
 
 	/**
-	 * display metabox
+	 * Display metabox
 	 *
 	 * @return ravenSchema
 	 */
-
 	public function metabox_schema( $page, $context ) {
 
 		// check to see if they have options first
@@ -164,15 +163,13 @@ class ravenSchema
 		$output		= 'names';
 		$operator	= 'and';
 
-		$customs	= get_post_types($args,$output,$operator);
+		$customs	= get_post_types($args, $output, $operator);
 		$builtin	= array('post' => 'post', 'page' => 'page');
 
 		$types		= $customs !== false ? array_merge($customs, $builtin) : $builtin;
 
 		if ( in_array( $page,  $types ) && 'side' == $context )
 			add_meta_box('schema-post-box', __('Schema Display Options', 'schema'), array(&$this, 'schema_post_box'), $page, $context, 'high');
-
-
 	}
 
 	/**
@@ -180,26 +177,28 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
 	public function schema_post_box() {
 
 		global $post;
-		$disable_body	= get_post_meta($post->ID, '_schema_disable_body', true);
-		$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
+		$disable_body = get_post_meta($post->ID, '_schema_disable_body', true);
+		$disable_post = get_post_meta($post->ID, '_schema_disable_post', true);
 
 		// use nonce for security
 		wp_nonce_field( SC_BASE, 'schema_nonce' );
+		?>
+        
+		<p class="schema-post-option">';
+			<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" <?php echo checked( $disable_body, 'true', false ); ?>>
+			<label for="schema_disable_body"><?php _e('Disable body itemscopes on this post.', 'schema'); ?></label>
+		</p>
 
-		echo '<p class="schema-post-option">';
-		echo '<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" '.checked($disable_body, 'true', false).'>';
-		echo '<label for="schema_disable_body">'.__('Disable body itemscopes on this post.', 'schema').'</label>';
-		echo '</p>';
-
-		echo '<p class="schema-post-option">';
-		echo '<input type="checkbox" name="schema_disable_post" id="schema_disable_post" value="true" '.checked($disable_post, 'true', false).'>';
-		echo '<label for="schema_disable_post">'.__('Disable content itemscopes on this post.', 'schema').'</label>';
-		echo '</p>';
-
+		<p class="schema-post-option">
+			<input type="checkbox" name="schema_disable_post" id="schema_disable_post" value="true" <?php echo checked( $disable_post, 'true', false ); ?>>
+			<label for="schema_disable_post"><?php _e('Disable content itemscopes on this post.', 'schema'); ?></label>
+		</p>
+        <?php
+		
+		do_action( 'raven_sc_metabox' );
 	}
 
 	/**
@@ -459,8 +458,6 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
-
 	public function body_class( $classes ) {
 
 		if (is_search() || is_404() )
@@ -480,7 +477,7 @@ class ravenSchema
 		if (empty($post))
 			return $classes;
 
-		$disable_body	= get_post_meta($post->ID, '_schema_disable_body', true);
+		$disable_body = get_post_meta($post->ID, '_schema_disable_body', true);
 
 		if($disable_body == 'true' )
 			return $classes;
@@ -498,8 +495,6 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
-
 	public function schema_loader($posts) {
 
 		// no posts present. nothing more to do here
@@ -546,7 +541,6 @@ class ravenSchema
 	 *
 	 * @return ravenSchema
 	 */
-
 	public function schema_wrapper($content) {
 
 		$schema_options = get_option('schema_options');
