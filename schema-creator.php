@@ -130,7 +130,8 @@ class ravenSchema
 				'parent'	=> 'top-secondary',
 				'id'		=> 'schema-test',
 				'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
-				'href'		=> 'http://www.google.com/webmasters/tools/richsnippets?url='.urlencode($link).'&html=',
+				'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) . 
+										'?url='.urlencode($link).'&html=' ),
 				'meta'		=> array(
 					'class'		=> 'schema-test',
 					'target'	=> '_blank'
@@ -313,57 +314,88 @@ class ravenSchema
 		?>
 
 		<div class="wrap">
-    	<div class="icon32" id="icon-schema"><br></div>
-		<h2><?php _e('Schema Creator Settings', 'schema'); ?></h2>
+    		<div class="icon32" id="icon-schema"><br></div>
+			<h2><?php _e('Schema Creator Settings', 'schema'); ?></h2>
 
 	        <div class="schema_options">
             	<div class="schema_form_text">
-				<p><?php _e('By default, the', 'schema'); ?> <a target="_blank" href="<?php echo esc_url( __( 'http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ); ?>" title="<?php esc_attr_e( 'Schema Creator', 'schema' ); ?>"> <?php _e('Schema Creator', 'schema'); ?></a> plugin by  <a target="_blank" href="<?php echo esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ); ?>" title="<?php esc_attr_e( 'Raven Internet Marketing Tools', 'schema' ); ?>"> <?php _e('Raven Internet Marketing Tools', 'schema'); ?></a> <?php _e('includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.', 'schema'); ?></p>
+                    <p><?php printf(
+                        __( 'By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control 
+                            the style of the HTML that the Schema Creator plugin outputs.' , 'schema'),
+                        
+                        // the plugin 
+                        '<a target="_blank" 
+                            href="'. esc_url( __( 'http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ) .'" 
+                            title="' . esc_attr( 'Schema Creator', 'schema' ) . '"> '. __( 'Schema Creator' , 'schema') . '
+                        </a>', 
+                        
+                        // the author
+                        '<a target="_blank" 
+                            href="' . esc_url( __( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'schema' ) ) . '" 
+                            title="' . esc_attr( 'Raven Internet Marketing Tools', 'schema' ) . '"> ' . __( 'Raven Internet Marketing Tools' , 'schema') . '
+                        </a>'
+                    ); ?></p>
+    
+                    <p><?php _e('The plugin can also automatically include <code>http://schema.org/Blog</code> and <code>http://schema.org/BlogPosting</code> schemas to your pages and posts.', 'schema'); ?></p>
+    
+                    <p><?php printf(
+                        __( 'Google also offers a %s to review and test the schemas in your pages and posts.', 'schema'),
+                        
+						// Rich Snippet Testing Tool link
+                        '<a target="_blank" 
+                            href="' . esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) ) . '" 
+                            title="' . esc_attr( 'Rich Snippet Testing tool', 'schema' ) . '> '. _e( 'Rich Snippet Testing tool' , 'schema'). '
+                        </a>'
+                    )?>
+                    </p>
 
-            	<p><?php _e('The plugin can also automatically include <code>http://schema.org/Blog</code> and <code>http://schema.org/BlogPosting</code> schemas to your pages and posts.', 'schema'); ?></p>
-
-				<p><?php _e('Google also offers a', 'schema'); ?> <a target="_blank" href="<?php echo esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) ); ?>" title="<?php esc_attr_e( 'Rich Snippet Testing tool', 'schema' ); ?>"> <?php _e('Rich Snippet Testing tool', 'schema'); ?></a> <?php _e('to review and test the schemas in your pages and posts.', 'schema'); ?></p>
-
-                </div>
+                </div> <!-- end .schema_form_text -->
 
                 <div class="schema_form_options">
-	            <form method="post" action="options.php">
-			    <?php
-                settings_fields( 'schema_options' );
-				$schema_options	= get_option('schema_options');
+                    <form method="post" action="options.php">
+						<?php
+                        settings_fields( 'schema_options' );
+                        $schema_options	= get_option('schema_options');
+        
+                        $css_hide	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
+                        $body_tag	= (isset($schema_options['body']) && $schema_options['body'] == 'true' ? 'checked="checked"' : '');
+                        $post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');
+        
+                        $tooltips	= $this->tooltip();
+        
+                        ?>
+        
+                        <p>
+                            <label for="schema_options[css]">
+                                <input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_hide; ?>/> 
+                                <?php _e('Exclude default CSS for schema output', 'schema'); ?>
+                            </label>
+                            <span class="ap_tooltip" tooltip="<?php echo $tooltips['default_css']; ?>"><?php _ex('(?)', 'tooltip button', 'schema'); ?></span>
+                        </p>
+        
+                        <p>
+                            <label for="schema_options[body]">
+                                <input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> 
+                                <?php _e('Apply itemprop &amp; itemtype to main body tag', 'schema'); ?>
+                            </label>
+                            <span class="ap_tooltip" tooltip="<?php echo $tooltips['body_class']; ?>"><?php _ex('(?)', 'tooltip button', 'schema'); ?></span>
+                        </p>
 
-				$css_hide	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
-				$body_tag	= (isset($schema_options['body']) && $schema_options['body'] == 'true' ? 'checked="checked"' : '');
-				$post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');
+                        <p>
+                            <label for="schema_options[post]">
+                            	<input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> 
+								<?php _e('Apply itemscope &amp; itemtype to content wrapper', 'schema'); ?>
+                            </label>
+                            <span class="ap_tooltip" tooltip="<?php echo $tooltips['post_class']; ?>"><?php _ex('(?)', 'tooltip button', 'schema'); ?></span>
+                        </p>
 
-				$tooltips	= $this->tooltip();
+	    				<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" /></p>
+					</form>
+                </div> <!-- end .schema_form_options -->
 
-				?>
+            </div> <!-- end .schema_options -->
 
-				<p>
-                <label for="schema_options[css]"><input type="checkbox" id="schema_css" name="schema_options[css]" class="schema_checkbox" value="true" <?php echo $css_hide; ?>/> <?php _e('Exclude default CSS for schema output', 'schema'); ?></label>
-                <span class="ap_tooltip" tooltip="<?php echo $tooltips['default_css']; ?>">(?)</span>
-                </p>
-
-				<p>
-                <label for="schema_options[body]"><input type="checkbox" id="schema_body" name="schema_options[body]" class="schema_checkbox" value="true" <?php echo $body_tag; ?> /> <?php _e('Apply itemprop &amp; itemtype to main body tag', 'schema'); ?></label>
-                <span class="ap_tooltip" tooltip="<?php echo $tooltips['body_class']; ?>">(?)</span>
-                </p>
-
-				<p>
-                <label for="schema_options[post]"><input type="checkbox" id="schema_post" name="schema_options[post]" class="schema_checkbox" value="true" <?php echo $post_tag; ?> /> <?php _e('Apply itemscope &amp; itemtype to content wrapper', 'schema'); ?></label>
-                <span class="ap_tooltip" tooltip="<?php echo $tooltips['post_class']; ?>">(?)</span>
-                </p>
-
-	    		<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" /></p>
-				</form>
-                </div>
-
-            </div>
-
-        </div>
-
-
+        </div> <!-- end .wrap -->
 	<?php }
 
 
