@@ -3,3 +3,6 @@ _stuff
 
 #screenshots
 /*.png
+
+#potmaker
+makepot.bat

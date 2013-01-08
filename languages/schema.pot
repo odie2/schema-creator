@@ -1,20 +1,16 @@
+# Copyright (C) 2013 Schema Creator by Raven
+# This file is distributed under the same license as the Schema Creator by Raven package.
 msgid ""
 msgstr ""
-"Project-Id-Version: schema\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-01-08 14:37+0100\n"
-"Last-Translator: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
-"Language-Team: \n"
-"Language: en\n"
+"Project-Id-Version: Schema Creator by Raven 1.042\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/schema-creator\n"
+"POT-Creation-Date: 2013-01-08 13:37:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-KeywordsList: _;__;_e;gettext;gettext_noop\n"
-"X-Poedit-Basepath: ../\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: lib\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: schema-creator.php:97
 msgid "Settings"
@@ -50,27 +46,26 @@ msgid "Check to remove Schema Creator CSS from the microdata HTML output."
 msgstr ""
 
 #: schema-creator.php:294
-msgid ""
-"Check to add the <code>http://schema.org/Blog</code> schema itemtype to the "
-"BODY element on your pages and posts. Your theme must have the "
-"<code>body_class</code> template tag for this to work."
+msgid "Check to add the <code>http://schema.org/Blog</code> schema itemtype to the BODY element on your pages and posts. Your theme must have the <code>body_class</code> template tag for this to work."
 msgstr ""
 
 #: schema-creator.php:296
-msgid ""
-"Check to add the <code>http://schema.org/BlogPosting</code> schema itemtype "
-"to the content wrapper on your pages and posts."
+msgid "Check to add the <code>http://schema.org/BlogPosting</code> schema itemtype to the content wrapper on your pages and posts."
 msgstr ""
 
 #: schema-creator.php:318
 msgid "Schema Creator Settings"
 msgstr ""
 
+#: schema-creator.php:323
+msgid ""
+"By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control \n"
+"                            the style of the HTML that the Schema Creator plugin outputs."
+msgstr ""
+
 #: schema-creator.php:328
 msgctxt "plugin uri"
-msgid ""
-"http://schema-creator.org/?"
-"utm_source=wp&utm_medium=plugin&utm_campaign=schema"
+msgid "http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 msgstr ""
 
 #: schema-creator.php:329
@@ -80,8 +75,7 @@ msgstr ""
 
 #: schema-creator.php:334
 msgctxt "author uri"
-msgid ""
-"http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
+msgid "http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 msgstr ""
 
 #: schema-creator.php:335 schema-creator.php:450
@@ -90,16 +84,11 @@ msgid "Raven Internet Marketing Tools"
 msgstr ""
 
 #: schema-creator.php:339
-msgid ""
-"The plugin can also automatically include <code>http://schema.org/Blog</"
-"code> and <code>http://schema.org/BlogPosting</code> schemas to your pages "
-"and posts."
+msgid "The plugin can also automatically include <code>http://schema.org/Blog</code> and <code>http://schema.org/BlogPosting</code> schemas to your pages and posts."
 msgstr ""
 
 #: schema-creator.php:342
-msgid ""
-"Google also offers a %s to review and test the schemas in your pages and "
-"posts."
+msgid "Google also offers a %s to review and test the schemas in your pages and posts."
 msgstr ""
 
 #: schema-creator.php:347
@@ -133,8 +122,7 @@ msgstr ""
 
 #: schema-creator.php:448
 msgctxt "plugin url"
-msgid ""
-"http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
+msgid "http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 msgstr ""
 
 #: schema-creator.php:449
@@ -1787,15 +1775,12 @@ msgstr ""
 #: schema-creator.php:2282
 msgid "This schema type is currently being constructed."
 msgstr ""
-
 #. Plugin Name of the plugin/theme
 msgid "Schema Creator by Raven"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid ""
-"http://schema-creator.org/?"
-"utm_source=wp&utm_medium=plugin&utm_campaign=schema"
+msgid "http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -1807,6 +1792,5 @@ msgid "Raven Internet Marketing Tools"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid ""
-"http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
+msgid "http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 msgstr ""
