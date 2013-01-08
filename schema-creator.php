@@ -321,19 +321,17 @@ class ravenSchema
             	<div class="schema_form_text">
                     <p><?php printf(
                         __( 'By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control 
-                            the style of the HTML that the Schema Creator plugin outputs.' , 'schema'),
+                            the style of the HTML that the Schema Creator plugin outputs.' , 'schema' ),
                         
                         // the plugin 
                         '<a target="_blank" 
                             href="'. esc_url( _x( 'http://schema-creator.org/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'plugin uri', 'schema' ) ) .'" 
-                            title="' . esc_attr( _x( 'Schema Creator', 'plugin name', 'schema' ) ) . '"> '. _x( 'Schema Creator' , 'plugin name', 'schema') . '
-                        </a>', 
+                            title="' . esc_attr( _x( 'Schema Creator', 'plugin name', 'schema' ) ) . '">'. _x( 'Schema Creator' , 'plugin name', 'schema') . '</a>', 
                         
                         // the author
                         '<a target="_blank" 
                             href="' . esc_url( _x( 'http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema', 'author uri', 'schema' ) ) . '" 
-                            title="' . esc_attr( _x('Raven Internet Marketing Tools', 'author', 'schema' ) ) . '"> ' . _x( 'Raven Internet Marketing Tools' , 'author', 'schema') . '
-                        </a>'
+                            title="' . esc_attr( _x('Raven Internet Marketing Tools', 'author', 'schema' ) ) . '"> ' . _x( 'Raven Internet Marketing Tools' , 'author', 'schema') . '</a>'
                     ); ?></p>
     
                     <p><?php _e('The plugin can also automatically include <code>http://schema.org/Blog</code> and <code>http://schema.org/BlogPosting</code> schemas to your pages and posts.', 'schema'); ?></p>
@@ -344,8 +342,7 @@ class ravenSchema
 						// Rich Snippet Testing Tool link
                         '<a target="_blank" 
                             href="' . esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) ) . '" 
-                            title="' . esc_attr__( 'Rich Snippet Testing tool', 'schema' ) . '> '. __( 'Rich Snippet Testing tool' , 'schema'). '
-                        </a>'
+                            title="' . esc_attr__( 'Rich Snippet Testing tool', 'schema' ) . '"> '. __( 'Rich Snippet Testing tool' , 'schema'). '</a>'
                     )?>
                     </p>
 
