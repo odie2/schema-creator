@@ -1753,7 +1753,7 @@ class ravenSchema
                 </div>
         
                 <div id="sc_producer" class="sc_option" style="display:none">
-                    <label for="schema_producer"><?php _e('Productor', 'schema'); ?></label>
+                    <label for="schema_producer"><?php _e('Producer', 'schema'); ?></label>
                     <input type="text" name="schema_producer" class="form_full" value="" id="schema_producer" />
                 </div>
         

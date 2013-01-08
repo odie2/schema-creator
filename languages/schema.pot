@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schema Creator by Raven 1.042\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/schema-creator\n"
-"POT-Creation-Date: 2013-01-08 13:17:44+00:00\n"
+"POT-Creation-Date: 2013-01-08 13:37:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -532,7 +532,7 @@ msgid "Director"
 msgstr ""
 
 #: schema-creator.php:1756
-msgid "Productor"
+msgid "Producer"
 msgstr ""
 
 #: schema-creator.php:1761

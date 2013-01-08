@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: schema\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-01-08 14:25+0100\n"
+"PO-Revision-Date: 2013-01-08 14:38+0100\n"
 "Last-Translator: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -569,7 +569,7 @@ msgid "Director"
 msgstr "Regista"
 
 #: schema-creator.php:1756
-msgid "Productor"
+msgid "Producer"
 msgstr "Produttore"
 
 #: schema-creator.php:1761
