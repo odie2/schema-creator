@@ -129,7 +129,7 @@ class ravenSchema
 			$args = array(
 				'parent'	=> 'top-secondary',
 				'id'		=> 'schema-test',
-				'title' 	=> 'Test Schema',
+				'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
 				'href'		=> 'http://www.google.com/webmasters/tools/richsnippets?url='.urlencode($link).'&html=',
 				'meta'		=> array(
 					'class'		=> 'schema-test',
