@@ -700,19 +700,17 @@ class ravenSchema
 			if(!empty($pobox))
 				$sc_build .= '<div class="pobox">'.__('P.O. Box:', 'schema' ).' <span itemprop="postOfficeBoxNumber">'.$pobox.'</span></div>';
 
-			if(!empty($city) && !empty($state)) {
+			if(!empty($city) && !empty($state)) :
 				$sc_build .= '<div class="city_state">';
 				$sc_build .= '<span class="locale" itemprop="addressLocality">'.$city.'</span>,';
 				$sc_build .= '<span class="region" itemprop="addressRegion">'.$state.'</span>';
 				$sc_build .= '</div>';
-			}
-
-				// secondary check if one part of city / state is missing to keep markup consistent
-				if(empty($state) && !empty($city) )
-					$sc_build .= '<div class="city_state"><span class="locale" itemprop="addressLocality">'.$city.'</span></div>';
-
-				if(empty($city) && !empty($state) )
-					$sc_build .= '<div class="city_state"><span class="region" itemprop="addressRegion">'.$state.'</span></div>';
+			// secondary check if one part of city / state is missing to keep markup consistent
+			elseif(empty($state) && !empty($city) ) :
+				$sc_build .= '<div class="city_state"><span class="locale" itemprop="addressLocality">'.$city.'</span></div>';
+			elseif(empty($city) && !empty($state) ) :
+				$sc_build .= '<div class="city_state"><span class="region" itemprop="addressRegion">'.$state.'</span></div>';
+			endif;
 
 			if(!empty($postalcode))
 				$sc_build .= '<div class="postalcode" itemprop="postalCode">'.$postalcode.'</div>';
@@ -736,7 +734,7 @@ class ravenSchema
 				$sc_build .= '<div class="phone" itemprop="telephone">'.__('Phone:', 'schema' ).' '.$phone.'</div>';
 
 			if(!empty($bday))
-				$sc_build .= '<div class="bday"><meta itemprop="birthDate" content="'.$bday.'">'.__('DOB:', 'schema' ).' '.date('m/d/Y', strtotime($bday)).'</div>';
+				$sc_build .= '<div class="bday"><meta itemprop="birthDate" content="'.$bday.'">'._x('DOB:', 'person', 'schema' ).' '.date('m/d/Y', strtotime($bday)).'</div>';
 
 			// close it up
 			$sc_build .= '</div>';
@@ -761,30 +759,40 @@ class ravenSchema
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
 			if(!empty($brand))
-				$sc_build .= '<div class="brand" itemprop="brand" itemscope itemtype="http://schema.org/Organization"><span class="desc_type">'.__('Brand:', 'schema' ).'</span> <span itemprop="name">'.$brand.'</span></div>';
+				$sc_build .= '<div class="brand" itemprop="brand" itemscope itemtype="http://schema.org/Organization">
+					<span class="desc_type">'._x('Brand:', 'product', 'schema' ).'</span> <span itemprop="name">'.$brand.'</span>
+				</div>';
 
 			if(!empty($manfu))
-				$sc_build .= '<div class="manufacturer" itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization"><span class="desc_type">'.__('Manufacturer:', 'schema' ).'</span> <span itemprop="name">'.$manfu.'</span></div>';
+				$sc_build .= '<div class="manufacturer" itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization">
+					<span class="desc_type">'._x('Manufacturer:', 'product', 'schema' ).'</span> <span itemprop="name">'.$manfu.'</span>
+				</div>';
 
 			if(!empty($model))
-				$sc_build .= '<div class="model"><span class="desc_type">'.__('Model:', 'schema' ).'</span> <span itemprop="model">'.$model.'</span></div>';
+				$sc_build .= '<div class="model"><span class="desc_type">'._x('Model:', 'product', 'schema' ).'</span> <span itemprop="model">'.$model.'</span></div>';
 
 			if(!empty($prod_id))
 				$sc_build .= '<div class="prod_id"><span class="desc_type">'.__('Product ID:', 'schema' ).'</span> <span itemprop="productID">'.$prod_id.'</span></div>';
 
-			if(!empty($single_rating) && !empty($agg_rating)) {
+			// Have both rating fields
+			if(!empty($single_rating) && !empty($agg_rating)) :
 				$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">';
-				$sc_build .= '<span itemprop="ratingValue">'.$single_rating.'</span> '.__('based on', 'schema' ).' ';
-				$sc_build .= '<span itemprop="reviewCount">'.$agg_rating.'</span> '.__('reviews', 'schema' ).'';
+				$sc_build .= '<span itemprop="ratingValue">'.$single_rating.'</span> '._x('based on', 'product rating based on', 'schema' ).' ';
+				$sc_build .= '<span itemprop="reviewCount">'.$agg_rating.'</span> '._x('reviews', 'product rating based on', 'schema' ).'';
 				$sc_build .= '</div>';
-			}
+			
+			// Secondary check if one part of review is missing to keep markup consistent
+			elseif(empty($agg_rating) && !empty($single_rating) ) :
+				$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+					<span itemprop="ratingValue"><span class="desc_type">'._x('Review:', 'single product rating', 'schema' ).'</span> '.$single_rating.'</span>
+				</div>';
 
-				// secondary check if one part of review is missing to keep markup consistent
-				if(empty($agg_rating) && !empty($single_rating) )
-					$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><span itemprop="ratingValue"><span class="desc_type">'.__('Review:', 'schema' ).'</span> '.$single_rating.'</span></div>';
-
-				if(empty($single_rating) && !empty($agg_rating) )
-					$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><span itemprop="reviewCount">'.$agg_rating.'</span> '.__('total reviews', 'schema' ).'</div>';
+			// Tertiary check if the other part of review is missing
+			elseif(empty($single_rating) && !empty($agg_rating) ) :
+					$sc_build .= '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+						<span itemprop="reviewCount">'.$agg_rating.'</span> '._x('total reviews', 'aggregated product rating count', 'schema' ).'
+					</div>';
+			endif;
 
 			if(!empty($price) && !empty($condition)) {
 				$sc_build .= '<div class="offers" itemprop="offers" itemscope itemtype="http://schema.org/Offer">';
@@ -820,16 +828,17 @@ class ravenSchema
 			if(!empty($description))
 				$sc_build .= '<div class="schema_description" itemprop="description">'.esc_attr($description).'</div>';
 
-			if(!empty($sdate) && !empty($stime) ) {
+			if(!empty($sdate) && !empty($stime) ) :
 				$metatime = $sdate.'T'.date('G:i', strtotime($sdate.$stime));
-				$sc_build .= '<div><meta itemprop="startDate" content="'.$metatime.'">'.__('Starts:', 'schema' ).' '.date('m/d/Y', strtotime($sdate)).' '.$stime.'</div>';
-			}
-				// secondary check for missing start time
-				if(empty($stime) && !empty($sdate) )
-					$sc_build .= '<div><meta itemprop="startDate" content="'.$sdate.'">'.__('Starts:', 'schema' ).' '.date('m/d/Y', strtotime($sdate)).'</div>';
+				$sc_build .= '<div><meta itemprop="startDate" content="'.$metatime.'">'._x('Starts:', 'event', 'schema' ).' '.date('m/d/Y', strtotime($sdate)).' '.$stime.'</div>';
+
+			// secondary check for missing start time
+			elseif(empty($stime) && !empty($sdate) ) :
+				$sc_build .= '<div><meta itemprop="startDate" content="'.$sdate.'">'._x('Starts:', 'event', 'schema' ).' '.date('m/d/Y', strtotime($sdate)).'</div>';
+			endif;
 
 			if(!empty($edate))
-				$sc_build .= '<div><meta itemprop="endDate" content="'.$edate.':00.000">'.__('Ends:', 'schema' ).' '.date('m/d/Y', strtotime($edate)).'</div>';
+				$sc_build .= '<div><meta itemprop="endDate" content="'.$edate.':00.000">'._x('Ends:', 'event', 'schema' ).' '.date('m/d/Y', strtotime($edate)).'</div>';
 
 			if(!empty($duration)) {
 
@@ -839,7 +848,7 @@ class ravenSchema
 				$hours		= (!empty($hour_cnv) && $hour_cnv > 0 ? $hour_cnv.' '.__('hours:', 'schema' ) : '');
 				$minutes	= (!empty($mins_cnv) && $mins_cnv > 0 ? ' '.__('and', 'schema' ).' '.$mins_cnv.' '.__('minutes', 'schema' ) : '');
 
-				$sc_build .= '<div><meta itemprop="duration" content="0000-00-00T'.$duration.'">'.__('Duration:', 'schema' ).' '.$hours.$minutes.'</div>';
+				$sc_build .= '<div><meta itemprop="duration" content="0000-00-00T'.$duration.'">'._x('Duration:', 'event', 'schema' ).' '.$hours.$minutes.'</div>';
 			}
 
 			// close actual event portion
@@ -1143,37 +1152,35 @@ class ravenSchema
 				// PREP: both variables present
 				if( !empty($prephours) && !empty($prepmins) ) {
 
-					$hrsuffix = $prephours	> 1 ? __('hours', 'schema' )	: __('hour', 'schema' );
-					$mnsuffix = $prepmins	> 1 ? __('minutes', 'schema' )	: __('minute', 'schema' );
-
+					$prephours_f = sprintf( _n('%s hour', '%s hours', $prephours, 'schema'), $prephours);	
+					$prepmins_f  = sprintf( _n('%s minute', '%s minutes', $prepmins, 'schema'), $prepmins);
+					
 					$sc_build .= '<p class="stacked">';
-					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
+					$sc_build .= '<span class="schema_strong">'._x('Prep Time:', 'recipe', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H'.$prepmins.'M">';
-					$sc_build .= $prephours.' '.$hrsuffix.', '.$prepmins.' '.$mnsuffix.'';
+					$sc_build .= sprintf( _x( '%s, %s', 'x hours, y minutes', 'schema'), $prephours_f, $prepmins_f );
 					$sc_build .= '</p>';
 				}
-
 				// PREP: no minutes
-				if( !empty($prephours) && empty($prepmins) ) {
+				elseif( !empty($prephours) && empty($prepmins) ) {
 
-					$hrsuffix = $prephours	> 1 ? __('hours', 'schema' )	: __('hour', 'schema' );
+					$prephours_f = sprintf( _n('%s hour', '%s hours', $prephours, 'schema'), $prephours);	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prephours.'H">';
-					$sc_build .= $prephours.' '.$hrsuffix.'';
+					$sc_build .= $prephours_f;
 					$sc_build .= '</p>';
 				}
-
 				// PREP: no hours
-				if( !empty($prepmins) && empty($prephours) ) {
+				elseif( !empty($prepmins) && empty($prephours) ) {
 
-					$mnsuffix = $prepmins	> 1 ? __('minutes', 'schema' )	: __('minute', 'schema' );
+					$prepmins_f = sprintf( _n('%s minute', '%s minutes', $prepmins, 'schema'), $prepmins);	
 
 					$sc_build .= '<p class="stacked">';
 					$sc_build .= '<span class="schema_strong">'.__('Prep Time:', 'schema' ).'</span> ';
 					$sc_build .= '<meta itemprop="prepTime" content="PT'.$prepmins.'M">';
-					$sc_build .= $prepmins.' '.$mnsuffix.'';
+					$sc_build .= $prepmins_f;
 					$sc_build .= '</p>';
 				}
 
@@ -1780,7 +1787,7 @@ class ravenSchema
 				</div>
 
 				<div id="sc_pobox" class="sc_option" style="display:none">
-					<label for="schema_pobox"><?php _e('PO Box', 'schema'); ?></label>
+					<label for="schema_pobox"><?php _e('P.O. Box', 'schema'); ?></label>
 					<input type="text" name="schema_pobox" class="form_third schema_numeric" value="" id="schema_pobox" />
 				</div>
 
