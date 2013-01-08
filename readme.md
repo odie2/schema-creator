@@ -29,8 +29,11 @@ The Schema Creator plugin places an icon above the Post/Page rich text editor (n
 ### Can I test the output to see how the search engine will view it?
 Yes, although there is no guarantee that it will indeed show up that way. Google offers a [Rich Snippet Testing tool](http://www.google.com/webmasters/tools/richsnippets/ "Google Rich Snippet Test") to review.
 
-###I have a problem. Where do I go?
+### I have a problem. Where do I go?
 This plugin is also maintained on [GitHub](https://github.com/norcross/schema-creator/ "Schema Creator on GitHub"). The best place to post questions / issues / bugs / enhancement requests is on the [issues page](https://github.com/norcross/schema-creator/issues "Issues page for Schema Creator on GitHub") there.
+
+### How can I use this in my own language?
+If your `locale` is not provided in the `/languages/` subfolder, you have to either wait or create your own language file. For example, you could use POEdit to open default.po and save it as your own locale and translate it.
 
 Screenshots
 --------------------------
