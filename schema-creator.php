@@ -29,9 +29,12 @@ License: GPL v2
 	http://www.google.com/webmasters/tools/richsnippets
 	
 Actions Hooks:
-	raven_sc_metabox	: runs when the metabox is outputted
+	raven_sc_metabox			: runs when the metabox is outputted
+	raven_sc_save_metabox		: runs when the metabox is saved
 	
 Filters:
+	raven_sc_default_settings	: gets default settings values
+	raven_sc_admin_tooltip		: gets the tooltips for admin pages
 	
 
 */
@@ -46,7 +49,6 @@ if(!defined('SC_VER'))
 if ( !class_exists( "RavenSchema" ) ) :
 	class RavenSchema
 	{
-	
 		/**
 		 * This is our constructor
 		 *
@@ -63,7 +65,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 			add_action( 'save_post', array( $this, 'save_metabox' ) );
 			add_action( 'admin_bar_menu', array( $this, 'schema_test' ), 9999 );
 	
-			add_filter( 'raven_sc_admin_tooltip', array( $this, 'tooltip' ) );
+			add_filter( 'raven_sc_admin_tooltip', array( $this, 'get_tooltips' ) );
+			add_filter( 'raven_sc_default_settings', array( $this, 'get_default_settings' ) );
 			add_filter( 'plugin_action_links', array( $this, 'quick_link' ), 10, 2 );
 			add_filter( 'body_class', array( $this, 'body_class' ) );
 			add_filter( 'media_buttons', array( $this, 'media_button' ), 31 );
@@ -72,7 +75,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 			
 			add_shortcode( 'schema', array( $this, 'shortcode' ) );
 			
-			register_activation_hook( __FILE__, array( $this, 'store_settings' ) );
+			register_activation_hook( __FILE__, array( $this, 'default_settings' ) );
 		}
 	
 		/**
@@ -98,7 +101,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 	
 			// check to make sure we are on the correct plugin
 			if ($file == $this_plugin) {
-				$settings_link	= '<a href="'.menu_page_url( 'schema-creator', 0 ).'">'.__('Settings', 'schema').'</a>';
+				$settings_link	= '<a href="'.menu_page_url( 'schema-creator', 0 ).'">'.__( 'Settings', 'schema' ).'</a>';
 				array_unshift($links, $settings_link);
 			}
 	
@@ -111,8 +114,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 * @return ravenSchema
 		 */
 		public function schema_test( $wp_admin_bar ) {
-	
-			// no link on admin panel
+			// No link on admin panel
 			if ( is_admin() )
 				return;
 	
@@ -148,12 +150,15 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 * @return ravenSchema
 		 */
 		public function metabox_schema( $page, $context ) {
-	
+			// only add on side
+			if ('side' != $context)
+				return;
+				
 			// check to see if they have options first
 			$schema_options	= get_option('schema_options');
 	
 			// they haven't enabled this? THEN YOU LEAVE NOW
-			if(empty($schema_options['body']) && empty($schema_options['post']) )
+			if( empty( $schema_options['body'] ) && empty( $schema_options['post'] ) )
 				return;
 	
 			// get custom post types
@@ -164,13 +169,13 @@ if ( !class_exists( "RavenSchema" ) ) :
 			$output		= 'names';
 			$operator	= 'and';
 	
-			$customs	= get_post_types($args, $output, $operator);
+			$customs	= get_post_types( $args, $output, $operator );
 			$builtin	= array('post' => 'post', 'page' => 'page');
 	
-			$types		= $customs !== false ? array_merge($customs, $builtin) : $builtin;
+			$types		= $customs !== false ? array_merge( $customs, $builtin ) : $builtin;
 	
-			if ( in_array( $page,  $types ) && 'side' == $context )
-				add_meta_box('schema-post-box', __('Schema Display Options', 'schema'), array(&$this, 'schema_post_box'), $page, $context, 'high');
+			if ( in_array( $page,  $types ) )
+				add_meta_box( 'schema-post-box', __( 'Schema Display Options', 'schema' ), array( &$this, 'schema_post_box' ), $page, $context, 'high' );
 		}
 	
 		/**
@@ -178,23 +183,26 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-		public function schema_post_box() {
-	
+		public function schema_post_box( ) {
 			global $post;
+			
+			// Add downwards compatability
 			$disable_body = get_post_meta($post->ID, '_schema_disable_body', true);
+			$disable_body = $disable_body === true || $disable_body == 'true';
 			$disable_post = get_post_meta($post->ID, '_schema_disable_post', true);
+			$disable_post = $disable_post === true || $disable_post == 'true';
 	
 			// use nonce for security
 			wp_nonce_field( SC_BASE, 'schema_nonce' );
 			?>
 			
 			<p class="schema-post-option">';
-				<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" <?php echo checked( $disable_body, 'true', false ); ?>>
+				<input type="checkbox" name="schema_disable_body" id="schema_disable_body" value="true" <?php echo checked( $disable_body, true, false ); ?>>
 				<label for="schema_disable_body"><?php _e('Disable body itemscopes on this post.', 'schema'); ?></label>
 			</p>
 	
 			<p class="schema-post-option">
-				<input type="checkbox" name="schema_disable_post" id="schema_disable_post" value="true" <?php echo checked( $disable_post, 'true', false ); ?>>
+				<input type="checkbox" name="schema_disable_post" id="schema_disable_post" value="true" <?php echo checked( $disable_post, true, false ); ?>>
 				<label for="schema_disable_post"><?php _e('Disable content itemscopes on this post.', 'schema'); ?></label>
 			</p>
 			<?php
@@ -207,29 +215,28 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
-	
-		public function save_metabox( $post_id = 0 ) {
+		public function save_metabox( $post_id = 0 )
+		{	
 			$post_id = (int)$post_id;
 			$post_status = get_post_status( $event_id );
 	
 			if ( "auto-draft" == $post_status ) 
 				return $post_id;
 	
-			if ( isset($_POST['schema_nonce']) && !wp_verify_nonce( $_POST['schema_nonce'], SC_BASE ) )
+			if ( isset( $_POST['schema_nonce'] ) && !wp_verify_nonce( $_POST['schema_nonce'], SC_BASE ) )
 				return;
 	
 			if ( !current_user_can( 'edit_post', $post_id ) )
 				return;
 	
 			// OK, we're authenticated: we need to find and save the data
+			$db_check = isset( $_POST['schema_disable_body'] );
+			$dp_check = isset( $_POST['schema_disable_post'] );
 	
-			$db_check	= isset($_POST['schema_disable_body']) ? 'true' : 'false';
-			$dp_check	= isset($_POST['schema_disable_post']) ? 'true' : 'false';
-	
-			update_post_meta($post_id, '_schema_disable_body', $db_check);
-			update_post_meta($post_id, '_schema_disable_post', $dp_check);
-	
+			update_post_meta( $post_id, '_schema_disable_body', $db_check );
+			update_post_meta( $post_id, '_schema_disable_post', $dp_check );
+			
+			do_action( 'raven_sc_save_metabox' );
 		}
 	
 		/**
@@ -237,10 +244,14 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
-	
 		public function schema_settings() {
-			add_submenu_page('options-general.php', __('Schema Creator', 'schema'), __('Schema Creator', 'schema'), 'manage_options', 'schema-creator', array( $this, 'schema_creator_display' ));
+			add_submenu_page('options-general.php',
+				 __('Schema Creator', 'schema'),
+				 __('Schema Creator', 'schema'), 
+				'manage_options', 
+				'schema-creator', 
+				array( $this, 'schema_creator_display' )
+			);
 		}
 	
 		/**
@@ -248,53 +259,49 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
-	
 		public function reg_settings() {
 			register_setting( 'schema_options', 'schema_options');
-	
 		}
 	
 		/**
-		 * Store settings
-		 *
-		 *
+		 * Set default settings
 		 * @return ravenSchema
 		 */
-	
-	
-		public function store_settings() {
-	
-			// check to see if they have options first
+		public function default_settings( ) 
+		{
 			$options_check	= get_option('schema_options');
+			if(empty( $options_check ))
+				$options_check = array();
 	
-			// already have options? LEAVE THEM ALONE SIR
-			if(!empty($options_check))
-				return;
-	
-			// got nothin? well then, shall we?
-			$schema_options['css']	= 'false';
-			$schema_options['body']	= 'true';
-			$schema_options['post']	= 'true';
-	
-			update_option('schema_options', $schema_options);
-	
+			// Fetch defaults.
+			$default = apply_filters( 'raven_sc_default_settings', array() );
+
+			// Existing optons will override defaults
+			update_option('schema_options', $default + $options_check);
 		}
+		
+		/**
+		 * Gets the default settings
+		 */
+		public function get_default_settings( $default = array() ) 
+		{
+			$default['css']	= false;
+			$default['body'] = true;
+			$default['post'] = true;
+			
+			return $default;
+		}	
 	
 		/**
 		 * Content for pop-up tooltips
 		 *
 		 * @return ravenSchema
 		 */
-	
-		public function tooltip() {
-	
-			$tooltip = array(
-	
+		public function get_tooltips( $tooltip = array() ) 
+		{
+			$tooltip = $tooltip + array(
 				'default_css'	=> __('Check to remove Schema Creator CSS from the microdata HTML output.', 'schema'),
-	
 				'body_class'	=> __('Check to add the <code>http://schema.org/Blog</code> schema itemtype to the BODY element on your pages and posts. Your theme must have the <code>body_class</code> template tag for this to work.', 'schema'),
-	
 				'post_class'	=> __('Check to add the <code>http://schema.org/BlogPosting</code> schema itemtype to the content wrapper on your pages and posts.', 'schema'),
 	
 				// end tooltip content
@@ -308,7 +315,6 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
 		public function schema_creator_display() {
 	
 			if (!current_user_can('manage_options') )
@@ -356,11 +362,11 @@ if ( !class_exists( "RavenSchema" ) ) :
 							settings_fields( 'schema_options' );
 							$schema_options	= get_option('schema_options');
 			
-							$css_hide	= (isset($schema_options['css']) && $schema_options['css'] == 'true' ? 'checked="checked"' : '');
-							$body_tag	= (isset($schema_options['body']) && $schema_options['body'] == 'true' ? 'checked="checked"' : '');
-							$post_tag	= (isset($schema_options['post']) && $schema_options['post'] == 'true' ? 'checked="checked"' : '');
+							$css_hide	= (isset($schema_options['css']) && ($schema_options['css'] === true || $schema_options['css'] == 'true') ? 'checked="checked"' : '');
+							$body_tag	= (isset($schema_options['body']) && ($schema_options['body'] === true || $schema_options['body'] == 'true' ) ? 'checked="checked"' : '');
+							$post_tag	= (isset($schema_options['post']) && ($schema_options['post'] === true || $schema_options['post'] == 'true' ) ? 'checked="checked"' : '');
 			
-							$tooltips	= $this->tooltip();
+							$tooltips	= apply_filters( 'raven_sc_admin_tooltip', array() );
 			
 							?>
 			
@@ -391,9 +397,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 							<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'schema') ?>" /></p>
 						</form>
 					</div> <!-- end .schema_form_options -->
-	
 				</div> <!-- end .schema_options -->
-	
 			</div> <!-- end .wrap -->
 		<?php }
 	
@@ -403,9 +407,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
-	
-		public function admin_scripts($hook) {
+		public function admin_scripts( $hook ) {
 			// for post editor
 			if ( $hook == 'post-new.php' || $hook == 'post.php' ) :
 				wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
@@ -434,8 +436,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
-		public function schema_footer($text) {
+		public function schema_footer( $text ) {
 			$current_screen = get_current_screen();
 	
 			if ( 'settings_page_schema-creator' !== $current_screen->base )
@@ -465,22 +466,19 @@ if ( !class_exists( "RavenSchema" ) ) :
 				return $classes;
 	
 			$schema_options = get_option('schema_options');
-	
-			$bodytag = isset($schema_options['body']) && $schema_options['body'] == 'true' ? true : false;
+			$bodytag = !isset($schema_options['body']) || ($schema_options['body'] === true || $schema_options['body'] == 'true');
 	
 			// user disabled the tag. so bail.
-			if($bodytag === false )
+			if ( $bodytag === false )
 				return $classes;
 	
 			// check for single post disable
 			global $post;
-	
-			if (empty($post))
+			if ( empty($post) )
 				return $classes;
 	
 			$disable_body = get_post_meta($post->ID, '_schema_disable_body', true);
-	
-			if($disable_body == 'true' )
+			if ( $disable_body === true || $disable_body == 'true' )
 				return $classes;
 	
 			$backtrace = debug_backtrace();
@@ -504,8 +502,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 	
 			// they said they didn't want the CSS. their loss.
 			$schema_options = get_option('schema_options');
-	
-			if(isset($schema_options['css']) && $schema_options['css'] == 'true' )
+			if( isset( $schema_options['css'] ) && ( $schema_options['css'] === true || $schema_options['css'] == 'true' ) )
 				return $posts;
 	
 	
@@ -515,8 +512,9 @@ if ( !class_exists( "RavenSchema" ) ) :
 			// search through each post
 			foreach ($posts as $post) {
 				$meta_check	= get_post_meta($post->ID, '_raven_schema_load', true);
+				
 				// check the post content for the short code
-				$content	= $post->post_content;
+				$content = $post->post_content;
 				if ( preg_match('/schema(.*)/', $content) ) {
 					// we have found a post with the short code
 					$found = true;
@@ -528,10 +526,10 @@ if ( !class_exists( "RavenSchema" ) ) :
 			if ($found == true )
 				wp_enqueue_style( 'schema-style', plugins_url('/lib/css/schema-style.css', __FILE__), array(), SC_VER, 'all' );
 	
-			if (empty($meta_check) && $found == true )
-				update_post_meta($post->ID, '_raven_schema_load', 'true');
+			if ( empty($meta_check) && $found == true )
+				update_post_meta($post->ID, '_raven_schema_load', true);
 	
-			if ($found == false )
+			if ( $found == false )
 				delete_post_meta($post->ID, '_raven_schema_load');
 	
 			return $posts;
@@ -544,9 +542,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 */
 		public function schema_wrapper($content) {
 	
-			$schema_options = get_option('schema_options');
-	
-			$wrapper = isset($schema_options['post']) && $schema_options['post'] == 'true' ? true : false;
+			$schema_options = get_option( 'schema_options' );
+			$wrapper = !isset($schema_options['post']) || ( $schema_options['post'] === true || $schema_options['post'] == 'true' );
 	
 			// user disabled content wrapper. just return the content as usual
 			if ($wrapper === false)
@@ -554,9 +551,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 	
 			// check for single post disable
 			global $post;
-			$disable_post	= get_post_meta($post->ID, '_schema_disable_post', true);
-	
-			if($disable_post == 'true' )
+			$disable_post = get_post_meta( $post->ID, '_schema_disable_post', true );
+			if( $disable_post === true || $disable_post == 'true' )
 				return $content;
 	
 			// updated content filter to wrap the itemscope
@@ -572,7 +568,6 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 *
 		 * @return ravenSchema
 		 */
-	
 		public function shortcode( $atts, $content = null ) {
 			extract( shortcode_atts( array(
 				'type'				=> '',
