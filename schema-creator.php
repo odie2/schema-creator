@@ -259,7 +259,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 */
 		function get_tooltip( $key ) {
 			$tooltips = apply_filters( 'raven_sc_admin_tooltip', array() );
-			return isset($tooltips[ $key ]) ? $tooltips[ $key ] : NULL;
+			return isset($tooltips[ $key ]) ? htmlentities( $tooltips[ $key ] ) : NULL;
 		}
 	
 		/**
