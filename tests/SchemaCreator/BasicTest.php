@@ -161,6 +161,9 @@ class BasicTest extends WP_UnitTestCase {
 		
 		$this->assertTrue( wp_style_is( 'schema-admin' ), 'Admin schema style is not enqueued.' );
 		$this->assertTrue( wp_script_is( 'schema-form' ), 'Schema script is not enqueued.' );
+		
+		wp_dequeue_style( 'schema-admin' );
+		wp_dequeue_script( 'schema-form' );
 	}
 	
 	/**
@@ -174,6 +177,9 @@ class BasicTest extends WP_UnitTestCase {
 		
 		$this->assertTrue( wp_style_is( 'schema-admin' ), 'Admin schema style is not enqueued.' );
 		$this->assertTrue( wp_script_is( 'schema-form' ), 'Schema script is not enqueued.' );
+		
+		wp_dequeue_style( 'schema-admin' );
+		wp_dequeue_script( 'schema-form' );
 	}
 	
 	/**
@@ -188,6 +194,9 @@ class BasicTest extends WP_UnitTestCase {
 		
 		$this->assertTrue( wp_style_is( 'schema-admin' ), 'Admin schema style is not enqueued.' );
 		$this->assertTrue( wp_script_is( 'schema-admin' ), 'Admin Schema script is not enqueued.' );
+		
+		wp_dequeue_style( 'schema-admin' );
+		wp_dequeue_script( 'schema-admin' );
 	}
 	
 	/**
@@ -246,6 +255,135 @@ class BasicTest extends WP_UnitTestCase {
 		
 		update_option( 'schema_options', $previous );
 	}
+				
+	/**
+	 * Tests if the schema css is loaded for schema posts
+	 */
+	public function testSchemaLoader() {
 		
+		$current = get_option( 'schema_options' );
+		$previous = $current;
+		$current['css'] = false;
+		update_option( 'schema_options', $current );
+		
+		$this->go_to( 'http://example.org/?p=1' );
+		
+		global $wp_query;
+        $post = $wp_query->get_queried_object();
+		$post->post_content = '[schema ]';
+		$posts = array( $post );
+		
+		$this->my_plugin->schema_loader( $posts );
+		$this->assertTrue( wp_style_is( 'schema-style' ) );
+		$this->assertNotEmpty( get_post_meta( $post->ID, '_raven_schema_load', true ), 'Raven Schema should be loaded for this post' );	
+	
+		wp_dequeue_style( 'schema-style' );
+		update_option( 'schema_options', $previous );
+	}
+	
+	/**
+	 * Tests if the schema css is not loaded for non schema posts
+	 */
+	public function testSchemaLoaderNot() {
+		
+		$current = get_option( 'schema_options' );
+		$previous = $current;
+		$current['css'] = false;
+		update_option( 'schema_options', $current );
+		
+		$this->go_to( 'http://example.org/?p=1' );
+		
+		global $wp_query;
+        $post = $wp_query->get_queried_object();
+		$post->post_content = '';
+		$posts = array( $post );
+		
+		$this->my_plugin->schema_loader( $posts );
+		$this->assertFalse( wp_style_is( 'schema-style' ) );
+		$this->assertEmpty( get_post_meta( $post->ID, '_raven_schema_load', true ), 'Raven Schema should not be loaded for this post' );
+		
+		wp_dequeue_style( 'schema-style' );
+		update_option( 'schema_options', $previous );
+	}
+	
+	/**
+	 * Tests if the schema css is not loaded for schema posts but option set
+	 * @depends testSchemaLoaderNot
+	 * @depends testSchemaLoader
+	 */
+	public function testSchemaLoaderNotOptions() {
+		
+		$current = get_option( 'schema_options' );
+		$previous = $current;
+		$current['css'] = 'true';
+		update_option( 'schema_options', $current );
+		
+		$this->go_to( 'http://example.org/?p=1' );
+		
+		global $wp_query;
+        $post = $wp_query->get_queried_object();
+		$post->post_content = '[schema ]';
+		$posts = array( $post );
+		
+		$this->my_plugin->schema_loader( $posts );
+		$this->assertFalse( wp_style_is( 'schema-style' ) );
+		$this->assertEmpty( get_post_meta( $post->ID, '_raven_schema_load', true ), 'Raven Schema should not be loaded for this post' );
+		
+		wp_dequeue_style( 'schema-style' );
+		update_option( 'schema_options', $previous );
+	}
+	
+	/**
+	 * Tests if the post is wrapped
+	 * @depends testSchemaLoader
+	 */
+	public function testSchemaWrapper() {
+		
+		$current = get_option( 'schema_options' );
+		$previous = $current;
+		$current['css'] = false;
+		$current['post'] = 'true';
+		update_option( 'schema_options', $current );
+		
+		// First load that schema valid post
+		global $wp_query;
+        $post = $wp_query->get_queried_object();
+		$post->post_content = '[schema ]';
+		$posts = array( $post );
+		$this->my_plugin->schema_loader( $posts );
+		
+		// Now lets see it its wrapped
+		$this->assertContains( 'itemscope', $this->my_plugin->schema_wrapper( '' ), 'post should be wrapped' );
+		
+		update_option( 'schema_options', $previous );
+		
+	}
+	
+	/**
+	 * Tests if the post is not wrapped when option indicates that
+	 * @depends testSchemaLoader
+	 */
+	public function testSchemaWrapperNot() {
+		
+		$current = get_option( 'schema_options' );
+		$previous = $current;
+		$current['css'] = false;
+		$current['post'] = 'false';
+		update_option( 'schema_options', $current );
+		
+		// First load that schema valid post
+		global $wp_query;
+        $post = $wp_query->get_queried_object();
+		$post->post_content = '[schema ]';
+		$posts = array( $post );
+		$this->my_plugin->schema_loader( $posts );
+		
+		// Now lets see it its wrapped
+		$this->assertEmpty( $this->my_plugin->schema_wrapper( '' ), 'post should not be wrapped' );
+		
+		update_option( 'schema_options', $previous );
+		
+	}
+	
 	
 }
