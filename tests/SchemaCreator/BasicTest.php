@@ -1,7 +1,18 @@
 <?php 	
 
 /**
+ * Basic tests for Schema Creator by Raven plugin.
+ *
+ * Runs on PHPUnit and Wordpress-Tests.
+ * @author Derk-Jan Karrenbeld <derk-jan+github@karrenbeld.info>
+ * @version 1.0
+ * @package WordPress\SchemaCreator\Tests
+ */
+
+
+/**
  * Stub for get_current_screen();
+ *
  * @returns object stub
  */
 function get_current_screen() {
@@ -9,14 +20,31 @@ function get_current_screen() {
 	return (object)array( 'base' => $getcurrentscreenname );
 }
 
+/**
+ * Stub method for adding meta boxes
+ *
+ * @param mixed id the metabox id
+ */
 function add_meta_box( $id ) {
 	global $metaboxes;
 	$metaboxes[]=$id;
 }
 
-// uses: http://plugins.svn.wordpress.org/advanced-excerpt/tests/wp-test/lib/testcase.php
-// [...] schema-creator/schema-creator.php
+/**
+ * Basic Test class for Schema Creator Plugin.
+ *
+ * @author Derk-Jan Karrenbeld <derk-jan+github@karrenbeld.info>
+ * @version 1.0
+ * @link http://plugins.svn.wordpress.org/advanced-excerpt/tests/wp-test/lib/testcase.php uses this testcase
+ * @remarks plugin path has to be [...]/$plugin_slug/$plugin_slug.php
+ *
+ * @package WordPress\SchemaCreator\Tests
+ */
 class BasicTest extends WP_UnitTestCase {
+	
+	/**
+	 * This is the name of the folder and file.
+	 */
 	public $plugin_slug = 'schema-creator';
 
 	/**
@@ -80,10 +108,16 @@ class BasicTest extends WP_UnitTestCase {
 	}
 	
 	/**
+	 * Tests the metabox adding with certain option values.
+	 *
 	 * @assert (true, true) == false
 	 * @assert (NULL, true) == true
 	 * @assert (true, NULL) == true
 	 * @assert (NULL, NULL) == false
+	 *
+	 * @param mixed $a body option value
+	 * @param mixed $b post option value
+	 * @returns boolean true if metabox was added
 	 */
 	public function metaBoxTests( $a, $b ) {
 		global $metaboxes;
