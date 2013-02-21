@@ -6,7 +6,7 @@
  * Runs on PHPUnit and Wordpress-Tests.
  * @author Derk-Jan Karrenbeld <derk-jan+github@karrenbeld.info>
  * @version 1.0
- * @package WordPress\SchemaCreator\Tests
+ * @package WordPress\Plugins\SchemaCreator\Tests
  */
 
 

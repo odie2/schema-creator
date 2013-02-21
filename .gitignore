@@ -5,3 +5,4 @@ _stuff
 /*.png
 
 /tests/bootstrap.php
+/tests/bootstrap.php.bak
