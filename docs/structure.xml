@@ -1,22 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="">
-  <file path="bootstrap.php" hash="120bcb56c1567d2b5cf446d6de40e022" package="Default">
-    <include line="9" type="Require Once" package="Default">
-      <name/>
-    </include>
+  <file path="schema-creator.php" hash="a5bb7f6d314d9bb8b22073f72211f224" package="Default">
+    <constant namespace="global" line="34" package="Default">
+      <name>SC_BASE</name>
+      <full_name>\SC_BASE</full_name>
+      <value>plugin_basename(__FILE__)</value>
+    </constant>
+    <constant namespace="global" line="37" package="Default">
+      <name>SC_VER</name>
+      <full_name>\SC_VER</full_name>
+      <value>'1.042'</value>
+    </constant>
+    <class final="false" abstract="false" namespace="global" line="40" package="Default">
+      <extends/>
+      <name>ravenSchema</name>
+      <full_name>\ravenSchema</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description>This is our constructor</description>
+          <long-description/>
+          <tag line="43" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="Default">
+        <name>textdomain</name>
+        <full_name>textdomain</full_name>
+        <docblock line="68">
+          <description>load textdomain for international goodness</description>
+          <long-description/>
+          <tag line="68" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="86" package="Default">
+        <name>quick_link</name>
+        <full_name>quick_link</full_name>
+        <docblock line="80">
+          <description>show settings link on plugins page</description>
+          <long-description/>
+          <tag line="80" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$links</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="86">
+          <name>$file</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="112" package="Default">
+        <name>schema_test</name>
+        <full_name>schema_test</full_name>
+        <docblock line="106">
+          <description>add link to admin toolbar for testing</description>
+          <long-description/>
+          <tag line="106" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="112">
+          <name>$wp_admin_bar</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="149" package="Default">
+        <name>metabox_schema</name>
+        <full_name>metabox_schema</full_name>
+        <docblock line="143">
+          <description>display metabox</description>
+          <long-description/>
+          <tag line="143" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="149">
+          <name>$page</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="149">
+          <name>$context</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="183" package="Default">
+        <name>schema_post_box</name>
+        <full_name>schema_post_box</full_name>
+        <docblock line="177">
+          <description>Display checkboxes for disabling the itemprop and itemscope</description>
+          <long-description/>
+          <tag line="177" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="211" package="Default">
+        <name>save_metabox</name>
+        <full_name>save_metabox</full_name>
+        <docblock line="204">
+          <description>save the data</description>
+          <long-description/>
+          <tag line="204" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="211">
+          <name>$post_id</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="239" package="Default">
+        <name>schema_settings</name>
+        <full_name>schema_settings</full_name>
+        <docblock line="232">
+          <description>build out settings page</description>
+          <long-description/>
+          <tag line="232" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="250" package="Default">
+        <name>reg_settings</name>
+        <full_name>reg_settings</full_name>
+        <docblock line="243">
+          <description>Register settings</description>
+          <long-description/>
+          <tag line="243" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="263" package="Default">
+        <name>store_settings</name>
+        <full_name>store_settings</full_name>
+        <docblock line="255">
+          <description>Store settings</description>
+          <long-description/>
+          <tag line="255" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="287" package="Default">
+        <name>tooltip</name>
+        <full_name>tooltip</full_name>
+        <docblock line="281">
+          <description>Content for pop-up tooltips</description>
+          <long-description/>
+          <tag line="281" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="309" package="Default">
+        <name>schema_creator_display</name>
+        <full_name>schema_creator_display</full_name>
+        <docblock line="303">
+          <description>Display main options page structure</description>
+          <long-description/>
+          <tag line="303" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="377" package="Default">
+        <name>admin_scripts</name>
+        <full_name>admin_scripts</full_name>
+        <docblock line="370">
+          <description>load scripts and style for admin settings page</description>
+          <long-description/>
+          <tag line="370" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="377">
+          <name>$hook</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="407" package="Default">
+        <name>schema_footer</name>
+        <full_name>schema_footer</full_name>
+        <docblock line="401">
+          <description>add attribution link to settings page</description>
+          <long-description/>
+          <tag line="401" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="407">
+          <name>$text</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="425" package="Default">
+        <name>body_class</name>
+        <full_name>body_class</full_name>
+        <docblock line="418">
+          <description>load body classes</description>
+          <long-description/>
+          <tag line="418" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="425">
+          <name>$classes</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="464" package="Default">
+        <name>schema_loader</name>
+        <full_name>schema_loader</full_name>
+        <docblock line="457">
+          <description>load front-end CSS if shortcode is present</description>
+          <long-description/>
+          <tag line="457" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="464">
+          <name>$posts</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="511" package="Default">
+        <name>schema_wrapper</name>
+        <full_name>schema_wrapper</full_name>
+        <docblock line="505">
+          <description>wrap content in markup</description>
+          <long-description/>
+          <tag line="505" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="511">
+          <name>$content</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="542" package="Default">
+        <name>shortcode</name>
+        <full_name>shortcode</full_name>
+        <docblock line="536">
+          <description>Build out shortcode with variable array of options</description>
+          <long-description/>
+          <tag line="536" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+        <argument line="542">
+          <name>$atts</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="542">
+          <name>$content</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1244" package="Default">
+        <name>media_button</name>
+        <full_name>media_button</full_name>
+        <docblock line="1238">
+          <description>Add button to top level media row</description>
+          <long-description/>
+          <tag line="1238" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1275" package="Default">
+        <name>schema_form</name>
+        <full_name>schema_form</full_name>
+        <docblock line="1269">
+          <description>Build form and add into footer</description>
+          <long-description/>
+          <tag line="1269" name="return" description="" type="\ravenSchema">
+            <type by_reference="false">\ravenSchema</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file bootstrap.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file schema-creator.php</error>
+      <error line="40" code="50000">No DocBlock was found for \ravenSchema</error>
+      <error line="80" code="50015">Argument $links is missing from the Docblock of quick_link()</error>
+      <error line="80" code="50015">Argument $file is missing from the Docblock of quick_link()</error>
+      <error line="106" code="50015">Argument $wp_admin_bar is missing from the Docblock of schema_test()</error>
+      <error line="143" code="50015">Argument $page is missing from the Docblock of metabox_schema()</error>
+      <error line="143" code="50015">Argument $context is missing from the Docblock of metabox_schema()</error>
+      <error line="204" code="50015">Argument $post_id is missing from the Docblock of save_metabox()</error>
+      <error line="370" code="50015">Argument $hook is missing from the Docblock of admin_scripts()</error>
+      <error line="401" code="50015">Argument $text is missing from the Docblock of schema_footer()</error>
+      <error line="418" code="50015">Argument $classes is missing from the Docblock of body_class()</error>
+      <error line="457" code="50015">Argument $posts is missing from the Docblock of schema_loader()</error>
+      <error line="505" code="50015">Argument $content is missing from the Docblock of schema_wrapper()</error>
+      <error line="536" code="50015">Argument $atts is missing from the Docblock of shortcode()</error>
+      <error line="536" code="50015">Argument $content is missing from the Docblock of shortcode()</error>
     </parse_markers>
   </file>
-  <file path="SchemaCreator\BasicTest.php" hash="642e2f71ea2e4c08f561d0022c9aafb2" package="WordPress\SchemaCreator\Tests">
+  <file path="tests\bootstrap.template.php" hash="12fef51b0b394c374f370e8324b2177e" package="WordPress\Plugins\SchemaCreator\Tests">
+    <docblock line="2">
+      <description>Load WordPress test environment.</description>
+      <long-description/>
+      <tag line="2" name="remarks" description="Copy this file to bootstrap.php and replace the $path variable"/>
+      <tag line="2" name="see" description="\https://github.com/nb/wordpress-tests" refers="\https://github.com/nb/wordpress-tests"/>
+      <tag line="2" name="version" description="1.0"/>
+      <tag line="2" name="package" description="WordPress\Plugins\SchemaCreator\Tests"/>
+      <tag line="2" name="global" description="$path the path to bootstrap.php in the wordpress-tests folder"/>
+    </docblock>
+    <include line="18" type="Require Once" package="Default">
+      <name/>
+    </include>
+  </file>
+  <file path="tests\SchemaCreator\BasicTest.php" hash="f4a5c1e92c5d53acb8b0c41a07712e94" package="WordPress\Plugins\SchemaCreator\Tests">
     <docblock line="3">
       <description>Basic tests for Schema Creator by Raven plugin.</description>
       <long-description>&lt;p&gt;Runs on PHPUnit and Wordpress-Tests.&lt;/p&gt;</long-description>
       <tag line="3" name="author" description="Derk-Jan Karrenbeld &lt;derk-jan+github@karrenbeld.info&gt;"/>
       <tag line="3" name="version" description="1.0"/>
-      <tag line="3" name="package" description="WordPress\SchemaCreator\Tests"/>
+      <tag line="3" name="package" description="WordPress\Plugins\SchemaCreator\Tests"/>
     </docblock>
-    <function namespace="global" line="18" package="WordPress\SchemaCreator\Tests">
+    <function namespace="global" line="18" package="WordPress\Plugins\SchemaCreator\Tests">
       <name>get_current_screen</name>
       <full_name>\get_current_screen</full_name>
       <docblock line="13">
@@ -25,7 +350,7 @@
         <tag line="13" name="returns" description="object stub"/>
       </docblock>
     </function>
-    <function namespace="global" line="28" package="WordPress\SchemaCreator\Tests">
+    <function namespace="global" line="28" package="WordPress\Plugins\SchemaCreator\Tests">
       <name>add_meta_box</name>
       <full_name>\add_meta_box</full_name>
       <docblock line="23">
@@ -41,7 +366,7 @@
         <type/>
       </argument>
     </function>
-    <class final="false" abstract="false" namespace="global" line="43" package="WordPress\SchemaCreator\Tests">
+    <class final="false" abstract="false" namespace="global" line="43" package="WordPress\Plugins\SchemaCreator\Tests">
       <extends>\WP_UnitTestCase</extends>
       <name>BasicTest</name>
       <full_name>\BasicTest</full_name>
@@ -52,7 +377,7 @@
         <tag line="33" name="version" description="1.0"/>
         <tag line="33" name="link" description="uses this testcase" link="http://plugins.svn.wordpress.org/advanced-excerpt/tests/wp-test/lib/testcase.php"/>
         <tag line="33" name="remarks" description="plugin path has to be [...]/$plugin_slug/$plugin_slug.php"/>
-        <tag line="33" name="package" description="WordPress\SchemaCreator\Tests"/>
+        <tag line="33" name="package" description="WordPress\Plugins\SchemaCreator\Tests"/>
       </docblock>
       <property final="false" static="false" visibility="public" line="48" namespace="global" package="Default">
         <name>$plugin_slug</name>
@@ -62,7 +387,7 @@
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="53" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="53" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>setUp</name>
         <full_name>setUp</full_name>
         <docblock line="50">
@@ -70,7 +395,7 @@
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="65" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="65" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testQuickLink</name>
         <full_name>testQuickLink</full_name>
         <docblock line="62">
@@ -78,7 +403,7 @@
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaTest</name>
         <full_name>testSchemaTest</full_name>
         <docblock line="72">
@@ -86,7 +411,7 @@
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="103" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="103" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testMetaBox</name>
         <full_name>testMetaBox</full_name>
         <docblock line="97">
@@ -95,7 +420,7 @@
 are empty values in the option variable.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="122" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="122" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>metaBoxTests</name>
         <full_name>metaBoxTests</full_name>
         <docblock line="110">
@@ -124,7 +449,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="147" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="147" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>metaBoxContextTests</name>
         <full_name>metaBoxContextTests</full_name>
         <docblock line="139">
@@ -134,7 +459,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <tag line="139" name="depends" description="testMetaBox"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="170" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="170" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testStoreSettings</name>
         <full_name>testStoreSettings</full_name>
         <docblock line="167">
@@ -142,7 +467,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="190" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="190" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testAdminScriptsPost</name>
         <full_name>testAdminScriptsPost</full_name>
         <docblock line="187">
@@ -150,7 +475,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="206" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="206" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testAdminScriptsPostNew</name>
         <full_name>testAdminScriptsPostNew</full_name>
         <docblock line="203">
@@ -158,7 +483,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="222" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="222" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testAdminScriptsSettingsPage</name>
         <full_name>testAdminScriptsSettingsPage</full_name>
         <docblock line="219">
@@ -166,7 +491,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="239" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="239" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaFooter</name>
         <full_name>testSchemaFooter</full_name>
         <docblock line="236">
@@ -174,7 +499,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="254" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="254" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testBodyClass</name>
         <full_name>testBodyClass</full_name>
         <docblock line="251">
@@ -182,7 +507,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="275" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="275" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testBodyClassNot</name>
         <full_name>testBodyClassNot</full_name>
         <docblock line="272">
@@ -190,7 +515,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="296" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="296" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaLoader</name>
         <full_name>testSchemaLoader</full_name>
         <docblock line="293">
@@ -198,7 +523,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="321" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="321" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaLoaderNot</name>
         <full_name>testSchemaLoaderNot</full_name>
         <docblock line="318">
@@ -206,7 +531,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="348" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="348" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaLoaderNotOptions</name>
         <full_name>testSchemaLoaderNotOptions</full_name>
         <docblock line="343">
@@ -216,7 +541,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <tag line="343" name="depends" description="testSchemaLoader"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="374" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="374" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaWrapper</name>
         <full_name>testSchemaWrapper</full_name>
         <docblock line="370">
@@ -225,7 +550,7 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
           <tag line="370" name="depends" description="testSchemaLoader"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="400" package="WordPress\SchemaCreator\Tests">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="400" package="WordPress\Plugins\SchemaCreator\Tests">
         <name>testSchemaWrapperNot</name>
         <full_name>testSchemaWrapperNot</full_name>
         <docblock line="396">
@@ -238,8 +563,10 @@ are empty values in the option variable.&lt;/p&gt;</long-description>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="WordPress" full_name="WordPress">
-    <package name="SchemaCreator" full_name="WordPress\SchemaCreator">
-      <package name="Tests" full_name="WordPress\SchemaCreator\Tests"/>
+    <package name="Plugins" full_name="WordPress\Plugins">
+      <package name="SchemaCreator" full_name="WordPress\Plugins\SchemaCreator">
+        <package name="Tests" full_name="WordPress\Plugins\SchemaCreator\Tests"/>
+      </package>
     </package>
   </package>
   <namespace name="global" full_name="global"/>

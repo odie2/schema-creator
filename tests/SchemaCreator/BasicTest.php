@@ -38,7 +38,7 @@ function add_meta_box( $id ) {
  * @link http://plugins.svn.wordpress.org/advanced-excerpt/tests/wp-test/lib/testcase.php uses this testcase
  * @remarks plugin path has to be [...]/$plugin_slug/$plugin_slug.php
  *
- * @package WordPress\SchemaCreator\Tests
+ * @package WordPress\Plugins\SchemaCreator\Tests
  */
 class BasicTest extends WP_UnitTestCase {
 	
