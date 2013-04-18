@@ -3,3 +3,6 @@ _stuff
 
 #screenshots
 /*.png
+
+/tests/bootstrap.php
+/tests/bootstrap.php.bak
