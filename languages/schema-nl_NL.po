@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: schema\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/schema-creator\n"
 "POT-Creation-Date: 2013-01-08 21:41:13+00:00\n"
-"PO-Revision-Date: 2013-01-08 22:45+0100\n"
+"PO-Revision-Date: 2013-01-10 12:00+0100\n"
 "Last-Translator: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
-"Language-Team: \n"
-"Language: es\n"
+"Language-Team: Derk-Jan Karrenbeld <derk-jan@karrenbeld.info>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,72 +19,70 @@ msgstr ""
 
 #: schema-creator.php:106
 msgid "Settings"
-msgstr "Configuraciones"
+msgstr "Instellingen"
 
 #: schema-creator.php:137
-#, fuzzy
 msgctxt "test the schema button title"
 msgid "Test Schema"
-msgstr "Agregar Esquema"
+msgstr "Test Schema"
 
 #: schema-creator.php:138 schema-creator.php:326
 msgid "http://www.google.com/webmasters/tools/richsnippets/"
-msgstr "http://www.google.com/webmasters/tools/richsnippets/"
+msgstr "http://www.google.nl/webmasters/tools/richsnippets"
 
 #: schema-creator.php:180
 msgid "Schema Display Options"
-msgstr "Mostrar Opciones del esquema"
+msgstr "Schema Weergave Opties"
 
 #: schema-creator.php:203
 msgid "Disable body itemscopes on this post."
-msgstr "Desactivar los 'itemscopes' en el cuerpo del post."
+msgstr "Schakel body itemscopes uit voor dit bericht."
 
 #: schema-creator.php:208
 msgid "Disable content itemscopes on this post."
-msgstr "Desactivar itemscopes contenidos en este post."
+msgstr "Schakel content itemscopes uit voor dit bericht."
 
 #: schema-creator.php:267 schema-creator.php:268
 msgid "Schema Creator"
-msgstr "Generador de Equemas"
+msgstr "Schema Creator"
 
 #: schema-creator.php:284
 msgid "Information"
-msgstr "Información"
+msgstr "Informatie"
 
 #: schema-creator.php:285
 msgid "Plugin Version"
-msgstr ""
+msgstr "Plugin Versie"
 
 #: schema-creator.php:288
 msgid "Display"
-msgstr ""
+msgstr "Weergave"
 
 #: schema-creator.php:289
 msgid "CSS output"
-msgstr ""
+msgstr "CSS uitvoer"
 
 #: schema-creator.php:292
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: schema-creator.php:293
 msgid "Body Tag"
-msgstr ""
+msgstr "Body Tag"
 
 #: schema-creator.php:294
 msgid "Content Wrapper"
-msgstr ""
+msgstr "Content Wrapper"
 
 #: schema-creator.php:308
-#, fuzzy
 msgid ""
 "By default, the %s plugin by %s includes unique CSS IDs and classes. You can "
 "reference the CSS to control the style of the HTML that the Schema Creator "
 "plugin outputs."
 msgstr ""
-"By default, the %s plugin by %s incluye identificadores únicos CSS y clases. "
-"Puede hacer referencia a la CSS para controlar el estilo del código de "
-"salida HTML del plugin Generador de Esquema."
+"Standaard bevat de %s plugin door %s unieke CSS IDs en classes. Deze kun je "
+"gebruiken om de stijl waarin de HTML die door Schema Creator plugin wordt "
+"gegenereerd te wijzigen."
 
 #: schema-creator.php:312
 msgctxt "plugin uri"
@@ -98,7 +96,7 @@ msgstr ""
 #: schema-creator.php:313
 msgctxt "plugin name"
 msgid "Schema Creator"
-msgstr "Generador de Equemas"
+msgstr "Schema Creator"
 
 #: schema-creator.php:317
 msgctxt "author uri"
@@ -110,7 +108,7 @@ msgstr ""
 #: schema-creator.php:318 schema-creator.php:536
 msgctxt "author"
 msgid "Raven Internet Marketing Tools"
-msgstr "Raven Herramientas de Marketing en Internet"
+msgstr "Raven Internet Marketing Tools"
 
 #: schema-creator.php:320
 msgid ""
@@ -118,43 +116,43 @@ msgid ""
 "code> and <code>http://schema.org/BlogPosting</code> schemas to your pages "
 "and posts."
 msgstr ""
-"El plugin también se incluyen automáticamente <code>http://schema.org/Blog</"
-"code> y <code>http://schema.org/BlogPosting</code>  esquemas a sus páginas y "
-"contenidos."
+"Deze plugin kan ook automatisch de <code>http://schema.org/Blog</code> en "
+"<code>http://schema.org/BlogPosting</code> schema's in je pagina's en "
+"berichten invoegen."
 
 #: schema-creator.php:322
 msgid ""
 "Google also offers a %s to review and test the schemas in your pages and "
 "posts."
 msgstr ""
-"Google also offers a %s para revisar y probar los esquemas de las páginas y "
-"contenidos."
+"Google biedt ook een %s aan om schema's in je pagina's en berichten te "
+"herzien en te testen."
 
 #: schema-creator.php:327
 msgid "Rich Snippet Testing tool"
-msgstr "Herramienta de pruebas para contenidos enriquesidos"
+msgstr "Tool voor gestructureerde gegevenstests"
 
 #: schema-creator.php:358
 msgid "Exclude default CSS for schema output"
-msgstr "Excluir CSS por defecto para la salida de esquemas"
+msgstr "Schakel de standaard CSS voor schema uitvoer uit"
 
 #: schema-creator.php:360 schema-creator.php:380 schema-creator.php:396
 msgctxt "tooltip button"
 msgid "(?)"
-msgstr ""
+msgstr "(?)"
 
 #: schema-creator.php:378
 msgid "Apply itemprop &amp; itemtype to main body tag"
-msgstr "Aplicar itemprop &amp; itemtype al cuerpo de la etiqueta principal"
+msgstr "Breng itemprop &amp; itemtype aan in de body tag"
 
 #: schema-creator.php:394
 msgid "Apply itemscope &amp; itemtype to content wrapper"
-msgstr "Aplicar itemscope &amp; itemtype para envoltura contenido"
+msgstr "Breng itemscope &amp; itemtype aan aan de content wrapper"
 
 #: schema-creator.php:455
 msgid "Check to remove Schema Creator CSS from the microdata HTML output."
 msgstr ""
-"Marque para quitar las hojas de estilo en la salida HTML de los microdatos."
+"Vink aan om Schema Creator CSS te verwijderen van de microdata HTML uitvoer."
 
 #: schema-creator.php:456
 msgid ""
@@ -162,29 +160,29 @@ msgid ""
 "BODY element on your pages and posts. Your theme must have the "
 "<code>body_class</code> template tag for this to work."
 msgstr ""
-"Compruebe para añadir el <code>http://schema.org/Blog</code> itemtype "
-"esquema para el elemento BODY en sus páginas y postes. El tema debe tener la "
-"<code>body_class</code> plantilla para que esto funcione."
+"Vink aan om het <code>http://schema.org/Blog</code> schema itemtype aan het "
+"BODY element van jouw pagina's en posts toe te voegen. Jouw thema moet de "
+"<code>body_class</code> sjabloontag gebruiken om dit te laten werken."
 
 #: schema-creator.php:457
 msgid ""
 "Check to add the <code>http://schema.org/BlogPosting</code> schema itemtype "
 "to the content wrapper on your pages and posts."
 msgstr ""
-"Compruebe para añadir el <code>http://schema.org/BlogPosting</code> itemtype "
-"esquema para la envoltura de contenido en sus páginas y postes."
+"Vink aan om het <code>http://schema.org/BlogPosting</code> schema itemtype "
+"aan de content wrapper  van je pagina's en berichten toe te voegen."
 
 #: schema-creator.php:477
 msgid "Schema Creator Settings"
-msgstr "Configuraciones del Generador de Esquemas"
+msgstr "Schema Creator Instellingen"
 
 #: schema-creator.php:483
 msgid "Save Changes"
-msgstr "Guardar Cambios"
+msgstr "Wijzigingen Opslaan"
 
 #: schema-creator.php:532
 msgid "This plugin brought to you by the fine folks at %s"
-msgstr "Este plugin es traído a usted por la gente fina en %s"
+msgstr "Deze plugin is u aangeboden door de fijne mensen van %s"
 
 #: schema-creator.php:534
 msgctxt "plugin url"
@@ -195,88 +193,86 @@ msgstr ""
 
 #: schema-creator.php:535
 msgid "Internet Marketing Tools for SEO and Social Media"
-msgstr "Raven Herramientas de Marketing en Internet"
+msgstr "Internet Marketing Tools for SEO and Social Media"
 
 #: schema-creator.php:776 schema-creator.php:945 schema-creator.php:1009
 msgid "P.O. Box:"
-msgstr "P.O. Box:"
+msgstr "Postbus:"
 
 #: schema-creator.php:809 schema-creator.php:1044
 msgid "Phone:"
-msgstr "Teléfono:"
+msgstr "Telefoon:"
 
 #: schema-creator.php:812
-#, fuzzy
 msgctxt "person"
 msgid "DOB:"
-msgstr "DOB:"
+msgstr "GD:"
 
 #: schema-creator.php:838
 msgctxt "product"
 msgid "Brand:"
-msgstr "Marca:"
+msgstr "Merk:"
 
 #: schema-creator.php:843
 msgctxt "product"
 msgid "Manufacturer:"
-msgstr "Fabricante:"
+msgstr "Fabrikant:"
 
 #: schema-creator.php:847
 msgctxt "product"
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "Model:"
 
 #: schema-creator.php:850
 msgid "Product ID:"
-msgstr "Identificador del Producto:"
+msgstr "Product ID:"
 
 #: schema-creator.php:855
 msgctxt "product rating based on"
 msgid "based on"
-msgstr "Basado en"
+msgstr "gebaseerd op"
 
 #: schema-creator.php:856
 msgctxt "product rating based on"
 msgid "reviews"
-msgstr "Opiniones"
+msgstr "waarderingen"
 
 #: schema-creator.php:862
 msgctxt "single product rating"
 msgid "Review:"
-msgstr "Comentario:"
+msgstr "Waardering:"
 
 #: schema-creator.php:868
 msgctxt "aggregated product rating count"
 msgid "total reviews"
-msgstr "total de comentarios"
+msgstr "totale waardering"
 
 #: schema-creator.php:908 schema-creator.php:912
 msgctxt "event"
 msgid "Starts:"
-msgstr "Estrellas:"
+msgstr "Start op:"
 
 #: schema-creator.php:916
-#, fuzzy
 msgctxt "event"
 msgid "Ends:"
-msgstr "Finaliza:"
+msgstr "Eindigt op:"
 
 #: schema-creator.php:923
 msgid "hours:"
-msgstr "horas:"
+msgstr "uren:"
 
 #: schema-creator.php:924
 msgid "and"
-msgstr "y"
+msgstr "en"
 
 #: schema-creator.php:924
 msgid "minutes"
-msgstr "Minutos"
+msgstr "minuten"
 
 #: schema-creator.php:926
 msgctxt "event"
 msgid "Duration:"
-msgstr "Duración:"
+msgstr "Duur:"
 
 #: schema-creator.php:1047
 msgid "Fax:"
@@ -284,31 +280,31 @@ msgstr "Fax:"
 
 #: schema-creator.php:1073
 msgid "Directed by:"
-msgstr "Dirigida por:"
+msgstr "Geregisseerd door:"
 
 #: schema-creator.php:1076
 msgid "Produced by:"
-msgstr "Producido por:"
+msgstr "Geproduceerd door:"
 
 #: schema-creator.php:1079
 msgid "Starring:"
-msgstr "Reparto:"
+msgstr "Acteurs:"
 
 #: schema-creator.php:1112 schema-creator.php:1168
 msgid "Written by:"
-msgstr "Escrita por:"
+msgstr "Geschreven door:"
 
 #: schema-creator.php:1115
 msgid "Published by:"
-msgstr "Publicada por:"
+msgstr "Uitgegeven door:"
 
 #: schema-creator.php:1118 schema-creator.php:1171
 msgid "Date Published:"
-msgstr "Fecha de publicación:"
+msgstr "Datum van Uitgave:"
 
 #: schema-creator.php:1121
 msgid "Edition:"
-msgstr "Edición:"
+msgstr "Editie:"
 
 #: schema-creator.php:1124
 msgid "ISBN:"
@@ -316,192 +312,190 @@ msgstr "ISBN:"
 
 #: schema-creator.php:1127
 msgid "Available in:"
-msgstr "Disponible en:"
+msgstr "Beschikbaar als:"
 
 #: schema-creator.php:1130 schema-creator.php:2267
 msgid "Ebook"
-msgstr "Libro electrónico"
+msgstr "Ebook"
 
 #: schema-creator.php:1133 schema-creator.php:2271
 msgid "Paperback"
-msgstr "Libro de bolsillo"
+msgstr "Paperback"
 
 #: schema-creator.php:1136 schema-creator.php:2275
 msgid "Hardcover"
-msgstr "Tapa dura"
+msgstr "Hardcover"
 
 #: schema-creator.php:1187
 msgid "stars"
-msgstr "estrellas"
+msgstr "sterren"
 
 #: schema-creator.php:1203
 msgid "Recipe Image"
-msgstr "Imagen de receta"
+msgstr "Recept Afbeelding"
 
 #: schema-creator.php:1213
 msgid "By"
-msgstr "Por"
+msgstr "Door"
 
 #: schema-creator.php:1214
 msgid "on"
-msgstr "en"
+msgstr "op"
 
 #: schema-creator.php:1219
 msgid "by"
-msgstr "por"
+msgstr "door"
 
 #: schema-creator.php:1230 schema-creator.php:1242 schema-creator.php:1265
 #: schema-creator.php:1277
-#, fuzzy
 msgctxt "recipe time"
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d hora"
-msgstr[1] "%d hora"
+msgstr[0] "%d uur"
+msgstr[1] "%d uur"
 
 #: schema-creator.php:1231 schema-creator.php:1253 schema-creator.php:1266
 #: schema-creator.php:1288
-#, fuzzy
 msgctxt "recipe time"
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "%d minuto"
-msgstr[1] "%d minuto"
+msgstr[0] "%d minuut"
+msgstr[1] "%d minuten"
 
 #: schema-creator.php:1234
 msgctxt "recipe"
 msgid "Prep Time:"
-msgstr "Tiempo de Preparación:"
+msgstr "Voorbereidingstijd:"
 
 #: schema-creator.php:1236 schema-creator.php:1271
 msgctxt "x hours, y minutes"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: schema-creator.php:1245 schema-creator.php:1256
 msgid "Prep Time:"
-msgstr "Tiempo de Preparación:"
+msgstr "Voorbereidingstijd:"
 
 #: schema-creator.php:1269 schema-creator.php:1280 schema-creator.php:1291
 msgid "Cook Time:"
-msgstr "Tiempo de Cocción:"
+msgstr "Kooktijd:"
 
 #: schema-creator.php:1301
 msgctxt "recipe"
 msgid "Yield:"
-msgstr "Rendimiento:"
+msgstr "Opbrengst:"
 
 #: schema-creator.php:1312
 msgid "Nutrition Information:"
-msgstr "Información Nutricional:"
+msgstr "Voeding informatie:"
 
 #: schema-creator.php:1316
 msgid "%d calorie"
 msgid_plural "%d calories"
-msgstr[0] "%d calorias"
-msgstr[1] "%d calorias"
+msgstr[0] "%d calorie"
+msgstr[1] "%d calorieën"
 
 #: schema-creator.php:1321
 msgid "%d gram of fat"
 msgid_plural "%d grams of fat"
-msgstr[0] "%d gramos de grasa"
-msgstr[1] "%d gramos de grasa"
+msgstr[0] "%d gram vet"
+msgstr[1] "%d grammen vet"
 
 #: schema-creator.php:1326
 msgid "%d gram of sugar"
 msgid_plural "%d grams of sugar"
-msgstr[0] "%d gramos de azucar"
-msgstr[1] "%d gramos de azucar"
+msgstr[0] "%d gram suiker"
+msgstr[1] "%d grammen suiker"
 
 #: schema-creator.php:1331
 msgid "%d milligram of sodium"
 msgid_plural "%d milligrams of sodium"
-msgstr[0] "%d miligramos de sodio"
-msgstr[1] "%d miligramos de sodio"
+msgstr[0] "%d milligram natrium"
+msgstr[1] "%d milligrammen natrium"
 
 #: schema-creator.php:1338
 msgid "Ingredients:"
-msgstr "Ingredientes:"
+msgstr "Ingrediënten:"
 
 #: schema-creator.php:1349
 msgid "Instructions:"
-msgstr "Instrucciones:"
+msgstr "Instructies:"
 
 #: schema-creator.php:1388 schema-creator.php:1389
 msgid "Schema Creator Form"
-msgstr "Formulario Generador de Esquemas"
+msgstr "Schema Creator Formulier"
 
 #: schema-creator.php:1394 schema-creator.php:1395
 msgid "Add Schema"
-msgstr "Agregar Esquema"
+msgstr "Voeg Schema Toe"
 
 #: schema-creator.php:1734
 msgid "Schema Type"
-msgstr "Tipo de Esquema"
+msgstr "Schema Type"
 
 #: schema-creator.php:1736
 msgid "Select A Type"
-msgstr "Seleccione a Tipo"
+msgstr "Selecteer Een Type"
 
 #: schema-creator.php:1737
 msgid "Person"
-msgstr "Persona"
+msgstr "Persoon"
 
 #: schema-creator.php:1738
 msgid "Product"
-msgstr "Producto"
+msgstr "Product"
 
 #: schema-creator.php:1739
 msgid "Event"
-msgstr "Evento"
+msgstr "Evenement"
 
 #: schema-creator.php:1740 schema-creator.php:1796
 msgid "Organization"
-msgstr "Organización"
+msgstr "Organisatie"
 
 #: schema-creator.php:1741
 msgid "Movie"
-msgstr "Película"
+msgstr "Film"
 
 #: schema-creator.php:1742
 msgid "Book"
-msgstr "Libro"
+msgstr "Book"
 
 #: schema-creator.php:1743
 msgid "Review"
-msgstr "Revisión"
+msgstr "Recensie"
 
 #: schema-creator.php:1744
 msgid "Recipe"
-msgstr "Receta"
+msgstr "Recept"
 
 #: schema-creator.php:1750
 msgid "Event Type"
-msgstr "Tipo de Evento"
+msgstr "Evenement Type"
 
 #: schema-creator.php:1752 schema-creator.php:1774
 msgid "General"
-msgstr "General"
+msgstr "Algemeen"
 
 #: schema-creator.php:1753
 msgid "Business"
-msgstr "Negocios"
+msgstr "Bedrijf"
 
 #: schema-creator.php:1754
 msgid "Childrens"
-msgstr "Niños"
+msgstr "Kinderen"
 
 #: schema-creator.php:1755
 msgid "Comedy"
-msgstr "Comedia"
+msgstr "Komedie"
 
 #: schema-creator.php:1756
 msgid "Dance"
-msgstr "Bailes"
+msgstr "Dans"
 
 #: schema-creator.php:1757
 msgid "Education"
-msgstr "Educación"
+msgstr "Educatie"
 
 #: schema-creator.php:1758
 msgid "Festival"
@@ -509,59 +503,59 @@ msgstr "Festival"
 
 #: schema-creator.php:1759
 msgid "Food"
-msgstr "Alimento"
+msgstr "Voedsel"
 
 #: schema-creator.php:1760
 msgid "Literary"
-msgstr "Literatura"
+msgstr "Literair"
 
 #: schema-creator.php:1761
 msgid "Music"
-msgstr "Música"
+msgstr "Muziek"
 
 #: schema-creator.php:1762
 msgid "Sale"
-msgstr "Venta"
+msgstr "Verkoop"
 
 #: schema-creator.php:1763
 msgid "Social"
-msgstr "Social"
+msgstr "Sociaal"
 
 #: schema-creator.php:1764
 msgid "Sports"
-msgstr "Deportes"
+msgstr "Sport"
 
 #: schema-creator.php:1765
 msgid "Theater"
-msgstr "Teatro"
+msgstr "Theater"
 
 #: schema-creator.php:1766
 msgid "User Interaction"
-msgstr "Interacción con el usuario"
+msgstr "Gebruikersinteractie"
 
 #: schema-creator.php:1767
 msgid "Visual Arts"
-msgstr "Arte Visual"
+msgstr "Beeldende Kunsten"
 
 #: schema-creator.php:1772
 msgid "Organziation Type"
-msgstr "Tipo de Organización"
+msgstr "Organisatie Type"
 
 #: schema-creator.php:1775
 msgid "Corporation"
-msgstr "Corporación"
+msgstr "Corporatie"
 
 #: schema-creator.php:1776
 msgid "School"
-msgstr "Escuela"
+msgstr "School"
 
 #: schema-creator.php:1777
 msgid "Government"
-msgstr "Gobierno"
+msgstr "Overheid"
 
 #: schema-creator.php:1778
 msgid "Local Business"
-msgstr "Negocios locales"
+msgstr "Lokaal Bedrijf"
 
 #: schema-creator.php:1779
 msgid "NGO"
@@ -569,104 +563,103 @@ msgstr "NGO"
 
 #: schema-creator.php:1780
 msgid "Performing Group"
-msgstr "Realización de Grupo"
+msgstr "Uitvoerende Groep"
 
 #: schema-creator.php:1781
 msgid "Sports Team"
-msgstr "Equipo deportivo"
+msgstr "Sportteam"
 
 #: schema-creator.php:1786
 msgid "Name"
-msgstr "Nombre"
+msgstr "Naam"
 
 #: schema-creator.php:1801
 msgid "Job Title"
-msgstr "Puesto"
+msgstr "Functie"
 
 #: schema-creator.php:1806
 msgid "Website"
-msgstr "Página web"
+msgstr "Website"
 
 #: schema-creator.php:1811
 msgid "Description"
-msgstr "Descripción"
+msgstr "Omschrijving"
 
 #: schema-creator.php:1816
 msgid "Item Name"
-msgstr "Nombre del Item"
+msgstr "Item Naam"
 
 #: schema-creator.php:1821
 msgid "Item Review"
-msgstr "Revisión Item"
+msgstr "Item Recensie"
 
 #: schema-creator.php:1826
 msgid "Director"
-msgstr "Director"
+msgstr "Regiseur"
 
 #: schema-creator.php:1831
 msgid "Producer"
-msgstr "Productor"
+msgstr "Producent"
 
 #: schema-creator.php:1836
 msgid "Actor"
-msgstr "Actor"
+msgstr "Acteur"
 
 #: schema-creator.php:1840
 msgid "Add Another Actor"
-msgstr "Agregar otro Actor"
+msgstr "Voeg Nog een Acteur Toe"
 
 #: schema-creator.php:1843
 msgid "Start Date"
-msgstr "Fecha de inicio"
+msgstr "Aanvangsdatum"
 
 #: schema-creator.php:1849
 msgid "Start Time"
-msgstr "Hora de inicio"
+msgstr "Aanvangstijd"
 
 #: schema-creator.php:1854
 msgid "End Date"
-msgstr "Fecha de Finalización"
+msgstr "Einddatum"
 
 #: schema-creator.php:1860
 msgid "Duration"
-msgstr "Duración"
+msgstr "Duur"
 
 #: schema-creator.php:1865
 msgid "Birthday"
-msgstr "Cumpleaños"
+msgstr "Verjaardag"
 
 #: schema-creator.php:1871
 msgid "Address"
-msgstr "Dirección"
+msgstr "Address"
 
 #: schema-creator.php:1876
-#, fuzzy
 msgid "P.O. Box"
-msgstr "P.O. Box"
+msgstr "Postbus"
 
 #: schema-creator.php:1881
 msgid "City"
-msgstr "Ciudad"
+msgstr "Stad"
 
 #: schema-creator.php:1886
 msgid "State / Region"
-msgstr "Estado/Región"
+msgstr "Staat / Regio"
 
 #: schema-creator.php:1891
 msgid "Postal Code"
-msgstr "Código Postal"
+msgstr "Postcode"
 
 #: schema-creator.php:1896
 msgid "Country"
-msgstr "Pais"
+msgstr "Land"
 
 #: schema-creator.php:1898
 msgid "Select A Country"
-msgstr "Seleccione un pais"
+msgstr "Selecteer Een Land"
 
 #: schema-creator.php:1899
 msgid "United States"
-msgstr "Estados Unidos"
+msgstr "Verenigde Staten van Amerika"
 
 #: schema-creator.php:1900
 msgid "Canada"
@@ -674,31 +667,31 @@ msgstr "Canada"
 
 #: schema-creator.php:1901
 msgid "Mexico"
-msgstr "México"
+msgstr "Mexico"
 
 #: schema-creator.php:1902
 msgid "United Kingdom"
-msgstr "Inglaterra"
+msgstr "Verenigd Koninkrijk"
 
 #: schema-creator.php:1905
 msgid "Afghanistan"
-msgstr "Afganistán"
+msgstr "Afghanistan"
 
 #: schema-creator.php:1906
 msgid "Aland Islands"
-msgstr "Aland Islands"
+msgstr "Aland-eilanden"
 
 #: schema-creator.php:1907
 msgid "Albania"
-msgstr "Albania"
+msgstr "Albanië"
 
 #: schema-creator.php:1908
 msgid "Algeria"
-msgstr "Argelia"
+msgstr "Algerije"
 
 #: schema-creator.php:1909
 msgid "American Samoa"
-msgstr "Samoa Americana"
+msgstr "Amerikaans Samoa"
 
 #: schema-creator.php:1910
 msgid "Andorra"
@@ -710,23 +703,23 @@ msgstr "Angola"
 
 #: schema-creator.php:1912
 msgid "Anguilla"
-msgstr "Anguila"
+msgstr "Anguilla"
 
 #: schema-creator.php:1913
 msgid "Antarctica"
-msgstr "Antártida"
+msgstr "Antartica"
 
 #: schema-creator.php:1914
 msgid "Antigua And Barbuda"
-msgstr "Antigua y Barbuda"
+msgstr "Antigua en Barbuda"
 
 #: schema-creator.php:1915
 msgid "Argentina"
-msgstr "Argentina"
+msgstr "Argentinië"
 
 #: schema-creator.php:1916
 msgid "Armenia"
-msgstr "Armenia"
+msgstr "Armenië"
 
 #: schema-creator.php:1917
 msgid "Aruba"
@@ -734,15 +727,15 @@ msgstr "Aruba"
 
 #: schema-creator.php:1918
 msgid "Australia"
-msgstr "Australia"
+msgstr "Australië"
 
 #: schema-creator.php:1919
 msgid "Austria"
-msgstr "Austria"
+msgstr "Oostenrijk"
 
 #: schema-creator.php:1920
 msgid "Azerbaijan"
-msgstr "Azerbaiyán"
+msgstr "Azerbeidzjan"
 
 #: schema-creator.php:1921
 msgid "Bahamas"
@@ -750,7 +743,7 @@ msgstr "Bahamas"
 
 #: schema-creator.php:1922
 msgid "Bahrain"
-msgstr "Bahréin"
+msgstr "Bahrein"
 
 #: schema-creator.php:1923
 msgid "Bangladesh"
@@ -762,15 +755,15 @@ msgstr "Barbados"
 
 #: schema-creator.php:1925
 msgid "Belarus"
-msgstr "Bielorrusia"
+msgstr "Belarus"
 
 #: schema-creator.php:1926
 msgid "Belgium"
-msgstr "Bélgica"
+msgstr "België"
 
 #: schema-creator.php:1927
 msgid "Belize"
-msgstr "Belice"
+msgstr "Belize"
 
 #: schema-creator.php:1928
 msgid "Benin"
@@ -778,23 +771,23 @@ msgstr "Benin"
 
 #: schema-creator.php:1929
 msgid "Bermuda"
-msgstr "Bermudas"
+msgstr "Bermuda"
 
 #: schema-creator.php:1930
 msgid "Bhutan"
-msgstr "Bután"
+msgstr "Bhutan"
 
 #: schema-creator.php:1931
 msgid "Bolivia, Plurinational State Of"
-msgstr "Bolivia, Estado Plurinacional de"
+msgstr "Bolivia, Plurinationale Staat Ban"
 
 #: schema-creator.php:1932
 msgid "Bonaire, Sint Eustatius And Saba"
-msgstr "Bonaire, Sint Eustatius y Saba"
+msgstr "Bonaire, Sint Eustatius en Saba"
 
 #: schema-creator.php:1933
 msgid "Bosnia And Herzegovina"
-msgstr "Bosnia y Herzegovina"
+msgstr "Bosnië En Herzegovina"
 
 #: schema-creator.php:1934
 msgid "Botswana"
@@ -802,15 +795,15 @@ msgstr "Botswana"
 
 #: schema-creator.php:1935
 msgid "Bouvet Island"
-msgstr "Isla Bouvet"
+msgstr "Bouvet Eiland"
 
 #: schema-creator.php:1936
 msgid "Brazil"
-msgstr "Brasil"
+msgstr "Brazilië"
 
 #: schema-creator.php:1937
 msgid "British Indian Ocean Territory"
-msgstr "British Indian Ocean Territory"
+msgstr "Brits Indische Oceaan Territorium"
 
 #: schema-creator.php:1938
 msgid "Brunei Darussalam"
@@ -818,7 +811,7 @@ msgstr "Brunei Darussalam"
 
 #: schema-creator.php:1939
 msgid "Bulgaria"
-msgstr "Bulgaria"
+msgstr "Bulgarije"
 
 #: schema-creator.php:1940
 msgid "Burkina Faso"
@@ -826,35 +819,35 @@ msgstr "Burkina Faso"
 
 #: schema-creator.php:1941
 msgid "Burundi"
-msgstr "Burundi"
+msgstr "Boeroendi"
 
 #: schema-creator.php:1942
 msgid "Cambodia"
-msgstr "Camboya"
+msgstr "Cambodja"
 
 #: schema-creator.php:1943
 msgid "Cameroon"
-msgstr "Camerún"
+msgstr "Kameroen"
 
 #: schema-creator.php:1944
 msgid "Cape Verde"
-msgstr "Cabo Verde"
+msgstr "Cape Verde"
 
 #: schema-creator.php:1945
 msgid "Cayman Islands"
-msgstr "Islas Caimán"
+msgstr "Kaaimaneilanden "
 
 #: schema-creator.php:1946
 msgid "Central African Republic"
-msgstr "República Centroafricana"
+msgstr "Centraal-Afrikaanse Republiek"
 
 #: schema-creator.php:1947
 msgid "Chad"
-msgstr "Chad"
+msgstr "Tsjaad"
 
 #: schema-creator.php:1948
 msgid "Chile"
-msgstr "Chile"
+msgstr "Chili"
 
 #: schema-creator.php:1949
 msgid "China"
@@ -862,11 +855,11 @@ msgstr "China"
 
 #: schema-creator.php:1950
 msgid "Christmas Island"
-msgstr "Isla de Navidad"
+msgstr "Kersteiland"
 
 #: schema-creator.php:1951
 msgid "Cocos (Keeling) Islands"
-msgstr "Cocos (Keeling) Islands"
+msgstr "Kokos (Keeling) Eilanden"
 
 #: schema-creator.php:1952
 msgid "Colombia"
@@ -874,7 +867,7 @@ msgstr "Colombia"
 
 #: schema-creator.php:1953
 msgid "Comoros"
-msgstr "Comoras"
+msgstr "Comoren"
 
 #: schema-creator.php:1954
 msgid "Congo"
@@ -882,11 +875,11 @@ msgstr "Congo"
 
 #: schema-creator.php:1955
 msgid "Congo, The Democratic Republic Of The"
-msgstr "Congo, República Democrática Del"
+msgstr "Congo, De Democratische Republiek van"
 
 #: schema-creator.php:1956
 msgid "Cook Islands"
-msgstr "Islas Cook"
+msgstr "Cook Eilanden"
 
 #: schema-creator.php:1957
 msgid "Costa Rica"
@@ -894,11 +887,11 @@ msgstr "Costa Rica"
 
 #: schema-creator.php:1958
 msgid "Cote D'Ivoire"
-msgstr "Cote D'Ivoire"
+msgstr "Ivoorkust"
 
 #: schema-creator.php:1959
 msgid "Croatia"
-msgstr "Croacia"
+msgstr "Kroatië"
 
 #: schema-creator.php:1960
 msgid "Cuba"
@@ -910,15 +903,15 @@ msgstr "Curacao"
 
 #: schema-creator.php:1962
 msgid "Cyprus"
-msgstr "Chipre"
+msgstr "Cyprus"
 
 #: schema-creator.php:1963
 msgid "Czech Republic"
-msgstr "República Checa"
+msgstr "Tsjechië"
 
 #: schema-creator.php:1964
 msgid "Denmark"
-msgstr "Dinamarca"
+msgstr "Denemarken"
 
 #: schema-creator.php:1965
 msgid "Djibouti"
@@ -930,7 +923,7 @@ msgstr "Dominica"
 
 #: schema-creator.php:1967
 msgid "Dominican Republic"
-msgstr "República Dominicana"
+msgstr "Dominicaanse Republiek"
 
 #: schema-creator.php:1968
 msgid "Ecuador"
@@ -938,7 +931,7 @@ msgstr "Ecuador"
 
 #: schema-creator.php:1969
 msgid "Egypt"
-msgstr "Egipto"
+msgstr "Egypte"
 
 #: schema-creator.php:1970
 msgid "El Salvador"
@@ -946,7 +939,7 @@ msgstr "El Salvador"
 
 #: schema-creator.php:1971
 msgid "Equatorial Guinea"
-msgstr "Guinea Ecuatorial"
+msgstr "Equatoriaal-Guinea"
 
 #: schema-creator.php:1972
 msgid "Eritrea"
@@ -954,19 +947,19 @@ msgstr "Eritrea"
 
 #: schema-creator.php:1973
 msgid "Estonia"
-msgstr "Estonia"
+msgstr "Estland"
 
 #: schema-creator.php:1974
 msgid "Ethiopia"
-msgstr "Etiopía"
+msgstr "Ethiopië"
 
 #: schema-creator.php:1975
 msgid "Falkland Islands (Malvinas)"
-msgstr "Islas Malvinas (Falkland)"
+msgstr "Falklandeilanden (Malvinas)"
 
 #: schema-creator.php:1976
 msgid "Faroe Islands"
-msgstr "Islas Feroe"
+msgstr "Faeröer"
 
 #: schema-creator.php:1977
 msgid "Fiji"
@@ -974,27 +967,27 @@ msgstr "Fiji"
 
 #: schema-creator.php:1978
 msgid "Finland"
-msgstr "Finlandia"
+msgstr "Finland"
 
 #: schema-creator.php:1979
 msgid "France"
-msgstr "Francia"
+msgstr "Frankrijk"
 
 #: schema-creator.php:1980
 msgid "French Guiana"
-msgstr "Francés Guayana"
+msgstr "Frans-Guyana"
 
 #: schema-creator.php:1981
 msgid "French Polynesia"
-msgstr "Polinesia Francés"
+msgstr "Frans-Polynesië"
 
 #: schema-creator.php:1982
 msgid "French Southern Territories"
-msgstr "Territorios Australes Franceses"
+msgstr "Franse Zuidelijke Gebieden"
 
 #: schema-creator.php:1983
 msgid "Gabon"
-msgstr "Gabón"
+msgstr "Gabon"
 
 #: schema-creator.php:1984
 msgid "Gambia"
@@ -1002,11 +995,11 @@ msgstr "Gambia"
 
 #: schema-creator.php:1985
 msgid "Georgia"
-msgstr "Georgia"
+msgstr "Georgië"
 
 #: schema-creator.php:1986
 msgid "Germany"
-msgstr "Alemania"
+msgstr "Duitsland"
 
 #: schema-creator.php:1987
 msgid "Ghana"
@@ -1018,19 +1011,19 @@ msgstr "Gibraltar"
 
 #: schema-creator.php:1989
 msgid "Greece"
-msgstr "Grecia"
+msgstr "Griekenland"
 
 #: schema-creator.php:1990
 msgid "Greenland"
-msgstr "Groenlandia"
+msgstr "Groenland"
 
 #: schema-creator.php:1991
 msgid "Grenada"
-msgstr "Granada"
+msgstr "Grenada"
 
 #: schema-creator.php:1992
 msgid "Guadeloupe"
-msgstr "Guadalupe"
+msgstr "Guadeloupe"
 
 #: schema-creator.php:1993
 msgid "Guam"
@@ -1050,23 +1043,23 @@ msgstr "Guinea"
 
 #: schema-creator.php:1997
 msgid "Guinea-Bissau"
-msgstr "Guinea-Bissau"
+msgstr "Guinee-Bissau"
 
 #: schema-creator.php:1998
 msgid "Guyana"
-msgstr "Guayana"
+msgstr "Guyana"
 
 #: schema-creator.php:1999
 msgid "Haiti"
-msgstr "Haití"
+msgstr "Haïti"
 
 #: schema-creator.php:2000
 msgid "Heard Island And Mcdonald Islands"
-msgstr "Islas Heard y McDonald"
+msgstr "Heard Eiland en McDonald Eilanden"
 
 #: schema-creator.php:2001
 msgid "Vatican City"
-msgstr "Ciudad del Vaticano"
+msgstr "Vaticaanstad"
 
 #: schema-creator.php:2002
 msgid "Honduras"
@@ -1078,11 +1071,11 @@ msgstr "Hong Kong"
 
 #: schema-creator.php:2004
 msgid "Hungary"
-msgstr "Hungría"
+msgstr "Hongarije"
 
 #: schema-creator.php:2005
 msgid "Iceland"
-msgstr "Islandia"
+msgstr "IJsland"
 
 #: schema-creator.php:2006
 msgid "India"
@@ -1090,11 +1083,11 @@ msgstr "India"
 
 #: schema-creator.php:2007
 msgid "Indonesia"
-msgstr "Indonesia"
+msgstr "Indonesië"
 
 #: schema-creator.php:2008
 msgid "Iran"
-msgstr "Irán"
+msgstr "Iran"
 
 #: schema-creator.php:2009
 msgid "Iraq"
@@ -1102,19 +1095,19 @@ msgstr "Irak"
 
 #: schema-creator.php:2010
 msgid "Ireland"
-msgstr "Irlanda"
+msgstr "Ierland"
 
 #: schema-creator.php:2011
 msgid "Isle Of Man"
-msgstr "Isle Of Man"
+msgstr "Eiland van Man"
 
 #: schema-creator.php:2012
 msgid "Israel"
-msgstr "Israel"
+msgstr "Israël"
 
 #: schema-creator.php:2013
 msgid "Italy"
-msgstr "Italia"
+msgstr "Italië"
 
 #: schema-creator.php:2014
 msgid "Jamaica"
@@ -1122,7 +1115,7 @@ msgstr "Jamaica"
 
 #: schema-creator.php:2015
 msgid "Japan"
-msgstr "Japón"
+msgstr "Japan"
 
 #: schema-creator.php:2016
 msgid "Jersey"
@@ -1130,11 +1123,11 @@ msgstr "Jersey"
 
 #: schema-creator.php:2017
 msgid "Jordan"
-msgstr "Jordania"
+msgstr "Jordanië"
 
 #: schema-creator.php:2018
 msgid "Kazakhstan"
-msgstr "Kazajstán"
+msgstr "Kazachstan"
 
 #: schema-creator.php:2019
 msgid "Kenya"
@@ -1146,19 +1139,19 @@ msgstr "Kiribati"
 
 #: schema-creator.php:2021
 msgid "North Korea"
-msgstr "Corea del Norte"
+msgstr "Noord-Korea"
 
 #: schema-creator.php:2022
 msgid "South Korea"
-msgstr "Corea del Sur"
+msgstr "Zuid-Korea"
 
 #: schema-creator.php:2023
 msgid "Kuwait"
-msgstr "Kuwait"
+msgstr "Koeweit"
 
 #: schema-creator.php:2024
 msgid "Kyrgyzstan"
-msgstr "Kirguistán"
+msgstr "Kirgizië"
 
 #: schema-creator.php:2025
 msgid "Laos"
@@ -1166,15 +1159,15 @@ msgstr "Laos"
 
 #: schema-creator.php:2026
 msgid "Latvia"
-msgstr "Letonia"
+msgstr "Letland"
 
 #: schema-creator.php:2027
 msgid "Lebanon"
-msgstr "Líbano"
+msgstr "Libanon"
 
 #: schema-creator.php:2028
 msgid "Lesotho"
-msgstr "Lesoto"
+msgstr "Lesotho"
 
 #: schema-creator.php:2029
 msgid "Liberia"
@@ -1182,7 +1175,7 @@ msgstr "Liberia"
 
 #: schema-creator.php:2030
 msgid "Libya"
-msgstr "Libia"
+msgstr "Libië"
 
 #: schema-creator.php:2031
 msgid "Liechtenstein"
@@ -1190,11 +1183,11 @@ msgstr "Liechtenstein"
 
 #: schema-creator.php:2032
 msgid "Lithuania"
-msgstr "Lituania"
+msgstr "Litouwen"
 
 #: schema-creator.php:2033
 msgid "Luxembourg"
-msgstr "Luxemburgo"
+msgstr "Luxemburg"
 
 #: schema-creator.php:2034
 msgid "Macao"
@@ -1202,7 +1195,7 @@ msgstr "Macao"
 
 #: schema-creator.php:2035
 msgid "Macedonia"
-msgstr "Macedonia"
+msgstr "Macedonië"
 
 #: schema-creator.php:2036
 msgid "Madagascar"
@@ -1214,15 +1207,15 @@ msgstr "Malawi"
 
 #: schema-creator.php:2038
 msgid "Malaysia"
-msgstr "Malasia"
+msgstr "Maleisië"
 
 #: schema-creator.php:2039
 msgid "Maldives"
-msgstr "Maldivas"
+msgstr "Maldiven"
 
 #: schema-creator.php:2040
 msgid "Mali"
-msgstr "Malí"
+msgstr "Mali"
 
 #: schema-creator.php:2041
 msgid "Malta"
@@ -1230,19 +1223,19 @@ msgstr "Malta"
 
 #: schema-creator.php:2042
 msgid "Marshall Islands"
-msgstr "Islas Marshall"
+msgstr "Marshalleilanden"
 
 #: schema-creator.php:2043
 msgid "Martinique"
-msgstr "Martinica"
+msgstr "Martinique"
 
 #: schema-creator.php:2044
 msgid "Mauritania"
-msgstr "Mauritania"
+msgstr "Mauritanië"
 
 #: schema-creator.php:2045
 msgid "Mauritius"
-msgstr "Mauricio"
+msgstr "Mauritius"
 
 #: schema-creator.php:2046
 msgid "Mayotte"
@@ -1250,19 +1243,19 @@ msgstr "Mayotte"
 
 #: schema-creator.php:2047
 msgid "Micronesia"
-msgstr "Micronesia"
+msgstr "Micronesië"
 
 #: schema-creator.php:2048
 msgid "Moldova"
-msgstr "Moldavia"
+msgstr "Moldavië"
 
 #: schema-creator.php:2049
 msgid "Monaco"
-msgstr "Mónaco"
+msgstr "Monaco"
 
 #: schema-creator.php:2050
 msgid "Mongolia"
-msgstr "Mongolia"
+msgstr "Mongolië"
 
 #: schema-creator.php:2051
 msgid "Montenegro"
@@ -1274,7 +1267,7 @@ msgstr "Montserrat"
 
 #: schema-creator.php:2053
 msgid "Morocco"
-msgstr "Marruecos"
+msgstr "Marokko"
 
 #: schema-creator.php:2054
 msgid "Mozambique"
@@ -1286,7 +1279,7 @@ msgstr "Myanmar"
 
 #: schema-creator.php:2056
 msgid "Namibia"
-msgstr "Namibia"
+msgstr "Namibië"
 
 #: schema-creator.php:2057
 msgid "Nauru"
@@ -1298,15 +1291,15 @@ msgstr "Nepal"
 
 #: schema-creator.php:2059
 msgid "Netherlands"
-msgstr "Países Bajos"
+msgstr "Nederland"
 
 #: schema-creator.php:2060
 msgid "New Caledonia"
-msgstr "Nueva Caledonia"
+msgstr "Nieuw-Caledonië"
 
 #: schema-creator.php:2061
 msgid "New Zealand"
-msgstr "Nueva Zelanda"
+msgstr "Nieuw Zeeland"
 
 #: schema-creator.php:2062
 msgid "Nicaragua"
@@ -1314,7 +1307,7 @@ msgstr "Nicaragua"
 
 #: schema-creator.php:2063
 msgid "Niger"
-msgstr "Níger"
+msgstr "Niger"
 
 #: schema-creator.php:2064
 msgid "Nigeria"
@@ -1326,23 +1319,23 @@ msgstr "Niue"
 
 #: schema-creator.php:2066
 msgid "Norfolk Island"
-msgstr "Isla Norfolk"
+msgstr "Norfolkeiland"
 
 #: schema-creator.php:2067
 msgid "Northern Mariana Islands"
-msgstr "Islas Marianas del Norte"
+msgstr "Noordelijke Marianen"
 
 #: schema-creator.php:2068
 msgid "Norway"
-msgstr "Noruega"
+msgstr "Noorwegen"
 
 #: schema-creator.php:2069
 msgid "Oman"
-msgstr "Omán"
+msgstr "Oman"
 
 #: schema-creator.php:2070
 msgid "Pakistan"
-msgstr "Pakistán"
+msgstr "Pakistan"
 
 #: schema-creator.php:2071
 msgid "Palau"
@@ -1358,7 +1351,7 @@ msgstr "Panama"
 
 #: schema-creator.php:2074
 msgid "Papua New Guinea"
-msgstr "Papua Nueva Guinea"
+msgstr "Papoea-Nieuw-Guinea"
 
 #: schema-creator.php:2075
 msgid "Paraguay"
@@ -1366,11 +1359,11 @@ msgstr "Paraguay"
 
 #: schema-creator.php:2076
 msgid "Peru"
-msgstr "Perú"
+msgstr "Peru"
 
 #: schema-creator.php:2077
 msgid "Philippines"
-msgstr "Filipinas"
+msgstr "Filippijnen"
 
 #: schema-creator.php:2078
 msgid "Pitcairn"
@@ -1378,7 +1371,7 @@ msgstr "Pitcairn"
 
 #: schema-creator.php:2079
 msgid "Poland"
-msgstr "Polonia"
+msgstr "Polen"
 
 #: schema-creator.php:2080
 msgid "Portugal"
@@ -1394,19 +1387,19 @@ msgstr "Katar"
 
 #: schema-creator.php:2083
 msgid "Reunion"
-msgstr "Reunion"
+msgstr "Reünie"
 
 #: schema-creator.php:2084
 msgid "Romania"
-msgstr "Rumania"
+msgstr "Roemenië"
 
 #: schema-creator.php:2085
 msgid "Russian Federation"
-msgstr "Federación de Rusia"
+msgstr "Russische Federatie"
 
 #: schema-creator.php:2086
 msgid "Rwanda"
-msgstr "Ruanda"
+msgstr "Rwanda"
 
 #: schema-creator.php:2087
 msgid "St. Barthelemy"
@@ -1418,7 +1411,7 @@ msgstr "St. Helena"
 
 #: schema-creator.php:2089
 msgid "St. Kitts And Nevis"
-msgstr "St. Kitts y Nevis"
+msgstr "St. Kitts en Nevis"
 
 #: schema-creator.php:2090
 msgid "St. Lucia"
@@ -1426,15 +1419,15 @@ msgstr "St. Lucia"
 
 #: schema-creator.php:2091
 msgid "St. Martin (French Part)"
-msgstr "St. Martín (parte francesa)"
+msgstr "St. Martin (Franse deel)"
 
 #: schema-creator.php:2092
 msgid "St. Pierre And Miquelon"
-msgstr "St. Pierre y Miquelon"
+msgstr "St. Pierre en Miquelon"
 
 #: schema-creator.php:2093
 msgid "St. Vincent And The Grenadines"
-msgstr "San Vicente y las Granadinas"
+msgstr "St. Vincent en de Grenadines"
 
 #: schema-creator.php:2094
 msgid "Samoa"
@@ -1446,11 +1439,11 @@ msgstr "San Marino"
 
 #: schema-creator.php:2096
 msgid "Sao Tome And Principe"
-msgstr "Sao Tome And Principe"
+msgstr "Sao Tome en Principe"
 
 #: schema-creator.php:2097
 msgid "Saudi Arabia"
-msgstr "Arabia Saudita"
+msgstr "Saoedi-Arabië"
 
 #: schema-creator.php:2098
 msgid "Senegal"
@@ -1458,11 +1451,11 @@ msgstr "Senegal"
 
 #: schema-creator.php:2099
 msgid "Serbia"
-msgstr "Serbia"
+msgstr "Servië"
 
 #: schema-creator.php:2100
 msgid "Seychelles"
-msgstr "Seychelles"
+msgstr "Seychellen"
 
 #: schema-creator.php:2101
 msgid "Sierra Leone"
@@ -1474,39 +1467,39 @@ msgstr "Singapore"
 
 #: schema-creator.php:2103
 msgid "Sint Maarten (Dutch Part)"
-msgstr "Sint Maarten (Parte neerlandés)"
+msgstr "Sint Maarten (Nederlands Deel)"
 
 #: schema-creator.php:2104
 msgid "Slovakia"
-msgstr "Eslovaquia"
+msgstr "Slowakije"
 
 #: schema-creator.php:2105
 msgid "Slovenia"
-msgstr "Eslovenia"
+msgstr "Slovenië"
 
 #: schema-creator.php:2106
 msgid "Solomon Islands"
-msgstr "Islas Salomón"
+msgstr "Solomon Eilanden"
 
 #: schema-creator.php:2107
 msgid "Somalia"
-msgstr "Somalia"
+msgstr "Somalië"
 
 #: schema-creator.php:2108
 msgid "South Africa"
-msgstr "Sudáfrica"
+msgstr "Zuid-Afrika"
 
 #: schema-creator.php:2109
 msgid "South Georgia"
-msgstr "Georgia del Sur"
+msgstr "Zuid-Georgië"
 
 #: schema-creator.php:2110
 msgid "South Sudan"
-msgstr "Sudán del Sur"
+msgstr "Zuid-Soedan"
 
 #: schema-creator.php:2111
 msgid "Spain"
-msgstr "España"
+msgstr "Spanje"
 
 #: schema-creator.php:2112
 msgid "Sri Lanka"
@@ -1514,11 +1507,11 @@ msgstr "Sri Lanka"
 
 #: schema-creator.php:2113
 msgid "Sudan"
-msgstr "Sudán"
+msgstr "Soedan"
 
 #: schema-creator.php:2114
 msgid "Suriname"
-msgstr "Surinam"
+msgstr "Suriname"
 
 #: schema-creator.php:2115
 msgid "Svalbard"
@@ -1526,27 +1519,27 @@ msgstr "Svalbard"
 
 #: schema-creator.php:2116
 msgid "Swaziland"
-msgstr "Swazilandia"
+msgstr "Swaziland"
 
 #: schema-creator.php:2117
 msgid "Sweden"
-msgstr "Suecia"
+msgstr "Zweden"
 
 #: schema-creator.php:2118
 msgid "Switzerland"
-msgstr "Suiza"
+msgstr "Zwisterland"
 
 #: schema-creator.php:2119
 msgid "Syria"
-msgstr "Siria"
+msgstr "Sirië"
 
 #: schema-creator.php:2120
 msgid "Taiwan"
-msgstr "Taiwán"
+msgstr "Taiwan"
 
 #: schema-creator.php:2121
 msgid "Tajikistan"
-msgstr "Tayikistán"
+msgstr "Tadzjikistan"
 
 #: schema-creator.php:2122
 msgid "Tanzania"
@@ -1554,11 +1547,11 @@ msgstr "Tanzania"
 
 #: schema-creator.php:2123
 msgid "Thailand"
-msgstr "Tailandia"
+msgstr "Thailand"
 
 #: schema-creator.php:2124
 msgid "Timor-Leste"
-msgstr "Timor-Leste"
+msgstr "Oost-Timor"
 
 #: schema-creator.php:2125
 msgid "Togo"
@@ -1574,23 +1567,23 @@ msgstr "Tonga"
 
 #: schema-creator.php:2128
 msgid "Trinidad And Tobago"
-msgstr "Trinidad y Tobago"
+msgstr "Trinidad en Tobago"
 
 #: schema-creator.php:2129
 msgid "Tunisia"
-msgstr "Túnez"
+msgstr "Tunesië"
 
 #: schema-creator.php:2130
 msgid "Turkey"
-msgstr "Turquía"
+msgstr "Turkije"
 
 #: schema-creator.php:2131
 msgid "Turkmenistan"
-msgstr "Turkmenistán"
+msgstr "Turkmenistan"
 
 #: schema-creator.php:2132
 msgid "Turks And Caicos Islands"
-msgstr "Islas Turcas y Caicos"
+msgstr "Turks-en Caicoseilanden"
 
 #: schema-creator.php:2133
 msgid "Tuvalu"
@@ -1598,19 +1591,19 @@ msgstr "Tuvalu"
 
 #: schema-creator.php:2134
 msgid "Uganda"
-msgstr "Uganda"
+msgstr "Oeganda"
 
 #: schema-creator.php:2135
 msgid "Ukraine"
-msgstr "Ucrania"
+msgstr "Oekraïne"
 
 #: schema-creator.php:2136
 msgid "United Arab Emirates"
-msgstr "Emiratos Árabes Unidos"
+msgstr "Verenigde Arabische Emiraten"
 
 #: schema-creator.php:2137
 msgid "United States Minor Outlying Islands"
-msgstr "Estados Unidos Islas Menores"
+msgstr "Amerikaanse ondergeschikte afgelegen eilanden"
 
 #: schema-creator.php:2138
 msgid "Uruguay"
@@ -1618,7 +1611,7 @@ msgstr "Uruguay"
 
 #: schema-creator.php:2139
 msgid "Uzbekistan"
-msgstr "Uzbekistán"
+msgstr "Oezbekistan"
 
 #: schema-creator.php:2140
 msgid "Vanuatu"
@@ -1626,7 +1619,7 @@ msgstr "Vanuatu"
 
 #: schema-creator.php:2141
 msgid "Venezuela"
-msgstr "Venezuela"
+msgstr "Venzuela"
 
 #: schema-creator.php:2142
 msgid "Vietnam"
@@ -1634,23 +1627,23 @@ msgstr "Vietnam"
 
 #: schema-creator.php:2143
 msgid "British Virgin Islands "
-msgstr "Islas Vírgenes Británicas"
+msgstr "Britse Maagdeneilanden"
 
 #: schema-creator.php:2144
 msgid "U.S. Virgin Islands "
-msgstr "Islas Vírgenes de EE.UU."
+msgstr "Amerikaanse Maagdeneilanden"
 
 #: schema-creator.php:2145
 msgid "Wallis And Futuna"
-msgstr "Wallis y Futuna"
+msgstr "Wallis en Futuna"
 
 #: schema-creator.php:2146
 msgid "Western Sahara"
-msgstr "Western Sahara"
+msgstr "Westelijke Sahara"
 
 #: schema-creator.php:2147
 msgid "Yemen"
-msgstr "Yemen"
+msgstr "Jemen"
 
 #: schema-creator.php:2148
 msgid "Zambia"
@@ -1658,15 +1651,15 @@ msgstr "Zambia"
 
 #: schema-creator.php:2149
 msgid "Zimbabwe"
-msgstr "Zimbabue"
+msgstr "Zimbabwe"
 
 #: schema-creator.php:2162
 msgid "Email Address"
-msgstr "Dirección de correo electrónico"
+msgstr "Email Adres"
 
 #: schema-creator.php:2167
 msgid "Telephone"
-msgstr "Telefono"
+msgstr "Telefoon"
 
 #: schema-creator.php:2172
 msgid "Fax"
@@ -1674,88 +1667,88 @@ msgstr "Fax"
 
 #: schema-creator.php:2177
 msgid "Brand"
-msgstr "Marca"
+msgstr "Merk"
 
 #: schema-creator.php:2182
 msgid "Manufacturer"
-msgstr "Fabricante"
+msgstr "Fabrikant"
 
 #: schema-creator.php:2187
 msgid "Model"
-msgstr "Modelo"
+msgstr "Model"
 
 #: schema-creator.php:2192
 msgid "Product ID"
-msgstr "Identificador del Producto"
+msgstr "Product ID"
 
 #: schema-creator.php:2197
 msgid "Aggregate Rating"
-msgstr "Valoración Global"
+msgstr "Totale Waardering"
 
 #: schema-creator.php:2199
 msgid "Avg Rating"
-msgstr "Promedio de la Valoración"
+msgstr "Gem. Waardering"
 
 #: schema-creator.php:2201
 msgid "based on"
-msgstr "Basado en"
+msgstr "gebaseerd op"
 
 #: schema-creator.php:2203
 msgid "reviews"
-msgstr "Opiniones"
+msgstr "waarderingen"
 
 #: schema-creator.php:2208 schema-creator.php:2210
 msgid "Rating"
-msgstr "Valolación"
+msgstr "Waardering"
 
 #: schema-creator.php:2212 schema-creator.php:2214
 msgid "Minimum"
-msgstr "Minimo"
+msgstr "Minimum"
 
 #: schema-creator.php:2221
 msgid "Price"
-msgstr "Precio"
+msgstr "Prijs"
 
 #: schema-creator.php:2226
 msgctxt "product"
 msgid "Condition"
-msgstr "Condición"
+msgstr "Gesteldheid"
 
 #: schema-creator.php:2228
 msgid "Select"
-msgstr "Selección"
+msgstr "Selecteer"
 
 #: schema-creator.php:2229
 msgid "New"
-msgstr "Nuevo"
+msgstr "Nieuw"
 
 #: schema-creator.php:2230
 msgid "Used"
-msgstr "Usado"
+msgstr "Gebruikt"
 
 #: schema-creator.php:2231
 msgid "Refurbished"
-msgstr "Reformado"
+msgstr "Gerenoveerd"
 
 #: schema-creator.php:2232
 msgid "Damaged"
-msgstr "Estropeado"
+msgstr "Beschadigd"
 
 #: schema-creator.php:2237
 msgid "Author"
-msgstr "Autor"
+msgstr "Auteur"
 
 #: schema-creator.php:2242
 msgid "Publisher"
-msgstr "Editor"
+msgstr "Uitgever"
 
 #: schema-creator.php:2247
 msgid "Published Date"
-msgstr "Fecha de Publicación"
+msgstr "Publicatie Datum"
 
 #: schema-creator.php:2253
 msgid "Edition"
-msgstr "Edición"
+msgstr "Editie"
 
 #: schema-creator.php:2258
 msgid "ISBN"
@@ -1763,96 +1756,95 @@ msgstr "ISBN"
 
 #: schema-creator.php:2263
 msgid "Formats"
-msgstr "Formatos"
+msgstr "Formaten"
 
 #: schema-creator.php:2281
 msgid "Review Date"
-msgstr "Fecha de Revisión"
+msgstr "Recensie Datum"
 
 #: schema-creator.php:2287
 msgid "Prep Time"
-msgstr "Tiempo de preparación"
+msgstr "Voorbereidingstijd"
 
 #: schema-creator.php:2289 schema-creator.php:2299
 msgid "Hours"
-msgstr "Horas"
+msgstr "Uren"
 
 #: schema-creator.php:2291 schema-creator.php:2301
 msgid "Minutes"
-msgstr "Minutos"
+msgstr "Minuten"
 
 #: schema-creator.php:2297
 msgid "Cook Time"
-msgstr "Tiempo de cocción"
+msgstr "Kooktijd"
 
 #: schema-creator.php:2307
 msgid "Yield"
-msgstr "Producir"
+msgstr "Opbrengst"
 
 #: schema-creator.php:2309
 msgid "serving size"
-msgstr "Tamaño de porción"
+msgstr "portie grootte"
 
 #: schema-creator.php:2313
 msgid "Calories"
-msgstr "Calorias"
+msgstr "Calorieën"
 
 #: schema-creator.php:2318
 msgid "Fat"
-msgstr "Grasa"
+msgstr "Vet"
 
 #: schema-creator.php:2320 schema-creator.php:2326
 msgid "in grams"
-msgstr "en gramos"
+msgstr "in grammen"
 
 #: schema-creator.php:2324
 msgid "Sugar"
-msgstr "Azucar"
+msgstr "Suiker"
 
 #: schema-creator.php:2330
 msgid "Sodium"
-msgstr "Sodio"
+msgstr "Natrium"
 
 #: schema-creator.php:2332
 msgid "in milligrams"
-msgstr "en miligramos"
+msgstr "in milligrammen"
 
 #: schema-creator.php:2336
 msgid "Ingredient"
-msgstr "Ingrediente"
+msgstr "Ingredient"
 
 #: schema-creator.php:2338
 msgid "include both type and amount"
-msgstr "incluyen tanto el tipo y la cantidad"
+msgstr "bevat zowel type als hoeveelheid"
 
 #: schema-creator.php:2341
 msgid "Add Another Ingredient"
-msgstr "Agregar otro Ingrediente"
+msgstr "Voeg Nog Een Ingredient Toe"
 
 #: schema-creator.php:2344
 msgid "Instructions"
-msgstr "Instrucciones"
+msgstr "Instructies"
 
 #: schema-creator.php:2350
 msgid "Insert"
-msgstr "Insertar"
+msgstr "Invoegen"
 
 #: schema-creator.php:2351
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annuleer"
 
 #: schema-creator.php:2356
 msgid "Select a schema type above to get started"
-msgstr "Seleccione un tipo de esquema de arriba para empezar"
+msgstr "Selecteer hierboven een schema type om te beginnen"
 
 #: schema-creator.php:2357
 msgid "This schema type is currently being constructed."
-msgstr "Este tipo de esquema se está construyendo actualmente."
+msgstr "Dit schema type is nog onder constructie."
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
 msgid "Schema Creator by Raven"
-msgstr "Generador de Equemas by Raven"
+msgstr "Schema Creator door Raven"
 
 #. Plugin URI of the plugin/theme
 msgid ""
@@ -1864,11 +1856,11 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "Insert schema.org microdata into posts and pages"
-msgstr ""
+msgstr "Voeg schema.org microdata to aan berichten en pagina's"
 
 #. Author of the plugin/theme
 msgid "Raven Internet Marketing Tools"
-msgstr "Raven Herramientas de Marketing en Internet"
+msgstr "Raven Internet Marketing Tools"
 
 #. Author URI of the plugin/theme
 msgid ""
@@ -1876,14 +1868,11 @@ msgid ""
 msgstr ""
 "http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema"
 
-#~ msgid "By default, the"
-#~ msgstr "Por defecto, el"
-
 #~ msgid "Google also offers a"
-#~ msgstr "Google también ofrece un"
+#~ msgstr "Google bied ook een"
 
 #~ msgid "hours"
-#~ msgstr "horas"
+#~ msgstr "uren"
 
 #~ msgid "PO Box"
-#~ msgstr "PO Box"
+#~ msgstr "Postbus"
