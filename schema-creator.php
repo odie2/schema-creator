@@ -587,9 +587,10 @@ if ( !class_exists( "RavenSchema" ) ) :
 				return $classes;
 	
 			$backtrace = debug_backtrace();
-			if ( $backtrace[4]['function'] === 'body_class' )
+			if ( $backtrace[4]['function'] === 'body_class' ) {
 				echo 'itemtype="http://schema.org/Blog" ';
 				echo 'itemscope="" ';
+			}
 	
 			return $classes;
 		}
