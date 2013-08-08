@@ -65,6 +65,11 @@ Upgrade Notice
 Changelog
 ---------------
 
+- **1.050**
+  * bugfix for body class filter. props [@nathanrice](https://github.com/nathanrice)
+  * multiple bugfixes for items. props [@Derkje-J](https://github.com/Derkje-J)
+  * additional language support
+
 - **1.042**
   * add Spanish language support. props [@fitorec](https://github.com/fitorec)
 

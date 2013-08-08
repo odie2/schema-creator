@@ -1,8 +1,8 @@
 === Schema Creator by Raven ===
 Contributors: norcross, raventools
 Tags: schema, schema.org, microdata, structured data, seo, html5
-Tested up to: 3.5
-Stable tag: 1.042
+Tested up to: 3.6
+Stable tag: 1.050
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,7 +34,7 @@ Yes, although there is no guarantee that it will indeed show up that way. Google
 
 This plugin is also maintained on [GitHub](https://github.com/norcross/schema-creator/ "Schema Creator on GitHub"). The best place to post questions / issues / bugs / enhancement requests is on the [issues page](https://github.com/norcross/schema-creator/issues "Issues page for Schema Creator on GitHub") there.
 
-= How can I use this in my own language ? = 
+= How can I use this in my own language ? =
 If your `locale` is not provided in the `/languages/` subfolder, you have to either wait or create your own language file. For example, you could use POEdit to open default.po and save it as your own locale and translate it.
 
 
@@ -64,6 +64,11 @@ If your `locale` is not provided in the `/languages/` subfolder, you have to eit
 * Initial Release
 
 == Changelog ==
+
+= 1.050 =
+* bugfix for body class filter. props @nathanrice
+* multiple bugfixes for minor items props @Derkje-J
+* additional language support
 
 = 1.042 =
 * add Spanish language support. props @fitorec
