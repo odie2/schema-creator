@@ -28,7 +28,7 @@ The Schema Creator plugin places an icon above the Post/Page rich text editor (n
 
 = Can I test the output to see how the search engine will view it? =
 
-Yes, although there is no guarantee that it will indeed show up that way. Google offers a [Rich Snippet Testing tool](http://www.google.com/webmasters/tools/richsnippets/ "Google Rich Snippet Test") to review.
+Yes, although there is no guarantee that it will indeed show up that way. Google offers a [Rich Snippet Testing tool](http://www.google.com/webmasters/tools/richsnippets "Google Rich Snippet Test") to review.
 
 = I have a problem. Where do I go? =
 
