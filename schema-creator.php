@@ -135,7 +135,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 				'id'		=> 'schema-test',
 				'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
 				'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets', 'schema' ) .
-										'?q='.esc_url($link) ),
+										'?q='.urlencode($link) ),
 				'meta'		=> array(
 					'class'		=> 'schema-test',
 					'target'	=> '_blank'
