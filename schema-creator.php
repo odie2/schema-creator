@@ -6,6 +6,8 @@ Description: Insert schema.org microdata into posts and pages
 Version: 1.050
 Author: Raven Internet Marketing Tools
 Author URI: http://raventools.com/?utm_source=wp&utm_medium=plugin&utm_campaign=schema
+Text Domain: schema
+Domain path: /languages
 License: GPL v2
 
     This program is free software; you can redistribute it and/or modify
@@ -495,7 +497,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 						<?php settings_fields( 'schema_options' ); ?>
 	 					<?php do_settings_sections('schema_options'); ?>
 	                    <p class="submit">
-                        	<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
+                        	<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes', 'schema'); ?>" />
                     	</p>
                 	</form>
 				</div> <!-- end .schema_options -->
@@ -1406,13 +1408,13 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 			if ($version < 3.5) {
 				// show button for v 3.4 and below
-				echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_one" id="add_schema" title="' . __('Schema Creator Form') . '">' .
+				echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_one" id="add_schema" title="' . __('Schema Creator Form', 'schema') . '">' .
 					__('Schema Creator Form', 'schema' ) .
 				'</a>';
 			} else {
 				// display button matching new UI
 				$img = '<span class="schema-media-icon"></span> ';
-				echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_two button" id="add_schema" title="' . esc_attr__( 'Add Schema' ) . '">' .
+				echo '<a href="#TB_inline?width=650&inlineId=schema_build_form" class="thickbox schema_clear schema_two button" id="add_schema" title="' . esc_attr__( 'Add Schema', 'schema' ) . '">' .
 					$img . __( 'Add Schema', 'schema' ) .
 				'</a>';
 			}
@@ -2365,8 +2367,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 					<!-- button for inserting -->
 					<div class="insert_button" style="display:none">
-						<input class="schema_insert schema_button" type="button" value="<?php _e('Insert'); ?>" onclick="InsertSchema();"/>
-						<input class="schema_cancel schema_clear schema_button" type="button" value="<?php _e('Cancel'); ?>" onclick="tb_remove(); return false;"/>
+						<input class="schema_insert schema_button" type="button" value="<?php _e('Insert', 'schema'); ?>" onclick="InsertSchema();"/>
+						<input class="schema_cancel schema_clear schema_button" type="button" value="<?php _e('Cancel', 'schema'); ?>" onclick="tb_remove(); return false;"/>
 					</div>
 
 					<!-- various messages -->
