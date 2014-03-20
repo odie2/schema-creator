@@ -136,8 +136,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 				'parent'	=> 'top-secondary',
 				'id'		=> 'schema-test',
 				'title' 	=> _x('Test Schema', 'test the schema button title', 'schema'),
-				'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets/', 'schema' ) .
-										'?url='.urlencode($link).'&html=' ),
+				'href'		=> esc_url( __( 'http://www.google.com/webmasters/tools/richsnippets', 'schema' ) .
+										'?q='.urlencode($link) ),
 				'meta'		=> array(
 					'class'		=> 'schema-test',
 					'target'	=> '_blank'
