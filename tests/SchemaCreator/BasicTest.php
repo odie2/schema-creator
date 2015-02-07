@@ -9,26 +9,7 @@
  * @package WordPress\Plugins\SchemaCreator\Tests
  */
 
-
-/**
- * Stub for get_current_screen();
- *
- * @returns object stub
- */
-function get_current_screen() {
-	global $getcurrentscreenname;
-	return (object)array( 'base' => $getcurrentscreenname );
-}
-
-/**
- * Stub method for adding meta boxes
- *
- * @param mixed id the metabox id
- */
-function add_meta_box( $id ) {
-	global $metaboxes;
-	$metaboxes[]=$id;
-}
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 /**
  * Basic Test class for Schema Creator Plugin.
@@ -52,18 +33,15 @@ class BasicTest extends WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->my_plugin = new \ravenSchema();
-		
-		global $getcurrentscreenname, $metaboxes;
-		$getcurrentscreenname = '';
-		$metaboxes = array();
+		$this->my_plugin = new \RavenSchema();
+
+		$this->addTestPost();
 	}
 
 	/**
 	 * Tests if a quick link is added to the links array.
 	 */
-	public function testQuickLink() 
-	{
+	public function testQuickLink() {
 		$links = $this->my_plugin->quick_link( array(), SC_BASE );
 		$this->assertCount( 1, $links, 'Expected 1 link and got ' . count( $links ) );
 		$this->assertStringStartsWith( '<a ', $links[0], "Expected link but didn't find it." );
@@ -76,7 +54,7 @@ class BasicTest extends WP_UnitTestCase {
 
 		// This will simulate running WordPress' main query.
 		// We want to be on a singular, non-admin page!
-		$this->go_to( 'http://example.org/?p=1' );
+		$this->go_to( 'http://example.org/?name=example-post' );
 		
 		// Since the global will be loaded, mock it.
 		global $wp_admin_bar;
@@ -120,18 +98,16 @@ class BasicTest extends WP_UnitTestCase {
 	 * @returns boolean true if metabox was added
 	 */
 	public function metaBoxTests( $a, $b ) {
-		global $metaboxes;
 		
 		$current = get_option( 'schema_options' );
 		$previous = $current;
 		$current['body'] = $a;
 		$current['post'] = $b;
 		update_option( 'schema_options', $current );
-		
+
 		$this->my_plugin->metabox_schema( 'post', 'side' );
-		$result = in_array( 'schema-post-box', $metaboxes );
-		$metaboxes = array();
-		
+		$result = in_array( 'schema-post-box', $this->getMetaBoxes() );
+		$this->clearMetaBoxes();		
 		update_option( 'schema_options', $previous );
 		return $result;
 	}
@@ -144,9 +120,7 @@ class BasicTest extends WP_UnitTestCase {
 	 *
 	 * @depends testMetaBox
 	 */
-	public function metaBoxContextTests() {
-		global $metaboxes;
-		
+	public function metaBoxContextTests() {		
 		$current = get_option( 'schema_options' );
 		$previous = $current;
 		$current['body'] = true;
@@ -154,12 +128,12 @@ class BasicTest extends WP_UnitTestCase {
 		update_option( 'schema_options', $current );
 		
 		$this->my_plugin->metabox_schema( 'post', 'advanced' );
-		$this->assertEmpty( $metaboxes, 'meta box was added to wrong context' );
-		$metaboxes = array();
+		$this->assertEmpty( $this->getMetaBoxes(), 'meta box was added to wrong context' );
+		$this->clearMetaBoxes();
 		
 		$this->my_plugin->metabox_schema( 'post', 'high' );
-		$this->assertEmpty( $metaboxes, 'meta box was added to wrong context' );
-		$metaboxes = array();
+		$this->assertEmpty( $this->getMetaBoxes(), 'meta box was added to wrong context' );
+		$this->clearMetaBoxes();
 		
 		update_option( 'schema_options', $previous );
 	}
@@ -173,7 +147,7 @@ class BasicTest extends WP_UnitTestCase {
 		$previous = $current;
 		update_option( 'schema_options', array() );
 		
-		$this->my_plugin->store_settings();		
+		$this->my_plugin->default_settings();	
 		
 		$schema_options = get_option( 'schema_options' );
 		$this->assertEquals( 'false', $schema_options['css'], 'default css option is not false but ' . var_export( $schema_options['css'], true ) );
@@ -259,7 +233,7 @@ class BasicTest extends WP_UnitTestCase {
 		update_option( 'schema_options', $current );
 		
 		// Got to a post
-		$this->go_to( 'http://example.org/?p=1' );
+		$this->go_to( 'http://example.org/?name=example-post' );
 		
 		ob_start();
 		$this->my_plugin->body_class( '' );
@@ -280,7 +254,7 @@ class BasicTest extends WP_UnitTestCase {
 		update_option( 'schema_options', $current );
 		
 		// Got to a post
-		$this->go_to( 'http://example.org/?p=1' );
+		$this->go_to( 'http://example.org/?name=example-post' );
 		
 		ob_start();
 		$this->my_plugin->body_class( '' );
@@ -300,10 +274,9 @@ class BasicTest extends WP_UnitTestCase {
 		$current['css'] = false;
 		update_option( 'schema_options', $current );
 		
-		$this->go_to( 'http://example.org/?p=1' );
-		
-		global $wp_query;
-        $post = $wp_query->get_queried_object();
+		$this->go_to( 'http://example.org/?name=example-post' );
+
+		$post = get_queried_object();
 		$post->post_content = '[schema ]';
 		$posts = array( $post );
 		
@@ -325,8 +298,9 @@ class BasicTest extends WP_UnitTestCase {
 		$current['css'] = false;
 		update_option( 'schema_options', $current );
 		
-		$this->go_to( 'http://example.org/?p=1' );
+		$this->go_to( 'http://example.org/?name=example-post' );
 		
+		// First load that schema valid post
 		global $wp_query;
         $post = $wp_query->get_queried_object();
 		$post->post_content = '';
@@ -352,7 +326,7 @@ class BasicTest extends WP_UnitTestCase {
 		$current['css'] = 'true';
 		update_option( 'schema_options', $current );
 		
-		$this->go_to( 'http://example.org/?p=1' );
+		$this->go_to( 'http://example.org/?name=example-post' );
 		
 		global $wp_query;
         $post = $wp_query->get_queried_object();
@@ -378,7 +352,9 @@ class BasicTest extends WP_UnitTestCase {
 		$current['css'] = false;
 		$current['post'] = 'true';
 		update_option( 'schema_options', $current );
-		
+
+		$this->go_to( 'http://example.org/?name=example-post' );
+
 		// First load that schema valid post
 		global $wp_query;
         $post = $wp_query->get_queried_object();
@@ -404,7 +380,9 @@ class BasicTest extends WP_UnitTestCase {
 		$current['css'] = false;
 		$current['post'] = 'false';
 		update_option( 'schema_options', $current );
-		
+
+		$this->go_to( 'http://example.org/?name=example-post' );
+
 		// First load that schema valid post
 		global $wp_query;
         $post = $wp_query->get_queried_object();
@@ -418,6 +396,42 @@ class BasicTest extends WP_UnitTestCase {
 		update_option( 'schema_options', $previous );
 		
 	}
-	
-	
+
+	private function clearMetaBoxes() {
+		global $wp_meta_boxes;
+		return $wp_meta_boxes = array();
+	}
+
+	private function getMetaBoxes() {
+		global $wp_meta_boxes;
+		return $wp_meta_boxes;
+	}
+
+	private function getPageMetaBox() {
+		global $wp_meta_boxes;
+		$screen = get_current_screen();
+		return $wp_meta_boxes[$screen->id];
+	}
+
+	private function addTestPost() {
+		$post_id = -1;
+		$author_id = 1;
+		$slug = 'example-post';
+		$title = 'My Example Post';
+
+		if (get_page_by_title($title) == null) {
+			$post_id = wp_insert_post(
+				array(
+					'comment_status' => 'closed',
+					'ping_status' => 'closed',
+					'post_author' => $author_id,
+					'post_name' => $slug,
+					'post_title' => $title,
+					'post_status' => 'publish',
+					'post_type' => 'post'
+				)
+			);
+			return $post_id;
+		}
+	}
 }
