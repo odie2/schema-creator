@@ -10,18 +10,18 @@ Text Domain: schema
 Domain path: /languages
 License: GPL v2
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 2, as
+	published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 	Resources
@@ -304,8 +304,8 @@ if ( !class_exists( "RavenSchema" ) ) :
 		 */
 		function options_info_section() {
 		?>
-            <div id='info_section'>
-                <p>
+			<div id='info_section'>
+				<p>
 				<?php
 					printf(
 						__( 'By default, the %s plugin by %s includes unique CSS IDs and classes. You can reference the CSS to control the style of the HTML that the Schema Creator plugin outputs.' , 'schema' ).'<br>',
@@ -330,10 +330,10 @@ if ( !class_exists( "RavenSchema" ) ) :
 							title="' . esc_attr__( 'Rich Snippet Testing tool', 'schema' ) . '"> '. __( 'Rich Snippet Testing tool' , 'schema'). '</a>'
 					)
 				?>
-                </p>
+				</p>
 
 			</div> <!-- end #info_section -->
-            <?php
+			<?php
 		}
 
 		/**
@@ -492,14 +492,14 @@ if ( !class_exists( "RavenSchema" ) ) :
 			<div class="wrap">
 				<div class="icon32" id="icon-schema"><br></div>
 				<h2><?php _e('Schema Creator Settings', 'schema'); ?></h2>
-                <div class="schema_options">
-                	<form action="options.php" method="post">
+				<div class="schema_options">
+					<form action="options.php" method="post">
 						<?php settings_fields( 'schema_options' ); ?>
-	 					<?php do_settings_sections('schema_options'); ?>
-	                    <p class="submit">
-                        	<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes', 'schema'); ?>" />
-                    	</p>
-                	</form>
+						<?php do_settings_sections('schema_options'); ?>
+						<p class="submit">
+							<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes', 'schema'); ?>" />
+						</p>
+					</form>
 				</div> <!-- end .schema_options -->
 			</div> <!-- end .wrap -->
 		<?php }
@@ -2293,7 +2293,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 							<span>
 								<input type="checkbox" class="schema_check" id="schema_hardcover" name="schema_hardcover" value="hardcover" />
 								<label for="schema_hardcover" rel="checker"><?php _e('Hardcover', 'schema'); ?></label>
-						   </span>
+							</span>
 						</div>
 					</div>
 

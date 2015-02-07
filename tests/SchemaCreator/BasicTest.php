@@ -302,7 +302,7 @@ class BasicTest extends WP_UnitTestCase {
 		
 		// First load that schema valid post
 		global $wp_query;
-        $post = $wp_query->get_queried_object();
+		$post = $wp_query->get_queried_object();
 		$post->post_content = '';
 		$posts = array( $post );
 		
@@ -329,7 +329,7 @@ class BasicTest extends WP_UnitTestCase {
 		$this->go_to( 'http://example.org/?name=example-post' );
 		
 		global $wp_query;
-        $post = $wp_query->get_queried_object();
+		$post = $wp_query->get_queried_object();
 		$post->post_content = '[schema ]';
 		$posts = array( $post );
 		
@@ -357,7 +357,7 @@ class BasicTest extends WP_UnitTestCase {
 
 		// First load that schema valid post
 		global $wp_query;
-        $post = $wp_query->get_queried_object();
+		$post = $wp_query->get_queried_object();
 		$post->post_content = '[schema ]';
 		$posts = array( $post );
 		$this->my_plugin->schema_loader( $posts );
@@ -385,7 +385,7 @@ class BasicTest extends WP_UnitTestCase {
 
 		// First load that schema valid post
 		global $wp_query;
-        $post = $wp_query->get_queried_object();
+		$post = $wp_query->get_queried_object();
 		$post->post_content = '[schema ]';
 		$posts = array( $post );
 		$this->my_plugin->schema_loader( $posts );
