@@ -207,7 +207,7 @@ class BasicTest extends WP_UnitTestCase
         $this->go_to('http://example.org/?name=example-post');
 
         $this->object->body_class('');
-        $this->expectOutputRegex('/(?!itemscope)/', 'Itemscope not inserted by default.');
+        $this->expectOutputRegex('/(?!typeof)/', 'Itemscope not inserted by default.');
     }
 
     /**
@@ -319,7 +319,7 @@ class BasicTest extends WP_UnitTestCase
         $this->object->schema_loader($posts);
 
         // Now lets see it its wrapped
-        $this->assertContains('itemscope', $this->object->schema_wrapper(''), 'post should be wrapped');
+        $this->assertContains('typeof', $this->object->schema_wrapper(''), 'post should be wrapped');
     }
 
     /**
