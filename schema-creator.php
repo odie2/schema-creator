@@ -758,7 +758,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 			}
 
 			// wrap schema build out
-			$sc_build = '<div id="schema_block" class="schema_'.$type.'">';
+			$sc_build = '<div class="schema_block schema_'.$type.'">';
 
 			// person
 			if(isset($type) && $type == 'person') {
