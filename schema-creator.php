@@ -686,6 +686,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 				'evtype'			=> '',
 				'orgtype'			=> '',
 				'name'				=> '',
+				'worksfor'			=> '',
 				'orgname'			=> '',
 				'jobtitle'			=> '',
 				'url'				=> '',
@@ -782,6 +783,9 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 				if(!empty($jobtitle))
 					$sc_build .= '<div class="schema_jobtitle" property="schema:jobtitle">'.$jobtitle.'</div>';
+
+				if(!empty($worksfor))
+					$sc_build .= '<div class="schema_worksfor" itemprop="worksfor">'.$worksfor.'</div>';
 
 				if(!empty($description))
 					$sc_build .= '<div class="schema_description" property="schema:description">'.esc_attr($description).'</div>';
@@ -1450,6 +1454,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 					var name			= jQuery('#schema_builder input#schema_name').val();
 					var orgname			= jQuery('#schema_builder input#schema_orgname').val();
 					var jobtitle		= jQuery('#schema_builder input#schema_jobtitle').val();
+					var worksfor		= jQuery('#schema_builder input#schema_worksfor').val();
 					var url				= jQuery('#schema_builder input#schema_url').val();
 					var bday			= jQuery('#schema_builder input#schema_bday-format').val();
 					var street			= jQuery('#schema_builder input#schema_street').val();
@@ -1513,8 +1518,10 @@ if ( !class_exists( "RavenSchema" ) ) :
 							output += 'name="' + name + '" ';
 						if(orgname)
 							output += 'orgname="' + orgname + '" ';
-						if(jobtitle)
+						if(jobtitle) {
 							output += 'jobtitle="' + jobtitle + '" ';
+							output += 'worksfor="' + worksfor + '" ';
+						}
 						if(url)
 							output += 'url="' + url + '" ';
 						if(description)
@@ -1820,6 +1827,11 @@ if ( !class_exists( "RavenSchema" ) ) :
 					<div id="sc_jobtitle" class="sc_option" style="display:none">
 						<label for="schema_jobtitle"><?php _e('Job Title', 'schema'); ?></label>
 						<input type="text" name="schema_jobtitle" class="form_full" value="" id="schema_jobtitle" />
+					</div>
+
+					<div id="sc_worksfor" class="sc_option" style="display:none">
+						<label for="schema_worksfor"><?php _e('Works For', 'schema'); ?></label>
+						<input type"text" name="schema_worksfor" class="form_full" value="" id="schema_worksfor" />
 					</div>
 
 					<div id="sc_url" class="sc_option" style="display:none">
