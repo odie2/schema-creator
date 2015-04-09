@@ -1831,7 +1831,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 					<div id="sc_worksfor" class="sc_option" style="display:none">
 						<label for="schema_worksfor"><?php _e('Works For', 'schema'); ?></label>
-						<input type"text" name="schema_worksfor" class="form_full" value="" id="schema_worksfor" />
+						<input type="text" name="schema_worksfor" class="form_full" value="" id="schema_worksfor" />
 					</div>
 
 					<div id="sc_url" class="sc_option" style="display:none">
