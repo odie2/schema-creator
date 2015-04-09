@@ -1,8 +1,8 @@
 === Schema Creator by Raven ===
 Contributors: norcross, raventools
 Tags: schema, schema.org, microdata, structured data, seo, html5
-Tested up to: 3.6
-Stable tag: 1.1.0
+Tested up to: 4.1.1 
+Stable tag: 1.1.1
 Requires at least: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -65,7 +65,10 @@ If your `locale` is not provided in the `/languages/` subfolder, you have to eit
 
 == Changelog ==
 
-= 1.1.0
+= 1.1.1 =
+* Minor README patch.
+
+= 1.1.0 =
 * updated plugin to create valid RFDfa 1.1 and HTML5 markup (#105)
 * fix schema test URL in admin bar (#79)
 * fix text domain issues with translations (#83)
