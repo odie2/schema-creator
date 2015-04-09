@@ -525,7 +525,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 			// for admin settings screen
 			$current_screen = get_current_screen();
-			if ( 'settings_page_schema-creator' == $current_screen->base ) :
+			if ( is_object($current_screen) && 'settings_page_schema-creator' == $current_screen->base ) :
 				wp_enqueue_style( 'schema-admin', plugins_url('/lib/css/schema-admin.css', __FILE__), array(), SC_VER, 'all' );
 
 				wp_enqueue_script( 'jquery-qtip', plugins_url('/lib/js/jquery.qtip.min.js', __FILE__) , array('jquery'), SC_VER, true );
@@ -543,7 +543,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		public function schema_footer( $text ) {
 			$current_screen = get_current_screen();
 
-			if ( 'settings_page_schema-creator' !== $current_screen->base )
+			if ( is_object($current_screen) && 'settings_page_schema-creator' !== $current_screen->base )
 				return $text;
 
 			$text = '<span id="footer-thankyou">' .
@@ -1400,7 +1400,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 			// don't show on dashboard (QuickPress)
 			$current_screen = get_current_screen();
-			if ( 'dashboard' == $current_screen->base )
+			if ( is_object($current_screen) && 'dashboard' == $current_screen->base )
 				return;
 
 			// don't display button for users who don't have access
@@ -1432,7 +1432,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 
 			// don't load form on non-editing pages
 			$current_screen = get_current_screen();
-			if ( 'post' !== $current_screen->base )
+			if ( is_object($current_screen) && 'post' !== $current_screen->base )
 				return;
 
 			// don't display form for users who don't have access
