@@ -1,4 +1,4 @@
-Schema Creator by Raven
+Schema Creator by Raven [![Build Status](https://travis-ci.org/raventools/schema-creator.svg?branch=master)](https://travis-ci.org/raventools/schema-creator)
 ========================
 
 Provides an easy to use form to embed properly constructed schema.org microdata into a WordPress post or page.
