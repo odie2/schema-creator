@@ -6,3 +6,9 @@ _stuff
 
 #potmaker
 makepot.bat
+
+#docs
+docs/
+
+#composer
+vendor/
