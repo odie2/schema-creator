@@ -653,7 +653,7 @@ if ( !class_exists( "RavenSchema" ) ) :
 		public function schema_wrapper( $content ) {
 
 			$schema_options = get_option( 'schema_options' );
-			$wrapper = isset($schema_options['post']) || ( $schema_options['post'] === true || $schema_options['post'] == 'true' );
+			$wrapper = isset($schema_options['post']) && ( $schema_options['post'] === true || $schema_options['post'] == 'true' );
 
 			// user disabled content wrapper. just return the content as usual
 			if ($wrapper === false)
